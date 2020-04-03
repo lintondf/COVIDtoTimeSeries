@@ -123,5 +123,5 @@ if __name__ == '__main__':
 # uncomment to sort columns by ascending deaths                
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
-    f.to_csv("../state-deaths.csv")    
-    g.to_csv("../country-deaths.csv")    
+    f.to_csv("./state-deaths.csv")    
+    g.to_csv("./country-deaths.csv")    
