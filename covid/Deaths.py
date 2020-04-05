@@ -78,8 +78,7 @@ states2 = { # yes these are redundant; but one is sorted by name and the other b
         'WY': 'Wyoming'
 }
 
-
-if __name__ == '__main__':
+def updateDeaths(pathToRepository):
     os.system('git -C %s pull' % pathToRepository)
     f = pd.DataFrame(columns=states)
     g = pd.DataFrame(columns=countries)
@@ -120,8 +119,12 @@ if __name__ == '__main__':
                 f = f.append( e, sort=False )
                 e = pd.DataFrame( countryDeaths, index=[pd.to_datetime(name[0:-4])])
                 g = g.append( e, sort=False )
+    return (f, g)    
+    
+if __name__ == '__main__':
+    f, g = updateDeaths(pathToRepository)
 # uncomment to sort columns by ascending deaths                
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
     f.to_csv("./state-deaths.csv")    
-    g.to_csv("./country-deaths.csv")    
+    g.to_csv("./country-deaths.csv")
