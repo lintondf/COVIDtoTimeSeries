@@ -12,4 +12,11 @@ If no further deaths occur the DDGR will be 1.0.  A value of 2 would indicate th
 
 ![Countries with Highest Death Toll - Daily Death Growth Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/Countries10WorstDDGR.png)
 
+![United States](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)
+
+![Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)
+
+![Maryland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maryland.png)
+
+![Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)
 
