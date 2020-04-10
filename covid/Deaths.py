@@ -108,6 +108,7 @@ states2 = {  # yes these are redundant; but one is sorted by name and the other 
 
 def updateDeaths(pathToRepository):
     os.system('git -C %s pull' % pathToRepository)
+    print( os.path.getmtime( pathToRepository) )
     f = pd.DataFrame(columns=states)
     g = pd.DataFrame(columns=countries)
     
