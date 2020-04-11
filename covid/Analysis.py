@@ -5,10 +5,11 @@ Created on Apr 9, 2020
 '''
 
 import os
+from pathlib import Path
 import warnings
 import io
 import requests
-
+import urllib.parse
 import numpy as np
 import scipy.stats as stats
 from scipy.stats import norm
@@ -23,7 +24,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from scipy.optimize.minpack import curve_fit
 from scipy.integrate import trapz
 from sortedcontainers import SortedSet
-from src.Population import loadPopulation, loadStatePopulations
+from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
 
 register_matplotlib_converters()
@@ -93,9 +94,10 @@ states2 = {
 }
 
 
-def scan(cases, population, report=False):  
-    if not report:
-        print('Generating', cases.columns[0], '...')  
+def scan(cases, population, urlDirectory=None):  
+    if not urlDirectory is None:
+        print("![%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png" %
+              (cases.columns[0], urlDirectory, urllib.parse.quote(cases.columns[0]) ) )
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
     if (len(lnCases) < 10) :
@@ -126,10 +128,10 @@ def scan(cases, population, report=False):
         direction = 'D'
         if (y3ddr[-1] > y3ddr[-5]) :
             direction = 'A'
-        if report :
+        if urlDirectory is None :
             print('%-15s %3d   ' % (cases.columns[0], len(T)), end=' ')  
         scaledTrend = np.exp(trend) / population
-        if report:
+        if urlDirectory is None:
             print('  %6.0f  %10.2f' % (np.exp(trend[-1]), scaledTrend[-1]), end='  ')
             print(' %7.3f %7.3f %7.3f ' % (y3ddr[-3]**(1/nD), y3ddr[-2]**(1/nD), y3ddr[-1]**(1/nD)))
     return scaledTrend, x3ddr, y3ddr, y3raw
@@ -158,6 +160,8 @@ def plotOneState( state, pop, path ):
     
 if __name__ == '__main__':
     population = loadStatePopulations();
+    base = Path(os.getcwd())
+    print(base, base.parent, base.parent.parent)
     home = os.environ['HOME']
     pathToRepository = home + '/GITHUB/COVID-19'
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
@@ -195,7 +199,7 @@ if __name__ == '__main__':
         x = f[[f.columns[i]]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         pop = population[x.columns[0]]
-        scaled, x3ddr, y3ddr, __ = scan( x, pop, report=True ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+        scaled, x3ddr, y3ddr, __ = scan( x, pop, 'states' ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
         color = next(ax1._get_lines.prop_cycler)['color']
         ax1.semilogy(x.index[:], (scaled), label=f.columns[i], color=color) # 
         ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -208,7 +212,7 @@ if __name__ == '__main__':
     x = g[['US']]
     x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
     pop = population[x.columns[0]]
-    scaled, x3ddr, y3ddr, __ = scan( x, pop, report=False ) # smoothed trend/population (M)
+    scaled, x3ddr, y3ddr, __ = scan( x, pop, 'countries' ) # smoothed trend/population (M)
     color = 'Black'
     ax1.semilogy(x.index[:], (scaled), label=x.columns[0], color=color) # 
     ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
