@@ -98,7 +98,7 @@ def scan(cases, population, urlDirectory=None):
     if not urlDirectory is None:
         marker = 'analysis/'
         i = urlDirectory.find(marker) + len(marker)
-        print("![%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png" %
+        print("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png)" %
               (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
@@ -164,7 +164,7 @@ if __name__ == '__main__':
     home = 'C:/Users/NOOK' #TODO from sys.argv
     pathToRepository = home + '/GITHUB/COVID-19'
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
-    print( os.path.getmtime( pathToRepository) )
+#     print( os.path.getmtime( pathToRepository) )
     os.system('git -C %s pull' % pathToRepository)
     if (os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
         f, g = updateDeaths(pathToRepository, pull=False)
