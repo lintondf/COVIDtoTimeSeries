@@ -161,7 +161,6 @@ def plotOneState( state, pop, path ):
     plt.close()
     
 if __name__ == '__main__':
-    population = loadStatePopulations();
     home = 'C:/Users/NOOK' #TODO from sys.argv
     pathToRepository = home + '/GITHUB/COVID-19'
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
@@ -177,6 +176,7 @@ if __name__ == '__main__':
         f = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
         g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
     
+    population = loadStatePopulations();
     print('%-15s   N  %10s  %10s  %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
 #     fig, (ax1, ax2) = plt.subplots(1,2)
 #     plt.grid(True)
@@ -193,7 +193,7 @@ if __name__ == '__main__':
         x = f[[f.columns[i]]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         pop = population[x.columns[0]]
-        scaled, x3ddr, y3ddr, __ = scan( x, pop, 'states' ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+        scaled, x3ddr, y3ddr, __ = scan( x, pop ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
         color = next(ax1._get_lines.prop_cycler)['color']
         ax1.semilogy(x.index[:], (scaled), label=f.columns[i], color=color) # 
         ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)

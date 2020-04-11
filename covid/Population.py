@@ -26,12 +26,15 @@ def loadPopulation():
             continue
 #         print(etree.tostring(tr, pretty_print=True))
         td = tr[1] # span, a
-        name = (td[1].text)
+        if (len(td) < 2) :
+            name = td[0][1].text
+        else :
+            name = (td[1].text)
         td = tr[2]
         value = (float(td.text.replace(",",'')))
         population.update({name : 1e-6*value})
         row += 1
-        if (row > 100) :
+        if (row > 156) : # stop < 1M
             break;
     return population
 
