@@ -96,8 +96,10 @@ states2 = {
 
 def scan(cases, population, urlDirectory=None):  
     if not urlDirectory is None:
+        marker = 'analysis/'
+        i = urlDirectory.find(marker) + len(marker)
         print("![%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png" %
-              (cases.columns[0], urlDirectory, urllib.parse.quote(cases.columns[0]) ) )
+              (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
     if (len(lnCases) < 10) :
@@ -137,7 +139,7 @@ def scan(cases, population, urlDirectory=None):
     return scaledTrend, x3ddr, y3ddr, y3raw
 
 def plotOneState( state, pop, path ):
-    scaled, x3ddr, y3ddr, y3raw = scan( state, pop ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+    scaled, x3ddr, y3ddr, y3raw = scan( state, pop, path ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
     if scaled is None:
         return
     values = np.asarray(x[[x.columns[0]]].values)
@@ -160,28 +162,20 @@ def plotOneState( state, pop, path ):
     
 if __name__ == '__main__':
     population = loadStatePopulations();
-    base = Path(os.getcwd())
-    print(base, base.parent, base.parent.parent)
-    home = os.environ['HOME']
+    home = 'C:/Users/NOOK' #TODO from sys.argv
     pathToRepository = home + '/GITHUB/COVID-19'
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
-    if False :
-        f, g = updateDeaths(pathToRepository)
+    print( os.path.getmtime( pathToRepository) )
+    os.system('git -C %s pull' % pathToRepository)
+    if (os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
+        f, g = updateDeaths(pathToRepository, pull=False)
         f.sort_values(f.index[-1], axis=1,ascending=False,inplace=True)
         g.sort_values(g.index[-1], axis=1,ascending=False,inplace=True)
-        f.to_csv("../states.csv")
-        g.to_csv("../countries.csv")
+        f.to_csv(outPath + "/data/states.csv")
+        g.to_csv(outPath + "/data/countries.csv")
     else :
-        f = pd.read_csv("../states.csv", parse_dates=True, index_col=0)
-        g = pd.read_csv("../countries.csv", parse_dates=True, index_col=0)
-
-    for name in f.columns:
-        x = f[[name]]
-        x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
-        if name in population:
-            pop = population[x.columns[0]]
-            plotOneState(x, pop, outPath + "/analysis/states")
-
+        f = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
+        g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
     
     print('%-15s   N  %10s  %10s  %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
 #     fig, (ax1, ax2) = plt.subplots(1,2)
@@ -205,6 +199,16 @@ if __name__ == '__main__':
         ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
         ax2.plot( x3ddr, y3ddr**(1/nD), color=color, label=f.columns[i])
     print()
+
+    # generate charts for all states    
+    for name in f.columns.sort_values():
+        x = f[[name]]
+        x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
+        if name in population:
+            pop = population[x.columns[0]]
+            plotOneState(x, pop, outPath + "/analysis/states")
+
+    
     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
     population = loadPopulation();
     population['US'] = population['United States']
@@ -238,7 +242,7 @@ if __name__ == '__main__':
         x = g[[g.columns[i]]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         pop = population[x.columns[0]]
-        scaled, x3ddr, y3ddr, __ = scan( x, pop, report=True ) # smoothed trend/population (M)
+        scaled, x3ddr, y3ddr, __ = scan( x, pop ) # smoothed trend/population (M)
         color = next(ax3._get_lines.prop_cycler)['color']
         ax3.semilogy(x.index[:], (scaled), label=g.columns[i], color=color) # 
         ax3.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -250,7 +254,8 @@ if __name__ == '__main__':
     fig4.savefig(outPath+"/analysis/Countries10WorstDDGR.png")
     plt.close()
 
-    for name in g.columns:
+    # generate charts for all countries
+    for name in g.columns.sort_values():
         x = g[[name]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         if name in population:
