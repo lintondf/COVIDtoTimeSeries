@@ -137,11 +137,11 @@ def scan(cases, population, urlDirectory=None):
         if urlDirectory is None:
             print('  %6.0f  %10.2f' % (np.exp(trend[-1]), scaledTrend[-1]), end='  ')
             print(' %7.3f %7.3f %7.3f ' % (y3ddr[-3]**(1/nD), y3ddr[-2]**(1/nD), y3ddr[-1]**(1/nD)), end='  ')
-            r = np.roots([coef[1], coef[0],intercept])
-            r = r[r>0]
-            if (len(r) > 0) :
-                r = int(np.min(r[r>0]))
-                print(r, end='')
+#             r = np.roots([coef[1], coef[0],intercept])
+#             r = r[r>0]
+#             if (len(r) > 0) :
+#                 r = int(np.min(r[r>0]))
+#                 print(r, end='')
             print()
     return scaledTrend, x3ddr, y3ddr, y3raw
 
