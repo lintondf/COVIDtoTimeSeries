@@ -4,6 +4,7 @@ Created on Mar 18, 2020
 @author: NOOK
 '''
 import requests
+import csv
 import lxml.etree as etree
 import lxml.html as lh
 import pandas as pd
@@ -11,6 +12,14 @@ import numpy as np
 from scipy.optimize import _trustregion_ncg
 
 def loadPopulation():
+    population = dict()
+    with open('../data/country-population.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            population.update({row['name'] : float(row['population'])})
+    return population
+
+def refreshPopulation():
     population = dict()
     url = 'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'
     page = requests.get(url)
@@ -39,6 +48,15 @@ def loadPopulation():
     return population
 
 def loadStatePopulations():
+    population = dict()
+    with open('../data/state-population.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            population.update({row['name'] : float(row['population'])})
+    return population
+
+
+def refreshStatePopulations():
     states = dict();
     url = 'https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population'
     page = requests.get(url)
@@ -70,4 +88,19 @@ def loadStatePopulations():
     return states
         
 if __name__ == '__main__':
-    print(loadPopulation())
+    pop = refreshPopulation()
+    with open('../data/country-population.csv', 'w', newline='') as csvfile:
+        fieldnames = ['name', 'population']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+        writer.writeheader()
+        for name in pop :
+            writer.writerow({'name': name, 'population': pop[name]})    
+    pop = refreshStatePopulations()
+    with open('../data/state-population.csv', 'w', newline='') as csvfile:
+        fieldnames = ['name', 'population']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+        writer.writeheader()
+        for name in pop :
+            writer.writerow({'name': name, 'population': pop[name]})    

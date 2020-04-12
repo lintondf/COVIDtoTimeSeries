@@ -98,7 +98,7 @@ def scan(cases, population, urlDirectory=None):
     if not urlDirectory is None:
         marker = 'analysis/'
         i = urlDirectory.find(marker) + len(marker)
-        print("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png)" %
+        print("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; " %
               (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
@@ -142,7 +142,7 @@ def plotOneState( state, pop, path ):
     scaled, x3ddr, y3ddr, y3raw = scan( state, pop, path ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
     if scaled is None:
         return
-    values = np.asarray(x[[x.columns[0]]].values)
+    values = np.asarray(state[[state.columns[0]]].values)
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
     fig.autofmt_xdate()
@@ -152,8 +152,16 @@ def plotOneState( state, pop, path ):
     color = 'red'
     ax1.semilogy(state.index[:], (scaled), color=color, label='Deaths/1M (Left)') # 
     ax1.semilogy(state.index[:], (values/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
+    ax1.annotate('%5.1f' % (values[-1]/pop),
+            xy=(state.index[-1], values[-1]/pop), xycoords='data',
+            xytext=(-10, -30), textcoords='offset points',
+            arrowprops=dict(arrowstyle="->"))
     ax2.plot( x3ddr, y3ddr**(1/nD), color='blue', label='DDGR (Right)')
     ax2.plot( x3ddr, y3raw**(1/nD), color='blue', linestyle='', markeredgecolor='none', marker='.' )
+    ax2.annotate('%5.2f' % (y3raw[-1]**(1/nD)),
+            xy=(x3ddr[-1], y3raw[-1]**(1/nD)), xycoords='data',
+            xytext=(-10, 30), textcoords='offset points',
+            arrowprops=dict(arrowstyle="->"))
     ax1.legend(loc='upper left')
     ax2.legend(loc='center right')
     plt.draw()
@@ -261,3 +269,5 @@ if __name__ == '__main__':
         if name in population:
             pop = population[x.columns[0]]
             plotOneState(x, pop, outPath + "/analysis/countries")
+    os.system('git -C %s commit -a -m "daily update"' % outPath)
+    os.system('git -C %s push' % outPath)
