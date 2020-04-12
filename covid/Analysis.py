@@ -203,9 +203,12 @@ if __name__ == '__main__':
         pop = population[x.columns[0]]
         scaled, x3ddr, y3ddr, __ = scan( x, pop ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
         color = next(ax1._get_lines.prop_cycler)['color']
-        ax1.semilogy(x.index[:], (scaled), label=f.columns[i], color=color) # 
+#         label = '%s : %6.1f' % (f.columns[i], scaled[-1])
+        label = f.columns[i]
+        ax1.semilogy(x.index[:], (scaled), label=label, color=color) # 
         ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
-        ax2.plot( x3ddr, y3ddr**(1/nD), color=color, label=f.columns[i])
+#         label = '%s : %6.1f' % (f.columns[i], y3ddr[-1]**(1/nD))
+        ax2.plot( x3ddr, y3ddr**(1/nD), color=color, label=label)
     print()
 
     # generate charts for all states    
