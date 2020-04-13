@@ -181,7 +181,7 @@ if __name__ == '__main__':
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
 #     print( os.path.getmtime( pathToRepository) )
     os.system('git -C %s pull' % pathToRepository)
-    if (True or os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
+    if (os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
         f, g = updateDeaths(pathToRepository, pull=False)
         f.sort_values(f.index[-1], axis=1,ascending=False,inplace=True)
         g.sort_values(g.index[-1], axis=1,ascending=False,inplace=True)
