@@ -114,7 +114,7 @@ def scan(cases, population, urlDirectory=None):
     Z = np.exp(Y)
     y3raw = (Z[nD:,0] / Z[:-nD,0])
     y3ddr = lowess(y3raw, T[nD:,0], frac=0.5, it=10)[:,1]
-    np.savetxt('../' + cases.columns[0] + '.csv', trend, delimiter=',') 
+#     np.savetxt('../' + cases.columns[0] + '.csv', trend, delimiter=',') 
     x3ddr = lnCases.index[-len(T[nD:,0]):] #  T[3:]
     if (len(T) < 10) :
         print(cases.columns[0], len(T), 'days of history')
