@@ -111,7 +111,7 @@ def scan(cases, population, urlDirectory=None):
         
     lowess = sm.nonparametric.lowess
     trend = lowess(Y[:,0], T[:,0], frac=0.5, it=10)[:,1]
-    Z = np.exp(Y)
+    Z = np.exp(Y) # very roundabout way to get non-zero values
     y3raw = (Z[nD:,0] / Z[:-nD,0])
     y3ddr = lowess(y3raw, T[nD:,0], frac=0.5, it=10)[:,1]
 #     np.savetxt('../' + cases.columns[0] + '.csv', trend, delimiter=',') 
