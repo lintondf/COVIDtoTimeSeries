@@ -1,7 +1,7 @@
 # State and Country COVID-19 Analysis #
 ## Updated: 2020 April 17 ##
 
-***Note**:  Expect discontinuities in the US after 4/14/2020 as the [CDC](CDC "https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html") [expanded] expanded the definition of a COVID-19 death.*
+***Note**:  Expect discontinuities in the US after 4/14/2020 as the [CDC](CDC "https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html")  expanded the definition of a COVID-19 death.*
 
 Deaths in the 10 US States with the highest death tolls expressed as deaths per 1 million population. One per million is 0.0001%.  1% is 10,000 per million.
 
