@@ -21,6 +21,9 @@ import statsmodels.api as sm
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 
+from datetime import datetime
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+
 from scipy.optimize.minpack import curve_fit
 from scipy.integrate import trapz
 from sortedcontainers import SortedSet
@@ -31,6 +34,8 @@ register_matplotlib_converters()
 
 
 nD = 3 # 3DRR
+top10StatesTable = ''
+top10CountriesTable = ''
 
 countries = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahamas, The', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burma', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Channel Islands', 'Chile', 'China', 'Colombia', 'Congo (Brazzaville)', 'Congo (Kinshasa)', 'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cruise Ship', 'Cuba', 'Curacao', 'Cyprus', 'Czech Republic', 'Czechia', 'Denmark', 'Diamond Princess', 'Djibouti', 'Dominica', 'Dominican Republic', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Guiana', 'Gabon', 'Gambia', 'Gambia, The', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe', 'Guam', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Holy See', 'Honduras', 'Hong Kong', 'Hong Kong SAR', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iran (Islamic Republic of)', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Korea, South', 'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'MS Zaandam', 'Macao SAR', 'Macau', 'Madagascar', 'Mainland China', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Martinique', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Ireland', 'North Macedonia', 'Norway', 'Oman', 'Others', 'Pakistan', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Republic of Ireland', 'Republic of Korea', 'Republic of Moldova', 'Republic of the Congo', 'Reunion', 'Romania', 'Russia', 'Russian Federation', 'Rwanda', 'Saint Barthelemy', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Martin', 'Saint Vincent and the Grenadines', 'San Marino', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Somalia', 'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'St. Martin', 'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taipei and environs', 'Taiwan', 'Taiwan*', 'Tanzania', 'Thailand', 'The Bahamas', 'The Gambia', 'Timor-Leste', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'UK', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'Uruguay', 'US', 'Uzbekistan', 'Vatican City', 'Venezuela', 'Viet Nam', 'Vietnam', 'West Bank and Gaza', 'Zambia', 'Zimbabwe', 'occupied Palestinian territory']
 states2 = {
@@ -94,12 +99,14 @@ states2 = {
 }
 
 
-def scan(cases, population, urlDirectory=None):  
+def scan(cases, population, urlDirectory=None, links = None):  
     if not urlDirectory is None:
         marker = 'analysis/'
         i = urlDirectory.find(marker) + len(marker)
-        print("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; " %
+        link = ("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; " %
               (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
+        links = links.join(link)
+        print(cases.columns[0])
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
     if (len(lnCases) < 10) :
@@ -145,8 +152,8 @@ def scan(cases, population, urlDirectory=None):
             print()
     return scaledTrend, x3ddr, y3ddr, y3raw
 
-def plotOneState( state, pop, path ):
-    scaled, x3ddr, y3ddr, y3raw = scan( state, pop, path ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+def plotOneState( state, pop, path, links ):
+    scaled, x3ddr, y3ddr, y3raw = scan( state, pop, path, links ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
     if scaled is None:
         return
     values = np.asarray(state[[state.columns[0]]].values)
@@ -175,13 +182,10 @@ def plotOneState( state, pop, path ):
     fig.savefig(path+"/"+state.columns[0]+".png")
     plt.close()
     
-if __name__ == '__main__':
-    home = 'C:/Users/NOOK' #TODO from sys.argv
-    pathToRepository = home + '/GITHUB/COVID-19'
-    outPath = home + "/GITHUB/COVIDtoTimeSeries"
+def main(pathToRepository, outPath, statesLinks, countriesLinks):
 #     print( os.path.getmtime( pathToRepository) )
     os.system('git -C %s pull' % pathToRepository)
-    if (True or  os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
+    if (True or os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
         f, g = updateDeaths(pathToRepository, pull=False)
         f.sort_values(f.index[-1], axis=1,ascending=False,inplace=True)
         g.sort_values(g.index[-1], axis=1,ascending=False,inplace=True)
@@ -224,7 +228,7 @@ if __name__ == '__main__':
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         if name in population:
             pop = population[x.columns[0]]
-            plotOneState(x, pop, outPath + "/analysis/states")
+            plotOneState(x, pop, outPath + "/analysis/states", statesLinks)
 
     
     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
@@ -234,7 +238,7 @@ if __name__ == '__main__':
     x = g[['US']]
     x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
     pop = population[x.columns[0]]
-    scaled, x3ddr, y3ddr, __ = scan( x, pop, 'countries' ) # smoothed trend/population (M)
+    scaled, x3ddr, y3ddr, __ = scan( x, pop, 'countries', countriesLinks ) # smoothed trend/population (M)
     color = 'Black'
     ax1.semilogy(x.index[:], (scaled), label=x.columns[0], color=color) # 
     ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -278,6 +282,29 @@ if __name__ == '__main__':
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         if name in population:
             pop = population[x.columns[0]]
-            plotOneState(x, pop, outPath + "/analysis/countries")
+            plotOneState(x, pop, outPath + "/analysis/countries", countriesLinks)
+#     os.system('git -C %s commit -a -m "daily update"' % outPath)
+#     os.system('git -C %s push' % outPath)
+
+if __name__ == '__main__':
+    home = 'C:/Users/NOOK' #TODO from sys.argv
+    pathToRepository = home + '/GITHUB/COVID-19'
+    outPath = home + "/GITHUB/COVIDtoTimeSeries"
+    env = Environment(
+        loader=FileSystemLoader(outPath + '/covid/templates'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    template = env.get_template("ANALYSIS.mdt")
+    statesLinks = ''
+    countriesLinks = ''
+    main(pathToRepository, outPath, statesLinks, countriesLinks)
+    fields = dict();
+    fields.update({'date': datetime.date(datetime.now())})
+    fields.update({'top10StatesTable': top10StatesTable})
+    fields.update({'top10CountriesTable': top10CountriesTable})
+    fields.update({'statesLinks': statesLinks})
+    fields.update({'countriesLinks': countriesLinks})    
+    print()
+    print(template.render(fields))
     os.system('git -C %s commit -a -m "daily update"' % outPath)
     os.system('git -C %s push' % outPath)
