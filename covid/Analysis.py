@@ -103,7 +103,7 @@ def scan(cases, population, urlDirectory=None, links = None):
     if not urlDirectory is None:
         marker = 'analysis/'
         i = urlDirectory.find(marker) + len(marker)
-        link = ("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; " %
+        link = ("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; \n" %
               (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
         links = np.append( links, np.array([link], dtype=str) )
         print(cases.columns[0])
