@@ -105,12 +105,12 @@ def scan(cases, population, urlDirectory=None, links = None):
         i = urlDirectory.find(marker) + len(marker)
         link = ("[%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/%s/%s.png) &#124; " %
               (cases.columns[0], urlDirectory[i:], urllib.parse.quote(cases.columns[0]) ) )
-        links = links.join(link)
+        links = np.append( links, np.array([link], dtype=str) )
         print(cases.columns[0])
     cases['Ln'] = np.log(cases[cases.columns[0]])
     lnCases = cases[['Ln']].dropna()
     if (len(lnCases) < 10) :
-        return None, None, None, None
+        return None, None, None, None, links
     reg = linear_model.LinearRegression()
     T = np.asarray(((lnCases.index-lnCases.index[0]).days))
     T = T.reshape(-1, 1)
@@ -125,7 +125,7 @@ def scan(cases, population, urlDirectory=None, links = None):
     x3ddr = lnCases.index[-len(T[nD:,0]):] #  T[3:]
     if (len(T) < 10) :
         print(cases.columns[0], len(T), 'days of history')
-        return None, None, None, None
+        return None, None, None, None, links
     else:
         t = T[-3:] - T[-1]
         t = np.hstack([t,t**2])
@@ -150,12 +150,12 @@ def scan(cases, population, urlDirectory=None, links = None):
 #                 r = int(np.min(r[r>0]))
 #                 print(r, end='')
             print()
-    return scaledTrend, x3ddr, y3ddr, y3raw
+    return scaledTrend, x3ddr, y3ddr, y3raw, links
 
 def plotOneState( state, pop, path, links ):
-    scaled, x3ddr, y3ddr, y3raw = scan( state, pop, path, links ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+    scaled, x3ddr, y3ddr, y3raw, links = scan( state, pop, path, links ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
     if scaled is None:
-        return
+        return links
     values = np.asarray(state[[state.columns[0]]].values)
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
@@ -181,9 +181,11 @@ def plotOneState( state, pop, path, links ):
     plt.draw()
     fig.savefig(path+"/"+state.columns[0]+".png")
     plt.close()
+    return links
     
 def main(pathToRepository, outPath, statesLinks, countriesLinks):
 #     print( os.path.getmtime( pathToRepository) )
+# os.popen('cat /etc/services').read()
     os.system('git -C %s pull' % pathToRepository)
     if (True or os.path.getmtime( outPath + "/data/states.csv") < os.path.getmtime( pathToRepository)) :
         f, g = updateDeaths(pathToRepository, pull=False)
@@ -212,7 +214,7 @@ def main(pathToRepository, outPath, statesLinks, countriesLinks):
         x = f[[f.columns[i]]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         pop = population[x.columns[0]]
-        scaled, x3ddr, y3ddr, __ = scan( x, pop ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
+        scaled, x3ddr, y3ddr, __, __ = scan( x, pop ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
         color = next(ax1._get_lines.prop_cycler)['color']
 #         label = '%s : %6.1f' % (f.columns[i], scaled[-1])
         label = f.columns[i]
@@ -228,7 +230,7 @@ def main(pathToRepository, outPath, statesLinks, countriesLinks):
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         if name in population:
             pop = population[x.columns[0]]
-            plotOneState(x, pop, outPath + "/analysis/states", statesLinks)
+            statesLinks = plotOneState(x, pop, outPath + "/analysis/states", statesLinks)
 
     
     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
@@ -238,7 +240,7 @@ def main(pathToRepository, outPath, statesLinks, countriesLinks):
     x = g[['US']]
     x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
     pop = population[x.columns[0]]
-    scaled, x3ddr, y3ddr, __ = scan( x, pop, 'countries', countriesLinks ) # smoothed trend/population (M)
+    scaled, x3ddr, y3ddr, __, __ = scan( x, pop, 'countries', countriesLinks ) # smoothed trend/population (M)
     color = 'Black'
     ax1.semilogy(x.index[:], (scaled), label=x.columns[0], color=color) # 
     ax1.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -264,7 +266,7 @@ def main(pathToRepository, outPath, statesLinks, countriesLinks):
         x = g[[g.columns[i]]]
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         pop = population[x.columns[0]]
-        scaled, x3ddr, y3ddr, __ = scan( x, pop ) # smoothed trend/population (M)
+        scaled, x3ddr, y3ddr, __, __ = scan( x, pop ) # smoothed trend/population (M)
         color = next(ax3._get_lines.prop_cycler)['color']
         ax3.semilogy(x.index[:], (scaled), label=g.columns[i], color=color) # 
         ax3.semilogy(x.index[:], (np.asarray(x[[x.columns[0]]].values)/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -282,9 +284,10 @@ def main(pathToRepository, outPath, statesLinks, countriesLinks):
         x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
         if name in population:
             pop = population[x.columns[0]]
-            plotOneState(x, pop, outPath + "/analysis/countries", countriesLinks)
+            countriesLinks = plotOneState(x, pop, outPath + "/analysis/countries", countriesLinks)
 #     os.system('git -C %s commit -a -m "daily update"' % outPath)
 #     os.system('git -C %s push' % outPath)
+    return statesLinks, countriesLinks
 
 if __name__ == '__main__':
     home = 'C:/Users/NOOK' #TODO from sys.argv
@@ -295,15 +298,21 @@ if __name__ == '__main__':
         autoescape=select_autoescape(['html', 'xml'])
     )
     template = env.get_template("ANALYSIS.mdt")
-    statesLinks = ''
-    countriesLinks = ''
-    main(pathToRepository, outPath, statesLinks, countriesLinks)
+    statesLinks = np.array([],dtype=str)
+    countriesLinks = np.array([],dtype=str)
+    statesLinks, countriesLinks = main(pathToRepository, outPath, statesLinks, countriesLinks)
+    statesContent = ''
+    for state in statesLinks:
+        statesContent += state
+    countriesContent = ''
+    for state in countriesLinks:
+        countriesContent += state
     fields = dict();
     fields.update({'date': datetime.date(datetime.now())})
     fields.update({'top10StatesTable': top10StatesTable})
     fields.update({'top10CountriesTable': top10CountriesTable})
-    fields.update({'statesLinks': statesLinks})
-    fields.update({'countriesLinks': countriesLinks})    
+    fields.update({'statesLinks': statesContent})
+    fields.update({'countriesLinks': countriesContent})    
     print()
     print(template.render(fields))
     os.system('git -C %s commit -a -m "daily update"' % outPath)
