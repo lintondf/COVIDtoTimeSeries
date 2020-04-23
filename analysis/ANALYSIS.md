@@ -1,5 +1,5 @@
 # State and Country COVID-19 Analysis #
-## Updated: 2020-04-22 ##
+## Updated: 2020-04-23 ##
 
 ***Note**:  Expect discontinuities in the US after 4/14/2020 as the [CDC](CDC "https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/cases-in-us.html")  expanded the definition of a COVID-19 death.*
 
@@ -17,7 +17,11 @@ If deaths remain constant over the three days, the DDGR equals one.  A value of 
 
 ![US States with Highest Death Toll - Daily Death Growth Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/States10WorstDDGR.png)
 
-
+<!---
+|State|Days|Deaths|Deaths/1M|DDDGR[-7]|DDGR[-3]|DDGR[-2]|DDGR[-1]|
+|-----|----|------|---------|----------|--------|---------|---------|
+|Florida|45|946|44.06|1.075|1.063|1.057|1.051|
+-->
 
 # Ten Countries with Highest Death Tolls #
 
