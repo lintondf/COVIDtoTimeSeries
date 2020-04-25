@@ -74,7 +74,7 @@ class IHME():
     #                 print(root, rgba)
                     i = root.find('2020_')
                     label = 'As of %s' % root[i+5:i+10]
-                    ax1.semilogy( florida.index[:], florida[mean], label=label, color=rgba )
+                    ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
                     rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
                     ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
     #                 if first is None:
@@ -92,7 +92,7 @@ class IHME():
         dFL = dFL[first:last]
         if stat == 'totdea' :
             dFL = dFL.cumsum()
-        ax1.semilogy( dFL.index[:], dFL, label='Actual', color='black')
+        ax1.plot( dFL.index[:], dFL, label='Actual', color='black') # semilogy
         ax1.legend(loc='best') # 'upper left')
 #         plt.draw()
 #         fig1.savefig(outpath + "/"+which+".png")
