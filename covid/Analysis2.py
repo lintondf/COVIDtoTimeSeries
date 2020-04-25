@@ -29,11 +29,15 @@ from scipy.integrate import trapz
 from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
+from IHME import IHME
 from astropy.wcs.docstrings import row
 
 register_matplotlib_converters()
 
 nD = 3 # 3DRR
+home = 'C:/Users/NOOK' #TODO from sys.argv
+pathToRepository = home + '/GITHUB/COVID-19'
+ihme = IHME(home)
 
 countries = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahamas, The', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burma', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Channel Islands', 'Chile', 'China', 'Colombia', 'Congo (Brazzaville)', 'Congo (Kinshasa)', 'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cruise Ship', 'Cuba', 'Curacao', 'Cyprus', 'Czech Republic', 'Czechia', 'Denmark', 'Diamond Princess', 'Djibouti', 'Dominica', 'Dominican Republic', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Guiana', 'Gabon', 'Gambia', 'Gambia, The', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe', 'Guam', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Holy See', 'Honduras', 'Hong Kong', 'Hong Kong SAR', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iran (Islamic Republic of)', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Korea, South', 'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'MS Zaandam', 'Macao SAR', 'Macau', 'Madagascar', 'Mainland China', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Martinique', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Ireland', 'North Macedonia', 'Norway', 'Oman', 'Others', 'Pakistan', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Republic of Ireland', 'Republic of Korea', 'Republic of Moldova', 'Republic of the Congo', 'Reunion', 'Romania', 'Russia', 'Russian Federation', 'Rwanda', 'Saint Barthelemy', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Martin', 'Saint Vincent and the Grenadines', 'San Marino', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Somalia', 'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'St. Martin', 'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taipei and environs', 'Taiwan', 'Taiwan*', 'Tanzania', 'Thailand', 'The Bahamas', 'The Gambia', 'Timor-Leste', 'Togo', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'UK', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'Uruguay', 'US', 'Uzbekistan', 'Vatican City', 'Venezuela', 'Viet Nam', 'Vietnam', 'West Bank and Gaza', 'Zambia', 'Zimbabwe', 'occupied Palestinian territory']
 states2 = {
@@ -158,12 +162,15 @@ class Analysis():
                     
         return scaledTrend, x3ddr, y3ddr, y3raw, links
 
-    def plotOneState( self, path, state, pop, which, links ):
+    def plotOneState( self, path, state, pop, which, links, compare=False ):
         scaled, x3ddr, y3ddr, y3raw, links = self.analyze( state, pop, which=which, verbose=False, links=links ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
         if scaled is None:
             return links
         values = np.asarray(state[[state.columns[0]]].values)
-        fig, ax1 = plt.subplots()
+        if (compare) :
+            fig, (ax1, axi) = plt.subplots(2, figsize=(8,10))
+        else:
+            fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
         fig.autofmt_xdate()
         ax1.set_title('%s - %d Deaths' % (state.columns[0], values[-1]))
@@ -184,6 +191,8 @@ class Analysis():
                 arrowprops=dict(arrowstyle="->"))
         ax1.legend(loc='upper left')
         ax2.legend(loc='center right')
+        if compare:
+            ihme.plot( state.columns[0], axi)
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
         plt.close()
@@ -238,7 +247,8 @@ class Analysis():
             x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
             if name in population:
                 pop = population[x.columns[0]]
-                self.statesLinks = self.plotOneState(outPath + "/analysis/states", x, pop, which='states', links=self.statesLinks)
+                self.statesLinks = self.plotOneState(outPath + "/analysis/states", x, pop, 
+                                                     which='states', links=self.statesLinks, compare=True)
     
         
     #     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
@@ -297,14 +307,13 @@ class Analysis():
             x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
             if name in population:
                 pop = population[x.columns[0]]
-                self.countriesLinks = self.plotOneState(outPath + "/analysis/countries", x, pop, which='countries', links=self.countriesLinks)
+                self.countriesLinks = self.plotOneState(outPath + "/analysis/countries", x, pop, 
+                                        which='countries', links=self.countriesLinks, compare=name == 'US')
     #     os.system('git -C %s commit -a -m "daily update"' % outPath)
     #     os.system('git -C %s push' % outPath)
 
 
 if __name__ == '__main__':
-    home = 'C:/Users/NOOK' #TODO from sys.argv
-    pathToRepository = home + '/GITHUB/COVID-19'
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
     env = Environment(
         loader=FileSystemLoader(outPath + '/covid/templates'),
@@ -316,7 +325,7 @@ if __name__ == '__main__':
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
     reload = not result.startswith('Already up to date.')
-    analysis.main(True or reload, pathToRepository, outPath)
+    analysis.main(reload, pathToRepository, outPath)
     
     statesContent = ''
     for state in analysis.statesLinks:
@@ -333,5 +342,6 @@ if __name__ == '__main__':
     f = open(outPath + '/analysis/ANALYSIS.md', 'w') 
     print(template.render(fields), file=f)
     f.close()
-    os.system('git -C %s commit -a -m "daily update"' % outPath)
-    os.system('git -C %s push' % outPath)
+    if reload :
+        os.system('git -C %s commit -a -m "daily update"' % outPath)
+        os.system('git -C %s push' % outPath)
