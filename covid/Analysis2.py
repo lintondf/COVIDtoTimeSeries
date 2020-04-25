@@ -315,7 +315,8 @@ if __name__ == '__main__':
 
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
-    analysis.main(not result.startswith('Already up to date.'), pathToRepository, outPath)
+    reload = not result.startswith('Already up to date.')
+    analysis.main(True or reload, pathToRepository, outPath)
     
     statesContent = ''
     for state in analysis.statesLinks:
