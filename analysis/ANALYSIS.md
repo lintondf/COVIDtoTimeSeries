@@ -63,6 +63,11 @@ Daily Death Growth Rate (DDGR) in the 10 countries with the highest death tolls.
 
 
 # US and Selected States #
+
+For each country and each US state, deaths per million in population is plotted on the left logarithmic axis and the raw and smoothed DDGR is plotted on the linear right axis.
+
+For the US and each US state a second chart is produced below showing the various estimates of total deaths from the [IHME Projections](https://covid19.healthdata.org/united-states-of-america) website.  Historical data is from [here](http://www.healthdata.org/covid/data-downloads).
+
 ## United States ##
 ![United States](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)
 

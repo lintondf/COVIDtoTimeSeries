@@ -168,11 +168,12 @@ class Analysis():
             return links
         values = np.asarray(state[[state.columns[0]]].values)
         if (compare) :
-            fig, (ax1, axi) = plt.subplots(2, figsize=(8,10))
+            fig, (ax1, axi) = plt.subplots(2, figsize=(8,10.5), sharex=False)
         else:
             fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
-        fig.autofmt_xdate()
+#         fig.autofmt_xdate()
+        plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
         ax1.set_title('%s - %d Deaths' % (state.columns[0], values[-1]))
         ax1.grid(True)
         ax2.set_ylim(1, 2)
@@ -193,6 +194,7 @@ class Analysis():
         ax2.legend(loc='center right')
         if compare:
             ihme.plot( state.columns[0], axi)
+            plt.tight_layout(h_pad=0.5)
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
         plt.close()

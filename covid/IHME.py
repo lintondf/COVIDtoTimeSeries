@@ -94,6 +94,8 @@ class IHME():
             dFL = dFL.cumsum()
         ax1.plot( dFL.index[:], dFL, label='Actual', color='black') # semilogy
         ax1.legend(loc='best') # 'upper left')
+        plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
+        
 #         plt.draw()
 #         fig1.savefig(outpath + "/"+which+".png")
 #         plt.close()
