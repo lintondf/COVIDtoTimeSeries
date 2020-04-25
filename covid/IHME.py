@@ -75,6 +75,9 @@ class IHME():
                     i = root.find('2020_')
                     label = 'As of %s' % root[i+5:i+10]
                     ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
+                    errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
+                    ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
+                                 fmt='.', color=rgba, yerr=errors)
                     rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
                     ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
     #                 if first is None:
@@ -93,7 +96,7 @@ class IHME():
         if stat == 'totdea' :
             dFL = dFL.cumsum()
         ax1.plot( dFL.index[:], dFL, label='Actual', color='black') # semilogy
-        ax1.legend(loc='best') # 'upper left')
+        ax1.legend(loc='upper right') # 'upper left')
         plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
         
 #         plt.draw()

@@ -249,8 +249,11 @@ class Analysis():
             x = x[(x.T != 0).any()].apply(pd.to_numeric, errors='coerce')
             if name in population:
                 pop = population[x.columns[0]]
+                compare = True
+                if (name == 'Puerto Rico') or (name == 'Wyoming') :
+                    compare = False
                 self.statesLinks = self.plotOneState(outPath + "/analysis/states", x, pop, 
-                                                     which='states', links=self.statesLinks, compare=True)
+                                                     which='states', links=self.statesLinks, compare=compare)
     
         
     #     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
