@@ -57,7 +57,13 @@ For the US and each US state a second chart is produced below showing the variou
 ![Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)
 
 # US States #
+
+Click on the link in the first column to view the DDGR and IHME charts for a specific state.
+
 {{ statesLinks }}
 
-# All Countries # 
+# All Countries #
+
+Click on the link in the first column to view the DDGR chart for a specific country.
+ 
 {{ countriesLinks }}

@@ -81,6 +81,8 @@ For the US and each US state a second chart is produced below showing the variou
 ![Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)
 
 # US States #
+Click on the link in the first column to view the DDGR and IHME charts for a specific state.
+
 |State|Days|Deaths|Deaths/1M|DDGR[-7]|DDGR[-3]|DDGR[-2]|DDGR[-1]|
 |-----|----|------|---------|----------|--------|---------|---------|
 |[Alabama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Alabama.png)|  31   |     216|       44.06|   1.075|   1.062|   1.058|   1.054 |
@@ -137,6 +139,8 @@ For the US and each US state a second chart is produced below showing the variou
 
 
 # All Countries # 
+Click on the link in the first column to view the DDGR chart for a specific country.
+
 |Country|Days|Deaths|Deaths/1M|DDGR[-7]|DDGR[-3]|DDGR[-2]|DDGR[-1]|
 |-----|----|------|---------|----------|--------|---------|---------|
 |[Afghanistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Afghanistan.png)|  34   |      45|        1.40|   1.079|   1.058|   1.053|   1.048 |
