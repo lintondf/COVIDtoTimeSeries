@@ -213,7 +213,7 @@ class Analysis():
         
         population = loadStatePopulations();
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
-        header1 = ("|State|Days|Deaths|Deaths/1M|DDGR[-7]|DDGR[-3]|DDGR[-2]|DDGR[-1]|\n")
+        header1 = ("|State|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
         header2 = ("|-----|----|------|---------|----------|--------|---------|---------|\n")
         self.statesLinks = np.append( self.statesLinks, np.array([header1, header2], dtype=str) )
         self.top10StatesTable = header1
@@ -257,7 +257,7 @@ class Analysis():
     
         
     #     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
-        header1 = ("|Country|Days|Deaths|Deaths/1M|DDGR[-7]|DDGR[-3]|DDGR[-2]|DDGR[-1]|\n")
+        header1 = ("|Country|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
         header2 = ("|-----|----|------|---------|----------|--------|---------|---------|\n")
         self.countriesLinks = np.append( self.countriesLinks, np.array([header1, header2], dtype=str) )        
         self.top10CountriesTable = header1
