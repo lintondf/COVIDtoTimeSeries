@@ -45,6 +45,15 @@ class IHME():
         self.ihmePath = home + "/GITHUB/COVIDtoTimeSeries/data/IHME"
         self.states = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
         self.countries = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
+        self.estimates = dict()
+        for root, dirs, files in os.walk(self.ihmePath):
+            for filename in files:
+                if (filename.endswith('.csv')) :
+#                     print(root,filename)    
+                    estimate = pd.read_csv(root + "/" + filename, parse_dates=True, index_col=2)
+                    self.estimates[root] = estimate
+        pass
+        
         
     
     def plot(self, which : str, ax1):
@@ -62,36 +71,55 @@ class IHME():
             ax1.set_title("IMHE's %s Daily Deaths Estimates" % which)
         else:
             ax1.set_title("IMHE's %s Total Deaths Estimates" % which)
-            
-        for root, dirs, files in os.walk(self.ihmePath):
-            for filename in files:
-                if (filename.endswith('.csv')) :
-#                     print(root,filename)    
-                    estimate = pd.read_csv(root + "/" + filename, parse_dates=True, index_col=2)
-    #                 print(estimate[estimate['location_name'] == 'Florida'])
-    #                 estimate = estimate[estimate['location_name'] == 'US'] = 'United States of America'
-                    florida = estimate[estimate['location_name'] == which]
-                    florida = florida[[lower, mean, upper]]
-                    florida = florida[florida[lower] > 0]
-                    florida = florida[first:last]
-    #                 print( estimate['location_name'].unique())
-                    color = next(ax1._get_lines.prop_cycler)['color']
-                    rgba = (mcolors.to_rgba(color))
-    #                 print(root, rgba)
-                    i = root.find('2020_')
-                    label = 'As of %s' % root[i+5:i+10]
-                    ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
-                    errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
-                    ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
-                                 fmt='.', color=rgba, yerr=errors)
-                    rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
-                    ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
-    #                 if first is None:
-    #                     first = florida.index[0]
-    #                 last = florida.index[-1]
-    #                 print(florida)
-    #                 return
-    # deaths_mean    deaths_lower    deaths_upper
+
+        for root in self.estimates :
+            estimate = self.estimates[root]
+            florida = estimate[estimate['location_name'] == which]
+            florida = florida[[lower, mean, upper]]
+            florida = florida[florida[lower] > 0]
+            florida = florida[first:last]
+#                 print( estimate['location_name'].unique())
+            color = next(ax1._get_lines.prop_cycler)['color']
+            rgba = (mcolors.to_rgba(color))
+#                 print(root, rgba)
+            i = root.find('2020_')
+            label = 'As of %s' % root[i+5:i+10]
+            ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
+            errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
+            ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
+                         fmt='.', color=rgba, yerr=errors)
+            rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
+            ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
+                        
+#         for root, dirs, files in os.walk(self.ihmePath):
+#             for filename in files:
+#                 if (filename.endswith('.csv')) :
+# #                     print(root,filename)    
+#                     estimate = pd.read_csv(root + "/" + filename, parse_dates=True, index_col=2)
+#     #                 print(estimate[estimate['location_name'] == 'Florida'])
+#     #                 estimate = estimate[estimate['location_name'] == 'US'] = 'United States of America'
+#                     florida = estimate[estimate['location_name'] == which]
+#                     florida = florida[[lower, mean, upper]]
+#                     florida = florida[florida[lower] > 0]
+#                     florida = florida[first:last]
+#     #                 print( estimate['location_name'].unique())
+#                     color = next(ax1._get_lines.prop_cycler)['color']
+#                     rgba = (mcolors.to_rgba(color))
+#     #                 print(root, rgba)
+#                     i = root.find('2020_')
+#                     label = 'As of %s' % root[i+5:i+10]
+#                     ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
+#                     errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
+#                     ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
+#                                  fmt='.', color=rgba, yerr=errors)
+#                     rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
+#                     ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
+#     #                 if first is None:
+#     #                     first = florida.index[0]
+#     #                 last = florida.index[-1]
+#     #                 print(florida)
+#     #                 return
+#     # deaths_mean    deaths_lower    deaths_upper
         if which == 'United States of America' :
             FL = self.countries['US']
         else:

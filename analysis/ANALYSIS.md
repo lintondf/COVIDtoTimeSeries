@@ -9,7 +9,6 @@ Uses the total death counts from the daily report files from the JHU CSSE COVID-
 - There is also some weekly pattern to reporting with lower values on the weekend followed by higher values subsequently, at least in some places.
 - The Y axis upper limit for DDGR charts was lowered from 2.0 to 1.5 on 4/28 to better show current lower values.  
 
-
 # Ten US States with Highest Death Tolls #
 
 Deaths in the 10 US States with the highest death tolls expressed as deaths per 1 million population. One per million is 0.0001%.  1% is 10,000 per million.
