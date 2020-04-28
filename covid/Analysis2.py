@@ -34,6 +34,7 @@ from astropy.wcs.docstrings import row
 
 register_matplotlib_converters()
 
+Y_UPPER = 1.5 # upper y limit for DDGR charts
 nD = 3 # 3DRR
 home = 'C:/Users/NOOK' #TODO from sys.argv
 pathToRepository = home + '/GITHUB/COVID-19'
@@ -176,7 +177,7 @@ class Analysis():
         plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
         ax1.set_title('%s - %d Deaths' % (state.columns[0], values[-1]))
         ax1.grid(True)
-        ax2.set_ylim(1, 2)
+        ax2.set_ylim(1, Y_UPPER)
         color = 'red'
         ax1.semilogy(state.index[:], (scaled), color=color, label='Deaths/1M (Left)') # 
         ax1.semilogy(state.index[:], (values/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
@@ -276,7 +277,7 @@ class Analysis():
         
         ax1.legend(loc='upper left')
         ax2.legend(loc='upper left')
-        ax2.set_ylim(1, 2)
+        ax2.set_ylim(1, Y_UPPER)
         fig1.savefig(outPath+"/analysis/States10WorstDeathRates.png")
         fig2.savefig(outPath+"/analysis/States10WorstDDGR.png")
         plt.close()
@@ -301,7 +302,7 @@ class Analysis():
             ax4.plot( x3ddr, y3ddr**(1/nD), color=color, label=g.columns[i])
         ax3.legend(loc='upper left')
         ax4.legend(loc='upper left')
-        ax4.set_ylim(1, 2)
+        ax4.set_ylim(1, Y_UPPER)
         fig3.savefig(outPath+"/analysis/Countries10WorstDeathRates.png")
         fig4.savefig(outPath+"/analysis/Countries10WorstDDGR.png")
         plt.close()

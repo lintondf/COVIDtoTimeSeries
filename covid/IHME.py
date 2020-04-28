@@ -4,6 +4,12 @@ Created on Apr 20, 2020
 @author: NOOK
 '''
 
+'''
+TODO:  
+- Table First range, last range, actual
+- Probability of actual at each estimate
+- Correlation of estimates to actual by state and overall      
+'''
 import os
 from pathlib import Path
 import warnings
