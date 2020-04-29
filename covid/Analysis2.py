@@ -131,19 +131,26 @@ class Analysis():
         lowess = sm.nonparametric.lowess
         trend = lowess(Y[:,0], T[:,0], frac=0.5, it=10)[:,1]
 
-        try:
-            ydata = np.exp(trend)
-            xdata = T[:,0] - T[0,0]
-            idx = ydata > population
-            ydata = ydata[idx]
-            xdata = xdata[idx]
-            p0 = [max(ydata), np.median(xdata),1,min(ydata)] # this is an mandatory initial guess
-    
-            popt, pcov = curve_fit(self.sigmoid, xdata, ydata,p0, method='dogbox', maxfev=5000)
-            print(cases.columns[0], ydata[-1], popt)
-            print(np.sqrt(np.diag(pcov)))
-        except:
-            print(cases.columns[0], "?")
+#         try:
+#             ydata = np.exp(trend)
+#             xdata = T[:,0] - T[0,0]
+#             idx = ydata > population
+#             ydata = ydata[idx]
+#             xdata = xdata[idx]
+#             p0 = [max(ydata), np.median(xdata),1,min(ydata)] # this is an mandatory initial guess
+#     
+#             popt, pcov = curve_fit(self.sigmoid, xdata, ydata,p0, method='dogbox', maxfev=5000)
+#             print(cases.columns[0], ydata[-1], popt)
+#             print(np.sqrt(np.diag(pcov)))
+#             f,a  = plt.subplots()
+#             a.plot(xdata, ydata, 'r.')
+#             xz = np.linspace(xdata[0], 2*xdata[-1], 25)
+#             z = self.sigmoid( xz, popt[0], popt[1], popt[2], popt[3] )
+#             a.plot(xz,z, 'b-')
+#             a.set_title(cases.columns[0])
+#             plt.show()
+#         except:
+#             print(cases.columns[0], "?")
         Z = np.exp(Y) # very roundabout way to get non-zero values
         y3raw = (Z[nD:,0] / Z[:-nD,0])
         y3ddr = lowess(y3raw, T[nD:,0], frac=0.5, it=10)[:,1]
