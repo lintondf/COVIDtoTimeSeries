@@ -236,6 +236,8 @@ class Analysis():
         else :
             f = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
             g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
+            
+        print(f.index[-1])
         
         population = loadStatePopulations();
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))

@@ -50,7 +50,9 @@ class IHME():
             for filename in files:
                 if (filename.endswith('.csv')) :
 #                     print(root,filename)    
-                    estimate = pd.read_csv(root + "/" + filename, parse_dates=True, index_col=2)
+                    estimate = pd.read_csv(root + "/" + filename, parse_dates=True)
+                    estimate['date']= pd.to_datetime(estimate['date'])
+                    estimate.set_index("date", inplace=True)
                     self.estimates[root] = estimate
         pass
         
@@ -77,7 +79,10 @@ class IHME():
             florida = estimate[estimate['location_name'] == which]
             florida = florida[[lower, mean, upper]]
             florida = florida[florida[lower] > 0]
-            florida = florida[first:last]
+            try:
+                florida = florida[first:last]
+            except:
+                pass
 #                 print( estimate['location_name'].unique())
             color = next(ax1._get_lines.prop_cycler)['color']
             rgba = (mcolors.to_rgba(color))
