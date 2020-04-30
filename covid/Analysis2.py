@@ -175,10 +175,15 @@ class Analysis():
             scaledTrend = np.exp(trend) / population
             def rpt(y3 : float) -> str:
                 ddgr = y3**(1/nD)
-                if (ddgr > 1.0) :
-                    days = '%3d' % int(np.log(2)/np.log(ddgr))
-                else :
-                    days = ' ? '
+                if ddgr <= 1.0 :
+                    ddgr = 1.0
+                    days = ' --'
+                elif (ddgr > 1.0) :
+                    ndays = int(np.log(2)/np.log(ddgr))
+                    if ndays > 99:
+                        days = ' **'
+                    else :                                        
+                        days = '%3d' % ndays
                 return '%7.3f/%s' % (ddgr, days)
             row = ''
             row += ('|%-15s| %3d   ' % (link, len(T)))  
