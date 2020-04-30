@@ -16,6 +16,7 @@ from scipy.stats import norm
 from seasonal import fit_seasons, adjust_seasons, fit_trend
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 from pandas.plotting import register_matplotlib_converters
 import statsmodels.api as sm
 from sklearn import linear_model
@@ -172,10 +173,17 @@ class Analysis():
             if (y3ddr[-1] > y3ddr[-5]) :
                 direction = 'A'
             scaledTrend = np.exp(trend) / population
+            def rpt(y3 : float) -> str:
+                ddgr = y3**(1/nD)
+                if (ddgr > 1.0) :
+                    days = '%3d' % int(np.log(2)/np.log(ddgr))
+                else :
+                    days = ' ? '
+                return '%7.3f/%s' % (ddgr, days)
             row = ''
             row += ('|%-15s| %3d   ' % (link, len(T)))  
             row += ('|  %6.0f|  %10.2f' % (np.exp(trend[-1]), scaledTrend[-1]))
-            row += ('| %7.3f| %7.3f| %7.3f| %7.3f |' % (y3ddr[-7]**(1/nD), y3ddr[-3]**(1/nD), y3ddr[-2]**(1/nD), y3ddr[-1]**(1/nD)))
+            row += ('| %s| %s| %s| %s |' % (rpt(y3ddr[-7]), rpt(y3ddr[-3]), rpt(y3ddr[-2]), rpt(y3ddr[-1])))
             row += ('\n')
             if verbose :
                 if (which == 'states') :
@@ -194,7 +202,12 @@ class Analysis():
             return links
         values = np.asarray(state[[state.columns[0]]].values)
         if (compare) :
-            fig, (ax1, axi) = plt.subplots(2, figsize=(8,10.5), sharex=False)
+#             fig, (ax1, axi) = plt.subplots(2, figsize=(8,10.5), sharex=False)
+            fig = plt.figure(constrained_layout=False, figsize=(8,10.5))
+            spec1 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig)
+            ax1 = fig.add_subplot(spec1[0, 0], sharex=None)
+            spec2 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig, hspace=0.30)
+            axi = fig.add_subplot(spec2[1, 0], sharex=None)            
         else:
             fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
@@ -220,7 +233,6 @@ class Analysis():
         ax2.legend(loc='center right')
         if compare:
             ihme.plot( state.columns[0], axi)
-            plt.tight_layout(h_pad=0.5)
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
         plt.close()
@@ -242,7 +254,7 @@ class Analysis():
         population = loadStatePopulations();
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
         header1 = ("|State|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
-        header2 = ("|-----|----|------|---------|----------|--------|---------|---------|\n")
+        header2 = ("|:--|--:|--:|--:|--:|--:|--:|--:|\n")
         self.statesLinks = np.append( self.statesLinks, np.array([header1, header2], dtype=str) )
         self.top10StatesTable = header1
         self.top10StatesTable += header2
@@ -286,7 +298,7 @@ class Analysis():
         
     #     print('%-15s   N  %10s  %10s  %6s %6s %6s' % ('Country', 'Deaths', 'Per 1M', 'DDR[-3]', 'DDR[-2]', 'DDR[-1]'))
         header1 = ("|Country|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
-        header2 = ("|-----|----|------|---------|----------|--------|---------|---------|\n")
+        header2 = ("|:--|--:|--:|--:|--:|--:|--:|--:|\n")
         self.countriesLinks = np.append( self.countriesLinks, np.array([header1, header2], dtype=str) )        
         self.top10CountriesTable = header1
         self.top10CountriesTable += header2

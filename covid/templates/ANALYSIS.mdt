@@ -28,7 +28,7 @@ If deaths remain constant over the three days, the DDGR equals one.  A value of 
 - Days - Number of days since first death
 - Deaths - Total deaths to date
 - Deaths/1M - Deaths per million in population
-- DDGR - **Smoothed** Daily Deaths Growth Rate [n:m] total deaths n days ago over m days ago
+- DDGR - **Smoothed** Daily Deaths Growth Rate [n:m] total deaths n days ago over m days ago followed by the DDGR expressed as the number of days to double the total deaths count if that rate holds
 
 # Ten Countries with Highest Death Tolls #
 

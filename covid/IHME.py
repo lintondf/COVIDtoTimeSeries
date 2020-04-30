@@ -88,7 +88,7 @@ class IHME():
             rgba = (mcolors.to_rgba(color))
 #                 print(root, rgba)
             i = root.find('2020_')
-            label = 'As of %s' % root[i+5:i+10]
+            label = 'As of %s' % root[i+5:i+10].replace('_', '/')
             ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
             errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
             ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
@@ -96,35 +96,6 @@ class IHME():
             rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
             ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
                         
-#         for root, dirs, files in os.walk(self.ihmePath):
-#             for filename in files:
-#                 if (filename.endswith('.csv')) :
-# #                     print(root,filename)    
-#                     estimate = pd.read_csv(root + "/" + filename, parse_dates=True, index_col=2)
-#     #                 print(estimate[estimate['location_name'] == 'Florida'])
-#     #                 estimate = estimate[estimate['location_name'] == 'US'] = 'United States of America'
-#                     florida = estimate[estimate['location_name'] == which]
-#                     florida = florida[[lower, mean, upper]]
-#                     florida = florida[florida[lower] > 0]
-#                     florida = florida[first:last]
-#     #                 print( estimate['location_name'].unique())
-#                     color = next(ax1._get_lines.prop_cycler)['color']
-#                     rgba = (mcolors.to_rgba(color))
-#     #                 print(root, rgba)
-#                     i = root.find('2020_')
-#                     label = 'As of %s' % root[i+5:i+10]
-#                     ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
-#                     errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
-#                     ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
-#                                  fmt='.', color=rgba, yerr=errors)
-#                     rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
-#                     ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
-#     #                 if first is None:
-#     #                     first = florida.index[0]
-#     #                 last = florida.index[-1]
-#     #                 print(florida)
-#     #                 return
-#     # deaths_mean    deaths_lower    deaths_upper
         if which == 'United States of America' :
             FL = self.countries['US']
         else:
@@ -135,7 +106,12 @@ class IHME():
         if stat == 'totdea' :
             dFL = dFL.cumsum()
         ax1.plot( dFL.index[:], dFL, label='Actual', color='black') # semilogy
-        ax1.legend(loc='upper right') # 'upper left')
+        # Shrink current axis by 20%
+        box = ax1.get_position()
+        ax1.set_position([box.x0, box.y0, box.width * 0.85, box.height]) 
+        # Put a legend to the right of the current axis
+        ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+#         ax1.legend(loc='upper right') # 'upper left')
         ax1.grid(True)
         plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
         
