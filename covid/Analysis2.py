@@ -33,6 +33,8 @@ from Deaths import updateDeaths
 from IHME import IHME
 from astropy.wcs.docstrings import row
 
+# from adjustText import adjust_text 
+
 register_matplotlib_converters()
 
 Y_UPPER = 1.5 # upper y limit for DDGR charts
@@ -243,20 +245,64 @@ class Analysis():
         plt.close()
         return links
     
+    def plotCasesVsDeaths(self, deaths, cases, population):
+        fig, ax1 = plt.subplots()
+        for s in deaths.columns :
+            if not s in cases.columns:
+                continue;
+            if not s in population:
+                continue;
+            d = deaths[s] / population[s]
+            d = d[d > 50]
+            if len(d) == 0:
+                continue;
+            c = cases[s] / population[s]
+            c = c[c > 1000]
+            if len(c) == 0:
+                continue;
+            first = c.index[0]
+            if d.index[0] > first:
+                first = d.index[0]
+            last = c.index[-1]
+            if d.index[-1] < last:
+                last = d.index[-1]
+            ax1.grid(True)
+#             ax1.loglog( np.asarray(c[first:last].values), np.asarray(d[first:last].values), 'k-')
+            ax1.loglog(c[last], d[last], 'k.')
+            texts = ax1.annotate(s,
+                    xy=(c[last], d[last]), xycoords='data',
+                    xytext=(10, 30), textcoords='offset points',
+                    arrowprops=dict(arrowstyle="->"))
+            
+#             adjust_text(texts, arrowprops=dict(arrowstyle='->', color='red'))
+        ax1.set_xlabel('Cases per Million')
+        ax1.set_ylabel('Deaths per Million')
+#         ax1.set_ylim(0, 400)
+        plt.show();
+        
     def main(self, reload, pathToRepository, outPath):
         if (reload) :
-            f, g = updateDeaths(pathToRepository, pull=False)
+            f, g, fc, gc = updateDeaths(pathToRepository, pull=False)
             f.sort_values(f.index[-1], axis=1,ascending=False,inplace=True)
             g.sort_values(g.index[-1], axis=1,ascending=False,inplace=True)
             f.to_csv(outPath + "/data/states.csv")
             g.to_csv(outPath + "/data/countries.csv")
+            fc.to_csv(outPath + "/data/states-cases.csv")
+            gc.to_csv(outPath + "/data/countries-cases.csv")
         else :
             f = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
             g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
+            fc = pd.read_csv(outPath + "/data/states-cases.csv", parse_dates=True, index_col=0)
+            gc = pd.read_csv(outPath + "/data/countries-cases.csv", parse_dates=True, index_col=0)
             
         print(f.index[-1])
         
-        population = loadStatePopulations();
+        statesPopulation = loadStatePopulations();
+        countriesPopulation = loadPopulation();
+        countriesPopulation['US'] = countriesPopulation['United States']
+#         self.plotCasesVsDeaths( g, gc, countriesPopulation )
+#         self.plotCasesVsDeaths( f, fc, statesPopulation )
+        population = statesPopulation;
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
         header1 = ("|State|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
         header2 = ("|:--|--:|--:|--:|--:|--:|--:|--:|\n")
@@ -307,7 +353,7 @@ class Analysis():
         self.countriesLinks = np.append( self.countriesLinks, np.array([header1, header2], dtype=str) )        
         self.top10CountriesTable = header1
         self.top10CountriesTable += header2
-        population = loadPopulation();
+        population = countriesPopulation;
         population['US'] = population['United States']
         
         x = g[['US']]

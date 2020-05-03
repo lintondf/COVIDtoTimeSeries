@@ -111,6 +111,8 @@ def updateDeaths(pathToRepository, pull=True):
         os.system('git -C %s pull' % pathToRepository)
     f = pd.DataFrame(columns=states)
     g = pd.DataFrame(columns=countries)
+    fc = pd.DataFrame(columns=states)
+    gc = pd.DataFrame(columns=countries)
     
     base = '%s/csse_covid_19_data/csse_covid_19_daily_reports/' % pathToRepository
     for (__, __, filenames) in os.walk(base):
@@ -123,16 +125,23 @@ def updateDeaths(pathToRepository, pull=True):
                 if (not countryColumn in daily.columns) :
                     countryColumn = 'Country_Region'
                     stateColumn = 'Province_State'
+                    # Confirmed
                 stateDeaths = dict()
                 for s in f.columns :
                     stateDeaths.update({s: 0})
                 countryDeaths = dict()
                 for s in g.columns :
                     countryDeaths.update({s: 0})
+                stateCases = dict()
+                for s in fc.columns :
+                    stateCases.update({s: 0})
+                countryCases = dict()
+                for s in gc.columns :
+                    countryCases.update({s: 0})
                 for index, row in daily.iterrows():
                     if (row['Deaths'] > 0) :
                         if (row[countryColumn] == 'US'):
-                                s = row[stateColumn]
+                                s = row[stateColumn].strip().replace('D.C.', 'DC').replace('D.C.', 'DC')
                                 if (',' in s) :
                                     s = states2[s[-2:]]
                                 if (s in stateDeaths) :
@@ -144,17 +153,41 @@ def updateDeaths(pathToRepository, pull=True):
                             countryDeaths[c] += row['Deaths']
                         else :
                             print("Skipping: ", c)
+                    if (row['Confirmed'] > 0) :
+                        if (row[countryColumn] == 'US'):
+                                s = row[stateColumn].strip().replace('D.C.', 'DC')
+                                if not 'Diamond Princess' in s:
+                                    if (not ', U.S.' in s and ',' in s) :
+                                        if s[-2:] == 'C.':
+                                            print(s)
+                                        s = states2[s[-2:]]
+                                    if (s in stateCases) :
+                                        stateCases[s] += row['Confirmed']
+                                    else :
+                                        print("Skipping: ", s)
+                        c = row[countryColumn]
+                        if (c in countryCases) :
+                            countryCases[c] += row['Confirmed']
+                        else :
+                            print("Skipping: ", c)
+                        
                 e = pd.DataFrame(stateDeaths, index=[pd.to_datetime(name[0:-4])])
                 f = f.append(e, sort=False)
                 e = pd.DataFrame(countryDeaths, index=[pd.to_datetime(name[0:-4])])
                 g = g.append(e, sort=False)
-    return (f, g)    
+                e = pd.DataFrame(stateCases, index=[pd.to_datetime(name[0:-4])])
+                fc = fc.append(e, sort=False)
+                e = pd.DataFrame(countryCases, index=[pd.to_datetime(name[0:-4])])
+                gc = gc.append(e, sort=False)
+    return (f, g, fc, gc)    
 
     
 if __name__ == '__main__':
-    f, g = updateDeaths(pathToRepository)
+    f, g, fc, gc = updateDeaths(pathToRepository)
 # uncomment to sort columns by ascending deaths                
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
     f.to_csv("./state-deaths.csv")    
     g.to_csv("./country-deaths.csv")
+    fc.to_csv("./state-cases.csv")    
+    gc.to_csv("./country-cases.csv")
