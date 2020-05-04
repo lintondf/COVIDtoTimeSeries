@@ -33,7 +33,7 @@ from Deaths import updateDeaths
 from IHME import IHME
 from astropy.wcs.docstrings import row
 
-# from adjustText import adjust_text 
+# from adjustText import adjust_text  
 
 register_matplotlib_converters()
 
@@ -245,9 +245,14 @@ class Analysis():
         plt.close()
         return links
     
-    def plotCasesVsDeaths(self, deaths, cases, population):
+    def plotCasesVsDeaths(self, deaths, cases, population, xlim, ylim, which=None):
         fig, ax1 = plt.subplots()
-        for s in deaths.columns :
+        texts = []
+        if which is None:
+            states = deaths.columns;
+        else :
+            states = which
+        for s in states :
             if not s in cases.columns:
                 continue;
             if not s in population:
@@ -266,18 +271,27 @@ class Analysis():
             last = c.index[-1]
             if d.index[-1] < last:
                 last = d.index[-1]
-            ax1.grid(True)
-#             ax1.loglog( np.asarray(c[first:last].values), np.asarray(d[first:last].values), 'k-')
-            ax1.loglog(c[last], d[last], 'k.')
-            texts = ax1.annotate(s,
+            color = next(ax1._get_lines.prop_cycler)['color']
+            if which is None:
+                ax1.loglog( np.asarray(c[first:last].values), np.asarray(d[first:last].values), '-', color='gray')
+            ax1.loglog(c[last], d[last], '.', color=color)
+            text = ax1.annotate(s, color=color,
                     xy=(c[last], d[last]), xycoords='data',
                     xytext=(10, 30), textcoords='offset points',
-                    arrowprops=dict(arrowstyle="->"))
-            
-#             adjust_text(texts, arrowprops=dict(arrowstyle='->', color='red'))
+                    arrowprops=dict(arrowstyle="->", color=color))
+            if len(texts) == 0 :
+                texts = [text]
+            else :
+                texts.append(text)
+        fig.canvas.draw()            
+#         print(texts, texts.get_window_extent() )
+# very slow; pushes label out of frame...
+#         adjust_text(texts, arrowprops=dict(arrowstyle='->', color='gray'))
+        ax1.grid(True)
         ax1.set_xlabel('Cases per Million')
         ax1.set_ylabel('Deaths per Million')
-#         ax1.set_ylim(0, 400)
+#         ax1.set_xlim(50, xlim)
+#         ax1.set_ylim(1000, ylim)
         plt.show();
         
     def main(self, reload, pathToRepository, outPath):
@@ -300,8 +314,10 @@ class Analysis():
         statesPopulation = loadStatePopulations();
         countriesPopulation = loadPopulation();
         countriesPopulation['US'] = countriesPopulation['United States']
-#         self.plotCasesVsDeaths( g, gc, countriesPopulation )
-#         self.plotCasesVsDeaths( f, fc, statesPopulation )
+        
+#         self.plotCasesVsDeaths( g, gc, countriesPopulation, 5000, 500 )
+        self.plotCasesVsDeaths( f, fc, statesPopulation, 5000, 500 )
+
         population = statesPopulation;
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
         header1 = ("|State|Days|Deaths|Deaths/1M|DDGR[6:7]|DDGR[2:3]|DDGR[1:2]|DDGR[0:1]|\n")
@@ -421,6 +437,9 @@ if __name__ == '__main__':
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
     reload = not result.startswith('Already up to date.')
+    if reload:
+        os.system('git -C %s pull' % outPath)
+
     analysis.main(reload, pathToRepository, outPath)
     
     statesContent = ''

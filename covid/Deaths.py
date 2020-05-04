@@ -106,13 +106,17 @@ states2 = {  # yes these are redundant; but one is sorted by name and the other 
 }
 
 
-def updateDeaths(pathToRepository, pull=True):
+def updateDeaths(pathToRepository, pull=True, counties=None):
     if (pull) :
         os.system('git -C %s pull' % pathToRepository)
     f = pd.DataFrame(columns=states)
     g = pd.DataFrame(columns=countries)
     fc = pd.DataFrame(columns=states)
     gc = pd.DataFrame(columns=countries)
+    if not counties is None:
+        h = pd.DataFrame(columns=counties.keys())
+        hc = pd.DataFrame(columns=counties.keys())
+        
     
     base = '%s/csse_covid_19_data/csse_covid_19_daily_reports/' % pathToRepository
     for (__, __, filenames) in os.walk(base):
@@ -122,6 +126,7 @@ def updateDeaths(pathToRepository, pull=True):
                 daily = pd.read_csv(base + name, encoding='utf8').fillna(0)
                 countryColumn = 'Country/Region'
                 stateColumn = 'Province/State'
+                countyColumn = 'Admin2'
                 if (not countryColumn in daily.columns) :
                     countryColumn = 'Country_Region'
                     stateColumn = 'Province_State'
@@ -138,6 +143,13 @@ def updateDeaths(pathToRepository, pull=True):
                 countryCases = dict()
                 for s in gc.columns :
                     countryCases.update({s: 0})
+                    
+                if not counties is None:
+                    countyDeaths = dict()
+                    countyCases = dict()
+                    for s in counties.keys():
+                        countyDeaths.update({s:0})
+                        countyCases.update({s:0})
                 for index, row in daily.iterrows():
                     if (row['Deaths'] > 0) :
                         if (row[countryColumn] == 'US'):
@@ -146,6 +158,14 @@ def updateDeaths(pathToRepository, pull=True):
                                     s = states2[s[-2:]]
                                 if (s in stateDeaths) :
                                     stateDeaths[s] += row['Deaths']
+                                    if not counties is None and countyColumn in row:
+                                        county = row[countyColumn] + ' County, ' + s
+                                        if county in counties:
+                                            countyDeaths[county] += row['Deaths']
+                                        else:
+                                            county = row[countyColumn] + ' city, ' + s # VA
+                                            if county in counties:
+                                                countyDeaths[county] += row['Deaths']
                                 else :
                                     print("Skipping: ", s)
                         c = row[countryColumn]
@@ -179,11 +199,20 @@ def updateDeaths(pathToRepository, pull=True):
                 fc = fc.append(e, sort=False)
                 e = pd.DataFrame(countryCases, index=[pd.to_datetime(name[0:-4])])
                 gc = gc.append(e, sort=False)
-    return (f, g, fc, gc)    
+    if counties is None:         
+        return (f, g, fc, gc)
+    else:    
+        return (f, g, fc, gc, h, hc)
 
     
 if __name__ == '__main__':
-    f, g, fc, gc = updateDeaths(pathToRepository)
+    home = os.path.expanduser('~')
+    countiesData = pd.read_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + 'US-Counties-Population.csv', encoding='utf8', index_col=0).fillna(0)
+    counties = dict()
+    for i in range(0,len(countiesData.index)) :
+        name = countiesData.index[i]
+        counties[name[1:]] = countiesData[['2019']].iloc[0].values[0]
+    f, g, fc, gc = updateDeaths(pathToRepository, counties=counties)
 # uncomment to sort columns by ascending deaths                
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
