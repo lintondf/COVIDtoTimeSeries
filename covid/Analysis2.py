@@ -316,7 +316,7 @@ class Analysis():
         countriesPopulation['US'] = countriesPopulation['United States']
         
 #         self.plotCasesVsDeaths( g, gc, countriesPopulation, 5000, 500 )
-        self.plotCasesVsDeaths( f, fc, statesPopulation, 5000, 500 )
+#         self.plotCasesVsDeaths( f, fc, statesPopulation, 5000, 500 )
 
         population = statesPopulation;
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
@@ -436,7 +436,7 @@ if __name__ == '__main__':
 
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
-    reload = not result.startswith('Already up to date.')
+    reload = True or not result.startswith('Already up to date.')
     if reload:
         os.system('git -C %s pull' % outPath)
 

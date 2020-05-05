@@ -158,14 +158,33 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                     s = states2[s[-2:]]
                                 if (s in stateDeaths) :
                                     stateDeaths[s] += row['Deaths']
-                                    if not counties is None and countyColumn in row:
+                                    if not counties is None and countyColumn in row and isinstance(row[countyColumn], str):
                                         county = row[countyColumn] + ' County, ' + s
                                         if county in counties:
                                             countyDeaths[county] += row['Deaths']
-                                        else:
-                                            county = row[countyColumn] + ' city, ' + s # VA
+                                        elif s == 'Louisiana':
+                                            county = row[countyColumn] + ' Parish, ' + s
                                             if county in counties:
                                                 countyDeaths[county] += row['Deaths']
+                                            else :
+                                                print('Skipping ', row[countyColumn], s)
+                                        elif s == 'Alaska':
+                                            county = row[countyColumn] + 'Municipality, ' + s
+                                            if county in counties:
+                                                countyDeaths[county] += row['Deaths']
+                                            else :
+                                                print('Skipping ', row[countyColumn], s)
+                                        elif s == 'District of Columbia':
+                                            countyDeaths['District of Columbia, District of Columbia'] += row['Deaths']                                            
+                                        else:
+                                            if 'City' in row[countyColumn] :
+                                                county = row[countyColumn].replace('City', 'County') + ', ' + s
+                                            else :
+                                                county = row[countyColumn] + ' city, ' + s # VA
+                                            if county in counties:
+                                                countyDeaths[county] += row['Deaths']
+                                            elif row[countyColumn] != 'Unassigned' :
+                                                print('Skipping ', row[countyColumn], s)
                                 else :
                                     print("Skipping: ", s)
                         c = row[countryColumn]
@@ -191,6 +210,9 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                         else :
                             print("Skipping: ", c)
                         
+#                 for n in countyDeaths :
+#                     countyCases[n] = countyCases[n] / counties[n]
+#                     countyDeaths[n] = countyDeaths[n] / counties[n]
                 e = pd.DataFrame(stateDeaths, index=[pd.to_datetime(name[0:-4])])
                 f = f.append(e, sort=False)
                 e = pd.DataFrame(countryDeaths, index=[pd.to_datetime(name[0:-4])])
@@ -199,6 +221,11 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                 fc = fc.append(e, sort=False)
                 e = pd.DataFrame(countryCases, index=[pd.to_datetime(name[0:-4])])
                 gc = gc.append(e, sort=False)
+                if not counties is None:
+                    e = pd.DataFrame(countyDeaths, index=[pd.to_datetime(name[0:-4])])
+                    h = h.append(e, sort=False)
+                    e = pd.DataFrame(countyCases, index=[pd.to_datetime(name[0:-4])])
+                    hc = hc.append(e, sort=False)
     if counties is None:         
         return (f, g, fc, gc)
     else:    
@@ -211,11 +238,15 @@ if __name__ == '__main__':
     counties = dict()
     for i in range(0,len(countiesData.index)) :
         name = countiesData.index[i]
-        counties[name[1:]] = countiesData[['2019']].iloc[0].values[0]
-    f, g, fc, gc = updateDeaths(pathToRepository, counties=counties)
+        counties[name[1:]] = countiesData[['2019']].iloc[0].values[0] * 1e-6 # convert to millions
+    f, g, fc, gc, h, hc = updateDeaths(pathToRepository, counties=counties)
 # uncomment to sort columns by ascending deaths                
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
+    h.sort_values(h.index[-1], axis=1,ascending=False,inplace=True)
+    h.to_csv("./county-deaths.csv")
+    hc.sort_values(hc.index[-1], axis=1,ascending=False,inplace=True)
+    hc.to_csv("./county-cases.csv")
     f.to_csv("./state-deaths.csv")    
     g.to_csv("./country-deaths.csv")
     fc.to_csv("./state-cases.csv")    
