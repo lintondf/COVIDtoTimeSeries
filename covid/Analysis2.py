@@ -390,8 +390,8 @@ class Analysis():
         
         fig3, ax3 = plt.subplots() # 10 countries death rates
         fig4, ax4 = plt.subplots() # 10 countries DDGRs
-        ax3.xticks(rotation=90) # fig3.autofmt_xdate()
-        ax4.xticks(rotation=90) # fig4.autofmt_xdate()
+        ax3.set_xticklabels(ax3.get_xticklabels(), rotation=90) # fig3.autofmt_xdate()
+        ax4.set_xticklabels(ax4.get_xticklabels(), rotation=90) # fig4.autofmt_xdate()
         ax3.set_title('Highest 10 Countries - Deaths/Million Population')
         ax3.grid(True)
         ax4.set_title('Highest 10 Countries - Lowess Smoothed DDGRs')
