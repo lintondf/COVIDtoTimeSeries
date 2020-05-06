@@ -219,7 +219,7 @@ class Analysis():
             fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
 #         fig.autofmt_xdate()
-        plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
+        plt.setp(ax1.get_xticklabels(), rotation=90, ha='right')
         ax1.set_title('%s - %d Deaths' % (state.columns[0], values[-1]))
         ax1.grid(True)
         ax2.set_ylim(1, Y_UPPER)
@@ -240,6 +240,7 @@ class Analysis():
         ax2.legend(loc='center right')
         if compare:
             ihme.plot( state.columns[0], axi)
+            plt.setp(axi.get_xticklabels(), rotation=90, ha='right')
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
         plt.close()
