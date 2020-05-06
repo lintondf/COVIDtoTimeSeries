@@ -214,7 +214,9 @@ class Analysis():
             spec1 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig)
             ax1 = fig.add_subplot(spec1[0, 0]) #, sharex=False)
             spec2 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig, hspace=0.30)
-            axi = fig.add_subplot(spec2[1, 0]) #, sharex=False)            
+            axi = fig.add_subplot(spec2[1, 0]) #, sharex=False)   
+            ax1.get_shared_x_axes().remove(axi)         
+            axi.get_shared_x_axes().remove(ax1)         
         else:
             fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
