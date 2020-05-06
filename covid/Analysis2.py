@@ -212,9 +212,9 @@ class Analysis():
 #             fig, (ax1, axi) = plt.subplots(2, figsize=(8,10.5), sharex=False)
             fig = plt.figure(constrained_layout=False, figsize=(8,10.5))
             spec1 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig)
-            ax1 = fig.add_subplot(spec1[0, 0], sharex=None)
+            ax1 = fig.add_subplot(spec1[0, 0]) #, sharex=False)
             spec2 = gridspec.GridSpec(ncols=1, nrows=2, figure=fig, hspace=0.30)
-            axi = fig.add_subplot(spec2[1, 0], sharex=None)            
+            axi = fig.add_subplot(spec2[1, 0]) #, sharex=False)            
         else:
             fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
@@ -240,7 +240,7 @@ class Analysis():
         ax2.legend(loc='center right')
         if compare:
             ihme.plot( state.columns[0], axi)
-            plt.setp(axi.get_xticklabels(), rotation=90, ha='right')
+            plt.setp(axi.get_xticklabels(), rotation=30, ha='right')
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
         plt.close()
@@ -330,8 +330,8 @@ class Analysis():
     #     plt.grid(True)
         fig1, ax1 = plt.subplots() # 10 states death rates
         fig2, ax2 = plt.subplots() # 10 states DDGRs
-        fig1.autofmt_xdate()
-        fig2.autofmt_xdate()
+#         fig1.autofmt_xdate()
+#         fig2.autofmt_xdate()
     
         ax1.set_title('Highest 10 States - Deaths/Million Population')
         ax1.grid(True)
