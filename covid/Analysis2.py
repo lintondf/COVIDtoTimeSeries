@@ -390,8 +390,8 @@ class Analysis():
         
         fig3, ax3 = plt.subplots() # 10 countries death rates
         fig4, ax4 = plt.subplots() # 10 countries DDGRs
-        fig3.autofmt_xdate()
-        fig4.autofmt_xdate()
+        ax3.xticks(rotation=90) # fig3.autofmt_xdate()
+        ax4.xticks(rotation=90) # fig4.autofmt_xdate()
         ax3.set_title('Highest 10 Countries - Deaths/Million Population')
         ax3.grid(True)
         ax4.set_title('Highest 10 Countries - Lowess Smoothed DDGRs')
@@ -436,7 +436,7 @@ if __name__ == '__main__':
 
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
-    reload = True or not result.startswith('Already up to date.')
+    reload = not result.startswith('Already up to date.')
     if reload:
         os.system('git -C %s pull' % outPath)
 

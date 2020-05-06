@@ -29,6 +29,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.colors as mcolors
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+import matplotlib.patheffects as pe
 
 from scipy.optimize.minpack import curve_fit
 from scipy.integrate import trapz
@@ -94,7 +95,8 @@ class IHME():
             ax1.plot( florida.index[:], florida[mean], label=label, color=rgba ) # semilogy
             errors = np.array((florida[mean][-1] - florida[lower][-1],florida[upper][-1] - florida[mean][-1])).reshape(2,1)
             ax1.errorbar(pd.Timestamp(root[i:i+10].replace('_','-')), florida[mean][-1], 
-                         fmt='.', color=rgba, yerr=errors)
+                         fmt='.', color=rgba, yerr=errors,
+                         path_effects=[pe.Stroke(linewidth=5, foreground='k'), pe.Normal()])
             rgba = (0.5+0.5*rgba[0], 0.5+0.5*rgba[1], 0.5+0.5*rgba[2], 1.0)
             ax1.fill_between( florida.index[:], (florida[lower]), (florida[upper]), color=rgba)
                         
