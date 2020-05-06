@@ -62,8 +62,6 @@ class IHME():
         
     
     def plot(self, which : str, ax1):
-#         fig1, ax1 = plt.subplots()
-#         fig1.autofmt_xdate()
         if which == 'US':
             which = 'United States of America'
         first = pd.Timestamp('2020-04-01')
@@ -115,13 +113,7 @@ class IHME():
         ax1.set_position([box.x0, box.y0, box.width * 0.85, box.height]) 
         # Put a legend to the right of the current axis
         ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-#         ax1.legend(loc='upper right') # 'upper left')
         ax1.grid(True)
-        plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')
-        
-#         plt.draw()
-#         fig1.savefig(outpath + "/"+which+".png")
-#         plt.close()
 
         
 

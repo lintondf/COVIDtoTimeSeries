@@ -245,6 +245,12 @@ class Analysis():
         ax2.legend(loc='center right')
         if compare:
             ihme.plot( state.columns[0], axi)
+            print('ax1', ax1 )
+            print(sorted(map(tuple, ax1.get_shared_x_axes())))
+            print('ax2', ax2 )
+            print(sorted(map(tuple, ax2.get_shared_x_axes())))
+            print('axi', axi )
+            print(sorted(map(tuple, axi.get_shared_x_axes())))
             plt.setp(axi.get_xticklabels(), rotation=30, ha='right')
         plt.draw()
         fig.savefig(path+"/"+state.columns[0]+".png")
