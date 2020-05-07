@@ -152,7 +152,7 @@ Click on the link in the first column to view the DDGR chart for a specific coun
 |[Afghanistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Afghanistan.png)|  46   |     100|        3.11|   1.072/  9|   1.080/  9|   1.082/  8|   1.084/  8 |
 |[Albania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Albania.png)|  57   |      32|       11.25|   1.010/ 68|   1.008/ 83|   1.008/ 89|   1.007/ 96 |
 |[Algeria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Algeria.png)|  56   |     486|       11.30|   1.013/ 54|   1.008/ 84|   1.007/ 96|   1.006/ ** |
-|[Angola](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Angola.png)|  39   |       2|        0.06|   1.000/ --|   1.000/ **|   1.000/ --|   1.000/ ** |
+|[Angola](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Angola.png)|  39   |       2|        0.06|   1.000/ --|   1.000/ --|   1.000/ --|   1.000/ -- |
 |[Argentina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Argentina.png)|  60   |     284|        6.33|   1.042/ 16|   1.037/ 19|   1.035/ 19|   1.034/ 20 |
 |[Armenia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Armenia.png)|  42   |      40|       13.56|   1.039/ 17|   1.042/ 16|   1.044/ 16|   1.045/ 15 |
 |[Australia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Australia.png)|  67   |     103|        3.99|   1.020/ 34|   1.017/ 40|   1.016/ 42|   1.016/ 44 |
