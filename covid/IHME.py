@@ -52,6 +52,8 @@ class IHME():
                 if (filename.endswith('.csv')) :
                     if (filename.startswith('summary_stats_all_locs')):
                         continue
+                    if (filename.startswith('Summary_stats_all_locs')):
+                        continue
 #                     print(root,filename)    
                     estimate = pd.read_csv(root + "/" + filename, parse_dates=True)
                     estimate['date']= pd.to_datetime(estimate['date'])
