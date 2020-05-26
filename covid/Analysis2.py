@@ -37,7 +37,7 @@ from astropy.wcs.docstrings import row
 
 register_matplotlib_converters()
 
-Y_UPPER = 1.5 # upper y limit for DDGR charts
+Y_UPPER = 1.25 # upper y limit for DDGR charts
 nD = 3 # 3DRR
 home = os.path.expanduser('~')
 pathToRepository = home + '/GITHUB/COVID-19'
