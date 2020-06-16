@@ -37,7 +37,7 @@ from astropy.wcs.docstrings import row
 
 register_matplotlib_converters()
 
-Y_UPPER = 1.25 # upper y limit for DDGR charts
+Y_UPPER = 1.10 # upper y limit for DDGR charts
 nD = 3 # 3DRR
 home = os.path.expanduser('~')
 pathToRepository = home + '/GITHUB/COVID-19'
@@ -189,7 +189,7 @@ class Analysis():
                 return '%7.3f/%s' % (ddgr, days)
             row = ''
             row += ('|%-15s| %3d   ' % (link, len(T)))  
-            row += ('|  %6.0f|  %10.2f' % (np.exp(trend[-1]), scaledTrend[-1]))
+            row += ('|  %6.0f|  %10.3f' % (np.exp(trend[-1]), scaledTrend[-1]))
             row += ('| %s| %s| %s| %s |' % (rpt(y3ddr[-7]), rpt(y3ddr[-3]), rpt(y3ddr[-2]), rpt(y3ddr[-1])))
             row += ('\n')
             if verbose :
@@ -237,7 +237,7 @@ class Analysis():
                 arrowprops=dict(arrowstyle="->"))
         ax2.plot( x3ddr, y3ddr**(1/nD), color='blue', label='DDGR (Right)')
         ax2.plot( x3ddr, y3raw**(1/nD), color='blue', linestyle='', markeredgecolor='none', marker='.' )
-        ax2.annotate('%5.2f' % (y3raw[-1]**(1/nD)),
+        ax2.annotate('%5.3f' % (y3raw[-1]**(1/nD)),
                 xy=(x3ddr[-1], y3raw[-1]**(1/nD)), xycoords='data',
                 xytext=(-10, 30), textcoords='offset points',
                 arrowprops=dict(arrowstyle="->"))
