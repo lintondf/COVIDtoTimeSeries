@@ -31,7 +31,7 @@ from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
 from IHME import IHME
-from astropy.wcs.docstrings import row
+# from astropy.wcs.docstrings import row
 
 # from adjustText import adjust_text  
 
