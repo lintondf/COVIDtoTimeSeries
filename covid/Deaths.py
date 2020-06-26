@@ -106,7 +106,7 @@ states2 = {  # yes these are redundant; but one is sorted by name and the other 
 }
 
 
-def updateDeaths(pathToRepository, pull=True, counties=None):
+def updateDeaths(pathToRepository, pull=True, counties=None, casesColumn='Confirmed', deathsColumn='Deaths'):
     if (pull) :
         os.system('git -C %s pull' % pathToRepository)
     f = pd.DataFrame(columns=states)
@@ -151,48 +151,48 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                         countyDeaths.update({s:0})
                         countyCases.update({s:0})
                 for index, row in daily.iterrows():
-                    if (row['Deaths'] > 0) :
+                    if (row[deathsColumn] > 0) :
                         if (row[countryColumn] == 'US'):
                                 s = row[stateColumn].strip().replace('D.C.', 'DC').replace('D.C.', 'DC')
                                 if (',' in s) :
                                     s = states2[s[-2:]]
                                 if (s in stateDeaths) :
-                                    stateDeaths[s] += row['Deaths']
+                                    stateDeaths[s] += row[deathsColumn]
                                     if not counties is None and countyColumn in row and isinstance(row[countyColumn], str):
                                         county = row[countyColumn] + ' County, ' + s
                                         if county in counties:
-                                            countyDeaths[county] += row['Deaths']
+                                            countyDeaths[county] += row[deathsColumn]
                                         elif s == 'Louisiana':
                                             county = row[countyColumn] + ' Parish, ' + s
                                             if county in counties:
-                                                countyDeaths[county] += row['Deaths']
+                                                countyDeaths[county] += row[deathsColumn]
                                             else :
                                                 print('Skipping ', row[countyColumn], s)
                                         elif s == 'Alaska':
                                             county = row[countyColumn] + 'Municipality, ' + s
                                             if county in counties:
-                                                countyDeaths[county] += row['Deaths']
+                                                countyDeaths[county] += row[deathsColumn]
                                             else :
                                                 print('Skipping ', row[countyColumn], s)
                                         elif s == 'District of Columbia':
-                                            countyDeaths['District of Columbia, District of Columbia'] += row['Deaths']                                            
+                                            countyDeaths['District of Columbia, District of Columbia'] += row[deathsColumn]                                            
                                         else:
                                             if 'City' in row[countyColumn] :
                                                 county = row[countyColumn].replace('City', 'County') + ', ' + s
                                             else :
                                                 county = row[countyColumn] + ' city, ' + s # VA
                                             if county in counties:
-                                                countyDeaths[county] += row['Deaths']
+                                                countyDeaths[county] += row[deathsColumn]
                                             elif row[countyColumn] != 'Unassigned' :
                                                 print('Skipping ', row[countyColumn], s)
                                 else :
                                     print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryDeaths) :
-                            countryDeaths[c] += row['Deaths']
+                            countryDeaths[c] += row[deathsColumn]
                         else :
                             print("Skipping: ", c)
-                    if (row['Confirmed'] > 0) :
+                    if (casesColumn in row and row[casesColumn] > 0) :
                         if (row[countryColumn] == 'US'):
                                 s = row[stateColumn].strip().replace('D.C.', 'DC')
                                 if not 'Diamond Princess' in s:
@@ -201,12 +201,12 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                             print(s)
                                         s = states2[s[-2:]]
                                     if (s in stateCases) :
-                                        stateCases[s] += row['Confirmed']
+                                        stateCases[s] += row[casesColumn]
                                     else :
                                         print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryCases) :
-                            countryCases[c] += row['Confirmed']
+                            countryCases[c] += row[casesColumn]
                         else :
                             print("Skipping: ", c)
                         
