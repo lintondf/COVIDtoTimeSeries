@@ -1,0 +1,90 @@
+# State and Country COVID-19 Analysis #
+## Updated: {{ date }} ##
+
+Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
+
+Daily Death Growth Rate (DDGR)  is the cube root of Arnold Kling's [Three Day Death Reproduction Rate (3DDRR)](http://www.arnoldkling.com/blog/the-3ddrr/).  The 3DDRR is calculated by dividing the cumulative total number of deaths on a given day by the  cumulative total number of deaths three days previously; yes, technically this is a factor not a rate, but we must grant Professor Kling the author's naming rights.  Taking the cube root converts this to the geometric mean for the three days.  These values are LOWESS filtered to generate local-error minimizing non-parametric trend lines.
+
+If deaths remain constant over the three days, the DDGR equals one.  A value of 2 would indicate that the number of deaths doubles every day.
+
+Up until June 29, 2020, this page reported the DDGR directly, but as the high growth phase of the pandemic has passed, the DDGR values have  declined toward one, required progressively more digits of precision to show differences.  Accordingly, henceforth this page will report DDGR as a true growth percentage rate (100*(DDGR-1)) which will be termed the Daily Death Rate of Growth (DDRG).  A DDRG of 100% means the number of deaths doubles every day, 0% means no new deaths.
+
+Why the focus on deaths not cases?  The problem with case statistics is that what is counted has changed nearly continuously since the start of the pandemic and continues to this day.  Early on, only patients sick enough to go to the hospital could be counted.  As tests came online (and eventually actually worked), people visiting a doctor could be tested and counted.  As of mid-2020, in the U.S., drive-up testing is more widely available, but since that involves the choice to undergo the unpleasantness of a deep nasal swab, current testing is by no means a random sample of the U.S. population.
+
+The death statistics are not perfect.  Some claim conflating "dying of COVID-19" vs "dying with COVID-19" overstates death counts.  Others say political incentives motivate widespread undercounting.
+
+
+# Ten US States with Highest Death Tolls #
+
+Deaths in the 10 US States with the highest death tolls expressed as deaths per 1 million population. One per million is 0.0001%.  1% is 10,000 per million.
+
+![US States with Highest Death Toll - Death Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/States10WorstDeathRates.png)
+
+Daily Death Rate of Growth (DDRG) in the 10 US States with the highest death tolls.
+
+![US States with Highest Death Toll - Daily Death Rate of Growths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/States10WorstDDRG.png)
+
+{{ top10StatesTable }}
+
+- Days - Number of days since first death
+- Deaths - Total deaths to date
+- Deaths/1M - Deaths per million in population
+- DDRG - **LOWESS Smoothed** Daily Deaths Rate of Growth. [n:m] total deaths n days ago over m days ago followed by the DDRG expressed as the number of days to double the total deaths count if that rate holds
+
+# Ten Countries with Highest Death Tolls #
+
+Deaths in the 10 countries with the highest death tolls expressed as deaths per 1 million population. 
+
+![Countries with Highest Death Toll - Death Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/Countries10WorstDeathRates.png)
+
+Daily Death Rate of Growth (DDRG) in the 10 countries with the highest death tolls.
+
+![Countries with Highest Death Toll - Daily Death Rate of Growths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/Countries10WorstDDRG.png)
+
+{{ top10CountriesTable }}
+
+# US Confirmed Case Rates vs. Death Rates #
+
+The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.
+
+![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestDeaths.png)
+
+![Daily Death Rates](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestDeathsPerDay.png)
+
+Despite quite large rhetorical, policital, and social differences in their approaches to the pandemic, the rates of death in these four states appear to be converging.
+ 
+For confirmed cases, the story is not so different.
+
+![Cases](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestConfirmed Cases.png)
+
+![Daily Case Rates](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestConfirmed CasesPerDay.png)
+
+
+
+# US and Selected States #
+
+For each country and each US state, deaths per million in population is plotted on the left logarithmic axis and the raw and smoothed DDRG is plotted on the linear right axis.
+
+## United States ##
+![United States](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)
+
+## Florida ##
+![Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)
+
+## Maryland ##
+![Maryland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maryland.png)
+
+## Maine ##
+![Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)
+
+# US States #
+
+Click on the link in the first column to view the DDRG and IHME charts for a specific state.
+
+{{ statesLinks }}
+
+# All Countries #
+
+Click on the link in the first column to view the DDRG chart for a specific country.
+ 
+{{ countriesLinks }}
