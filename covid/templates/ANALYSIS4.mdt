@@ -59,11 +59,17 @@ For confirmed cases, the story is not so different.
 
 ![Daily Case Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestConfirmed%20CasesPerDay.png)
 
+The next two plots show the latest 21-day trajectory of deaths/day/million vs confirmed cases/day/million for the four largest population states and for all states with non-trival death rates.
+
+![Four State Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/FourDailyCasesVsDeaths.png)
+
+![All States Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/AllDailyCasesVsDeaths.png)
 
 
 # US and Selected States #
 
 For each country and each US state, deaths per million in population is plotted on the left logarithmic axis and the raw and smoothed DDRG is plotted on the linear right axis.
+
 
 ## United States ##
 ![United States](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)
