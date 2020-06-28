@@ -47,17 +47,17 @@ Daily Death Rate of Growth (DDRG) in the 10 countries with the highest death tol
 
 The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.
 
-![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestDeaths.png)
+![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestDeaths.png)
 
-![Daily Death Rates](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestDeathsPerDay.png)
+![Daily Death Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestDeathsPerDay.png)
 
 Despite quite large rhetorical, policital, and social differences in their approaches to the pandemic, the rates of death in these four states appear to be converging.
  
 For confirmed cases, the story is not so different.
 
-![Cases](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestConfirmed Cases.png)
+![Cases](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestConfirmed%20Cases.png)
 
-![Daily Case Rates](https://github.com/lintondf/COVIDtoTimeSeries/analysis/4LargestConfirmed CasesPerDay.png)
+![Daily Case Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestConfirmed%20CasesPerDay.png)
 
 
 
