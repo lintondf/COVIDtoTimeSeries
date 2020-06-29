@@ -1,5 +1,5 @@
 # State and Country COVID-19 Analysis #
-## Updated: 2020-06-28 ##
+## Updated: 2020-06-29 ##
 
 Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
 
@@ -90,11 +90,10 @@ The next two plots show the latest 21-day trajectory of deaths/day/million vs co
 ![All States Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/AllDailyCasesVsDeaths.png)
 
 
-
-
 # US and Selected States #
 
 For each country and each US state, deaths per million in population is plotted on the left logarithmic axis and the raw and smoothed DDRG is plotted on the linear right axis.
+
 
 ## United States ##
 ![United States](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)
