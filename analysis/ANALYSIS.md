@@ -1,5 +1,5 @@
 # State and Country COVID-19 Analysis #
-## Updated: 2020-06-30 ##
+## Updated: at 2020-06-30 for data as of 2020-06-29 00:00:00 ##
 
 Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
 
@@ -88,6 +88,10 @@ The next two plots show the latest 21-day trajectory of deaths/day/million vs co
 ![Four State Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/FourDailyCasesVsDeaths.png)
 
 ![All States Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/AllDailyCasesVsDeaths.png)
+
+The next plots shows the total US deaths to day from COVID-19 compared to historical seasonal flus and 20th century pandemics.
+
+![Compared To Flus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/ComparedToFlus.png)
 
 
 # US and Selected States #
