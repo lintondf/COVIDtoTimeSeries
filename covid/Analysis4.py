@@ -30,8 +30,9 @@ from scipy.integrate import trapz
 from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
+from Flus import compareDeaths
 # from IHME import IHME
-from PyEMD import EMD,CEEMDAN
+# from PyEMD import EMD,CEEMDAN
 
 register_matplotlib_converters()
 
@@ -126,6 +127,7 @@ def smooth( y, t ):
 
 class Analysis():
     def __init__(self):
+        self.asOf = ''
         self.top10StatesTable = ''
         self.top10CountriesTable = ''
         self.statesLinks = np.array([],dtype=str)
@@ -455,11 +457,13 @@ class Analysis():
             fc = pd.read_csv(outPath + "/data/states-cases.csv", parse_dates=True, index_col=0)
             gc = pd.read_csv(outPath + "/data/countries-cases.csv", parse_dates=True, index_col=0)
             
-        print(f.index[-1])
+        self.asOf = (f.index[-1])
         
         statesPopulation = loadStatePopulations();
         countriesPopulation = loadPopulation();
         countriesPopulation['US'] = countriesPopulation['United States']
+        
+        compareDeaths( outPath+"/analysis/ComparedToFlus.png", g, countriesPopulation)
         
 #         self.plotCasesVsDeaths( g, gc, countriesPopulation, 5000, 500 )
 #         self.plotCasesVsDeaths( f, fc, statesPopulation, 5000, 500 )
@@ -611,7 +615,8 @@ if __name__ == '__main__':
     for state in analysis.countriesLinks:
         countriesContent += state
     fields = dict();
-    fields.update({'date': datetime.date(datetime.now())})
+    tag = 'at %s for data as of %s' % (datetime.date(datetime.now()), analysis.asOf)
+    fields.update({'date': tag})
     fields.update({'top10StatesTable': analysis.top10StatesTable})
     fields.update({'top10CountriesTable': analysis.top10CountriesTable})
     fields.update({'statesLinks': statesContent})
