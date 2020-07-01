@@ -474,7 +474,7 @@ class Analysis():
         four = dict()
         for one in ['California', 'Florida', 'New York', 'Texas']:
             four[one] = data[one]
-            
+        # TODO four limits from all limits
         self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmin=None, ymin=None )
         self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
         
