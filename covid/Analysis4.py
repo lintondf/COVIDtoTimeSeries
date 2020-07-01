@@ -256,7 +256,7 @@ class Analysis():
                     data[one] = (deaths[-22:], cases[-22:]) # [-22,-15,-8,-1]
         return data
             
-    def plotAllStatesRates(self, path, data, xmin=1e-1, ymin=1e1 ):            
+    def plotAllStatesRates(self, path, data, xmin=1e-1, xmax=None, ymin=1e1, ymax=None ):            
         two = dict(map(reversed, states2.items()))
         fig, ax1 = plt.subplots()
         ax1.set_title('21 Day Case Rate vs Death Rate Trajectories')
@@ -269,14 +269,15 @@ class Analysis():
             ax1.scatter(xy[0][-1], xy[1][-1], color=color)
             ax1.annotate( two[one], xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
                     xytext=(5,5), textcoords='offset points')
-        ax1.set_xlim(xmin, None)
-        ax1.set_ylim(ymin, None)
+        ax1.set_xlim(xmin, xmax)
+        ax1.set_ylim(ymin, ymax)
 
         ax1.set_yscale('log')
         ax1.set_xscale('log')
         plt.draw()
         fig.savefig(path)
-        plt.close()        
+        plt.close()      
+        return [ax1.get_xlim()[1], ax1.get_ylim()[1]]  
 
     def plotStateSet( self, what, path, which, states, population):
 #         fig = plt.figure(constrained_layout=False, figsize=(8,9))
@@ -475,8 +476,8 @@ class Analysis():
         for one in ['California', 'Florida', 'New York', 'Texas']:
             four[one] = data[one]
         # TODO four limits from all limits
-        self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmin=None, ymin=None )
-        self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
+        xymax = self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
+        self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmax=xymax[0], ymax=xymax[1] )
         
         stateSet = ('California','Florida','New York','Texas')
         self.plotStateSet('Deaths', outPath+"/analysis/4Largest%s%s.png", stateSet, f, population)
@@ -615,7 +616,7 @@ if __name__ == '__main__':
     for state in analysis.countriesLinks:
         countriesContent += state
     fields = dict();
-    tag = 'at %s for data as of %s' % (datetime.date(datetime.now()), analysis.asOf)
+    tag = 'at %s for data as of %s' % (datetime.date(datetime.now()), analysis.asOf.date())
     fields.update({'date': tag})
     fields.update({'top10StatesTable': analysis.top10StatesTable})
     fields.update({'top10CountriesTable': analysis.top10CountriesTable})
