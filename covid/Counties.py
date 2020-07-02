@@ -240,13 +240,15 @@ if __name__ == '__main__':
                 return 0.0
             return 1e-3+np.ceil(np.log10(rate))
         
-        c = categeorize( 1e6 * values[i] / countyPopulation[fips[i]])
-        print(fips[i],',"'+rfips[fips[i]]+'",',c,',',values[i],',', countyPopulation[fips[i]],',',1e6 * values[i] / countyPopulation[fips[i]], file=out)
-        values[i] = c
+        f = fips[i]
+        if f in countyPopulation :
+            c = categeorize( 1e6 * values[i] / countyPopulation[fips[i]])
+            print(fips[i],',"'+rfips[fips[i]]+'",',c,',',values[i],',', countyPopulation[fips[i]],',',1e6 * values[i] / countyPopulation[fips[i]], file=out)
+            values[i] = c
     out.close()
     lfips = []
     lvalues = []
-    target = us.states.LA
+    target = us.states.CA
     for i in range(0,len(values)):
         v = values[i]
         stateFips = int(fips[i]) // 1000
