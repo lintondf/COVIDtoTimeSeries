@@ -7,7 +7,7 @@ Created on Apr 3, 2020
 import os
 import pandas as pd
 
-pathToRepository = 'C:/Users/NOOK/GITHUB/COVID-19'  # change to where you checked out https://github.com/CSSEGISandData/COVID-19.git
+pathToRepository = os.path.expanduser('~') + '/GITHUB/COVID-19'  # change to where you checked out https://github.com/CSSEGISandData/COVID-19.git
 
 countries = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia',
               'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahamas, The', 'Bahrain', 'Bangladesh',
@@ -106,7 +106,7 @@ states2 = {  # yes these are redundant; but one is sorted by name and the other 
 }
 
 
-def updateDeaths(pathToRepository, pull=True, counties=None, casesColumn='Confirmed', deathsColumn='Deaths'):
+def updateDeaths(pathToRepository, pull=True, counties=None):
     if (pull) :
         os.system('git -C %s pull' % pathToRepository)
     f = pd.DataFrame(columns=states)
@@ -151,48 +151,48 @@ def updateDeaths(pathToRepository, pull=True, counties=None, casesColumn='Confir
                         countyDeaths.update({s:0})
                         countyCases.update({s:0})
                 for index, row in daily.iterrows():
-                    if (row[deathsColumn] > 0) :
+                    if (row['Deaths'] > 0) :
                         if (row[countryColumn] == 'US'):
                                 s = row[stateColumn].strip().replace('D.C.', 'DC').replace('D.C.', 'DC')
                                 if (',' in s) :
                                     s = states2[s[-2:]]
                                 if (s in stateDeaths) :
-                                    stateDeaths[s] += row[deathsColumn]
+                                    stateDeaths[s] += row['Deaths']
                                     if not counties is None and countyColumn in row and isinstance(row[countyColumn], str):
                                         county = row[countyColumn] + ' County, ' + s
                                         if county in counties:
-                                            countyDeaths[county] += row[deathsColumn]
+                                            countyDeaths[county] += row['Deaths']
                                         elif s == 'Louisiana':
                                             county = row[countyColumn] + ' Parish, ' + s
                                             if county in counties:
-                                                countyDeaths[county] += row[deathsColumn]
+                                                countyDeaths[county] += row['Deaths']
                                             else :
                                                 print('Skipping ', row[countyColumn], s)
                                         elif s == 'Alaska':
                                             county = row[countyColumn] + 'Municipality, ' + s
                                             if county in counties:
-                                                countyDeaths[county] += row[deathsColumn]
+                                                countyDeaths[county] += row['Deaths']
                                             else :
                                                 print('Skipping ', row[countyColumn], s)
                                         elif s == 'District of Columbia':
-                                            countyDeaths['District of Columbia, District of Columbia'] += row[deathsColumn]                                            
+                                            countyDeaths['District of Columbia, District of Columbia'] += row['Deaths']                                            
                                         else:
                                             if 'City' in row[countyColumn] :
                                                 county = row[countyColumn].replace('City', 'County') + ', ' + s
                                             else :
                                                 county = row[countyColumn] + ' city, ' + s # VA
                                             if county in counties:
-                                                countyDeaths[county] += row[deathsColumn]
+                                                countyDeaths[county] += row['Deaths']
                                             elif row[countyColumn] != 'Unassigned' :
                                                 print('Skipping ', row[countyColumn], s)
                                 else :
                                     print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryDeaths) :
-                            countryDeaths[c] += row[deathsColumn]
+                            countryDeaths[c] += row['Deaths']
                         else :
                             print("Skipping: ", c)
-                    if (casesColumn in row and row[casesColumn] > 0) :
+                    if (row['Confirmed'] > 0) :
                         if (row[countryColumn] == 'US'):
                                 s = row[stateColumn].strip().replace('D.C.', 'DC')
                                 if not 'Diamond Princess' in s:
@@ -201,12 +201,12 @@ def updateDeaths(pathToRepository, pull=True, counties=None, casesColumn='Confir
                                             print(s)
                                         s = states2[s[-2:]]
                                     if (s in stateCases) :
-                                        stateCases[s] += row[casesColumn]
+                                        stateCases[s] += row['Confirmed']
                                     else :
                                         print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryCases) :
-                            countryCases[c] += row[casesColumn]
+                            countryCases[c] += row['Confirmed']
                         else :
                             print("Skipping: ", c)
                         
