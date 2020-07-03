@@ -25,7 +25,7 @@ The next two plots show the latest 21-day trajectory of deaths/day/million vs co
 
 ![All States Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/AllDailyCasesVsDeaths.png)
 
-The next plots shows the total US deaths to day from COVID-19 compared to historical seasonal flus and 20th century pandemics.
+The next plots shows the total US deaths to date from COVID-19 compared to historical seasonal flus and 20th century pandemics.
 
 ![Compared To Flus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/ComparedToFlus.png)
 

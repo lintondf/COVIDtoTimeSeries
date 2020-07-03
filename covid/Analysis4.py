@@ -116,7 +116,8 @@ states2 = {
         'WA': 'Washington',
         'WI': 'Wisconsin',
         'WV': 'West Virginia',
-        'WY': 'Wyoming'
+        'WY': 'Wyoming',
+        'US': 'US'
 }
 
 def smooth( y, t ):
@@ -264,7 +265,10 @@ class Analysis():
         ax1.set_ylabel("Confirmed Cases/day/1M")
         for one in data.keys() :
             xy = data[one]
-            color = next(ax1._get_lines.prop_cycler)['color']
+            if one == 'US':
+                color = 'black'
+            else:
+                color = next(ax1._get_lines.prop_cycler)['color']
             ax1.plot(xy[0],xy[1], color=color)
             ax1.scatter(xy[0][-1], xy[1][-1], color=color)
             ax1.annotate( two[one], xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
@@ -468,6 +472,10 @@ class Analysis():
         countriesPopulation = loadPopulation();
         countriesPopulation['US'] = countriesPopulation['United States']
         
+        statesPopulation['US'] = countriesPopulation['United States']
+        f[['US']] = g[['US']]
+        fc[['US']] = gc[['US']]
+        
         compareDeaths( outPath+"/analysis/ComparedToFlus.png", g, countriesPopulation)
         
 #         self.plotCasesVsDeaths( g, gc, countriesPopulation, 5000, 500 )
@@ -477,7 +485,7 @@ class Analysis():
         
         data = self.generateAllStatesRates(f, fc, population)
         four = dict()
-        for one in ['California', 'Florida', 'New York', 'Texas']:
+        for one in ['California', 'Florida', 'New York', 'Texas', 'US']:
             four[one] = data[one]
         # TODO four limits from all limits
         xymax = self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
@@ -608,6 +616,7 @@ if __name__ == '__main__':
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
     reload = not result.startswith('Already up to date.')
+    reload = False
     if reload:
         os.system('git -C %s pull' % outPath)
 

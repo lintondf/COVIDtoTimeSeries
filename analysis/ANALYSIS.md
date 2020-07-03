@@ -25,7 +25,7 @@ The next two plots show the latest 21-day trajectory of deaths/day/million vs co
 
 ![All States Rates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/AllDailyCasesVsDeaths.png)
 
-The next plots shows the total US deaths to day from COVID-19 compared to historical seasonal flus and 20th century pandemics.
+The next plots shows the total US deaths to date from COVID-19 compared to historical seasonal flus and 20th century pandemics.
 
 ![Compared To Flus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/ComparedToFlus.png)
 
@@ -161,6 +161,7 @@ Click on the link in the first column to view the DDRG and IHME charts for a spe
 |[South Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/South%20Dakota.png)| 114   |      95|     107.540|   1.3%/ 51|   1.3%/ 52|   1.3%/ 52|   1.3%/ 51 |
 |[Tennessee](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Tennessee.png)| 104   |     622|      91.055|   1.4%/ 48|   1.4%/ 51|   1.3%/ 51|   1.3%/ 52 |
 |[Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Texas.png)| 108   |    2532|      87.330|   1.3%/ 52|   1.3%/ 52|   1.3%/ 52|   1.3%/ 52 |
+|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/US.png)| 125   |  128811|     390.877|   0.6%/115|   0.6%/114|   0.6%/114|   0.6%/114 |
 |[Utah](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Utah.png)| 103   |     176|      54.967|   1.1%/ 63|   0.9%/ 80|   0.8%/ 86|   0.8%/ 92 |
 |[Vermont](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Vermont.png)| 105   |      56|      90.058|   0.1%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
 |[Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Virginia.png)| 111   |    1792|     209.917|   0.9%/ 74|   1.1%/ 65|   1.1%/ 63|   1.1%/ 61 |
