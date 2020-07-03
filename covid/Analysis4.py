@@ -616,7 +616,6 @@ if __name__ == '__main__':
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
     reload = not result.startswith('Already up to date.')
-    reload = False
     if reload:
         os.system('git -C %s pull' % outPath)
 
