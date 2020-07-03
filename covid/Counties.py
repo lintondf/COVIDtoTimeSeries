@@ -30,8 +30,8 @@ from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
 from IHME import IHME
-import plotly
-import plotly.figure_factory as ff
+# import plotly
+# import plotly.figure_factory as ff
 from matplotlib import cm
 import us
 two2State = {  # yes these are redundant; but one is sorted by name and the other by 2 letter
@@ -268,18 +268,18 @@ if __name__ == '__main__':
     order = np.unique(lvalues)
     colorscale = colorscale[order]
 #     endpts = [1,2,3,4,5,6] 
-    fig = ff.create_choropleth(
-        fips=lfips, values=lvalues, scope=[target.abbr],
-#         binning_endpoints=endpts,
-        colorscale=colorscale.tolist(), # order=order.tolist(),
-        show_state_data=True,
-        state_outline={'color': 'rgb(0,0,0)', 'width': 1.0},
-        show_hover=True,
-#         asp = 2.9,
-        title_text = 'USA County Death Rate Categories',
-        legend_title = 'Population'
-    )
-    fig.layout.template = None
-    fig.show()
+#     fig = ff.create_choropleth(
+#         fips=lfips, values=lvalues, scope=[target.abbr],
+# #         binning_endpoints=endpts,
+#         colorscale=colorscale.tolist(), # order=order.tolist(),
+#         show_state_data=True,
+#         state_outline={'color': 'rgb(0,0,0)', 'width': 1.0},
+#         show_hover=True,
+# #         asp = 2.9,
+#         title_text = 'USA County Death Rate Categories',
+#         legend_title = 'Population'
+#     )
+#     fig.layout.template = None
+#     fig.show()
 #     plotly.io.orca.config.executable = '/Users/blinton/anaconda3/bin/orca'
 #     fig.write_image("plotly.png")
