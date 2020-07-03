@@ -312,7 +312,10 @@ class Analysis():
             
             scaled, __, __, __, __ = self.analyze( state, pop, which=one, verbose=False, links=None ) # smoothed trend/population (M), x and y for smoothed 3-day death ratios
             values = np.asarray(state[[state.columns[0]]].values)
-            color = next(ax1._get_lines.prop_cycler)['color']
+            if one == 'US':
+                color = 'black'
+            else:            
+                color = next(ax1._get_lines.prop_cycler)['color']
 
             ax1.semilogy(state.index[:], (scaled), linestyle='solid', color=color, label='%s (%5.1f %s/1M)' % (one, scaled[-1], what)) # 
 #             ax1.semilogy(state.index[:], (values/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
