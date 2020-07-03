@@ -485,15 +485,15 @@ class Analysis():
         
         data = self.generateAllStatesRates(f, fc, population)
         four = dict()
-        for one in ['California', 'Florida', 'New York', 'Texas', 'US']:
+        topFour = ['California', 'Florida', 'New York', 'Texas', 'US']
+        for one in topFour:
             four[one] = data[one]
         # TODO four limits from all limits
         xymax = self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
         self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmax=xymax[0], ymax=xymax[1] )
         
-        stateSet = ('California','Florida','New York','Texas')
-        self.plotStateSet('Deaths', outPath+"/analysis/4Largest%s%s.png", stateSet, f, population)
-        self.plotStateSet('Confirmed Cases', outPath+"/analysis/4Largest%s%s.png", stateSet, fc, population)
+        self.plotStateSet('Deaths', outPath+"/analysis/4Largest%s%s.png", topFour, f, population)
+        self.plotStateSet('Confirmed Cases', outPath+"/analysis/4Largest%s%s.png", topFour, fc, population)
         
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
         header1 = ("|State|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|\n")
@@ -616,6 +616,7 @@ if __name__ == '__main__':
     result = os.popen('git -C %s pull' % pathToRepository).read()
 
     reload = not result.startswith('Already up to date.')
+#     reload = False
     if reload:
         os.system('git -C %s pull' % outPath)
 
