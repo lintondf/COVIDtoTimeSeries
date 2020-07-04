@@ -3,7 +3,7 @@ Created on Apr 9, 2020
 
 @author: D. F. Linton, Blue Lightning Development, LLC
 '''
-
+#TODO switch top 10 charts to use plotStateSet and include cases
 import os
 from pathlib import Path
 import warnings
@@ -128,7 +128,13 @@ def smooth( y, t ):
 
 class Analysis():
     def __init__(self):
-        self.asOf = ''
+        self.asOf = datetime.now()
+        self.topFourDeathsFraction = 0.0
+        self.topFourCasesFraction = 0.0
+        self.topFourPopulationFraction = 0.0
+        self.topTenDeathsFraction = 0.0
+        self.topTenCasesFraction = 0.0
+        self.topTenPopulationFraction = 0.0
         self.top10StatesTable = ''
         self.top10CountriesTable = ''
         self.statesLinks = np.array([],dtype=str)
@@ -282,7 +288,19 @@ class Analysis():
         plt.draw()
         fig.savefig(path)
         plt.close()      
-        return [ax1.get_xlim()[1], ax1.get_ylim()[1]]  
+        return [ax1.get_xlim()[1], ax1.get_ylim()[1]] 
+
+    def stateStats(self, which, states, population):
+        usValue = states[['US']].values[-1][0]
+        usPop = population['US']
+        totalPop = 0
+        totalValue = 0
+        for one in which:
+            totalValue += states[[one]].values[-1][0]
+            totalPop += population[one]
+        r = [(totalValue-usValue)/usValue, (totalPop-usPop)/usPop]
+        return r
+        
 
     def plotStateSet( self, what, path, which, states, population):
 #         fig = plt.figure(constrained_layout=False, figsize=(8,9))
@@ -334,7 +352,8 @@ class Analysis():
             
             
             ax2.semilogy( state.index[:], trend, linestyle='solid', color=color, label='%s (%5.1f %s/day/1M)' % (one, trend[-1], what))
-            ax2.semilogy( state.index[:], ypct, color=color, linestyle='', markeredgecolor='none', marker='.' )
+            if len(which) < 6:
+                ax2.semilogy( state.index[:], ypct, color=color, linestyle='', markeredgecolor='none', marker='.' )
 #             ax2.annotate('%5.2f' % trend[-1],
 #                     xy=(state.index[-1], trend[-1]), xycoords='data',
 #                     xytext=(-10, 30), textcoords='offset points', color=color,
@@ -347,6 +366,7 @@ class Analysis():
         fig1.savefig(path % (what, ''))
         fig2.savefig(path % (what, 'PerDay'))
         plt.close()
+        return self.stateStats(which, states, population)
         
     def DDGR2RG(self, x):
         return 100.0*(x-1)
@@ -495,9 +515,15 @@ class Analysis():
         xymax = self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
         self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmax=xymax[0], ymax=xymax[1] )
         
-        self.plotStateSet('Deaths', outPath+"/analysis/4Largest%s%s.png", topFour, f, population)
-        self.plotStateSet('Confirmed Cases', outPath+"/analysis/4Largest%s%s.png", topFour, fc, population)
+        self.topFourDeathsFraction, self.topFourPopulationFraction = self.plotStateSet('Deaths', outPath+"/analysis/4Largest%s%s.png", topFour, f, population)
+        self.topFourCasesFraction, __ = self.plotStateSet('Confirmed Cases', outPath+"/analysis/4Largest%s%s.png", topFour, fc, population)
+        topTen = ['US',]
+        for i in range(0,10):
+            topTen.append( f.columns[i])
+        self.topTenDeathsFraction, self.topTenPopulationFraction = self.plotStateSet('Deaths', outPath+"/analysis/10Largest%s%s.png", topTen, f, population)
+        self.topTenCasesFraction, __ = self.plotStateSet('Confirmed Cases', outPath+"/analysis/10Largest%s%s.png", topTen, fc, population)
         
+        #TODO switch top 10 charts to use plotStateSet and include cases
     #     print('%-15s   N  %10s  %10s  %7s %7s %7s %7s' % ('State', 'Deaths', 'Per 1M', 'DDGR[-7]', 'DDGR[-3]', 'DDGR[-2]', 'DDGR[-1]'))
         header1 = ("|State|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|\n")
         header2 = ("|:--|--:|--:|--:|--:|--:|--:|--:|\n")
@@ -634,6 +660,12 @@ if __name__ == '__main__':
     fields = dict();
     tag = 'at %s for data as of %s' % (datetime.date(datetime.now()), analysis.asOf.date())
     fields.update({'date': tag})
+    fields.update({'topFourPop': '%.1f%%' % (100.0*analysis.topFourPopulationFraction)})
+    fields.update({'topFourDeaths': '%.1f%%' % (100.0*analysis.topFourDeathsFraction)})
+    fields.update({'topFourCases': '%.1f%%' % (100.0*analysis.topFourCasesFraction)})
+    fields.update({'topTenPop': '%.1f%%' % (100.0*analysis.topTenPopulationFraction)})
+    fields.update({'topTenDeaths': '%.1f%%' % (100.0*analysis.topTenDeathsFraction)})
+    fields.update({'topTenCases': '%.1f%%' % (100.0*analysis.topTenCasesFraction)})
     fields.update({'top10StatesTable': analysis.top10StatesTable})
     fields.update({'top10CountriesTable': analysis.top10CountriesTable})
     fields.update({'statesLinks': statesContent})
