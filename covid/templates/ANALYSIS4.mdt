@@ -27,7 +27,7 @@ The next two plots show the latest 21-day trajectory of deaths/day/million vs co
 
 The next plots shows the total US deaths to date from COVID-19 compared to historical seasonal flus and 20th century pandemics.
 
-![Compared To Flus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/ComparedToFlus.png)
+![Compared To Flus](https:f//github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/ComparedToFlus.png)
 
 
 Daily Death Growth Rate (DDGR)  is the cube root of Arnold Kling's [Three Day Death Reproduction Rate (3DDRR)](http://www.arnoldkling.com/blog/the-3ddrr/).  The 3DDRR is calculated by dividing the cumulative total number of deaths on a given day by the  cumulative total number of deaths three days previously; yes, technically this is a factor not a rate, but we must grant Professor Kling the author's naming rights.  Taking the cube root converts this to the geometric mean for the three days.  These values are LOWESS filtered to generate local-error minimizing non-parametric trend lines.
@@ -101,12 +101,12 @@ For each country and each US state, deaths per million in population is plotted 
 
 # US States #
 
-Click on the link in the first column to view the DDRG and IHME charts for a specific state.
+Click on the link in the first column to view the deaths and DDRG charts for a specific state.
 
 {{ statesLinks }}
 
 # All Countries #
 
-Click on the link in the first column to view the DDRG chart for a specific country.
+Click on the link in the first column to view the deaths and DDRG chart for a specific country.
  
 {{ countriesLinks }}
