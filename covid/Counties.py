@@ -96,12 +96,16 @@ two2State = {  # yes these are redundant; but one is sorted by name and the othe
 
 state2Two = {v: k for k, v in two2State.items()}
 
+home = os.path.expanduser('~')
+pathToRepository = home + '/GITHUB/COVID-19'
+
 def once(dataPath : str):
     path = dataPath + 'US-Counties-Population.xlsx'
     counties = pd.read_excel(path, 'CO-EST2019-ANNRES', skiprows=3, index_col=0, usecols=[0, 12])
     counties = counties[1:-6]
     print(counties)
     counties.to_csv( dataPath + 'US-Counties-Population.csv')
+    return counties
 
 def loadFIPSTable(dataPath:str):
     path = dataPath + 'laucnty16.csv'
@@ -220,12 +224,8 @@ def loadLandAreas(dataPath : str):
     return fa
     
 if __name__ == '__main__':
-    home = os.path.expanduser('~')
-#     landareas = loadLandAreas(home + '/GITHUB/COVIDtoTimeSeries/data/')
-#     print(landareas)
-#     exit(0)
-#     once(home + '/GITHUB/COVIDtoTimeSeries/data/')
-    countyPopulation, countyDeaths, fipsTable = main( home + '/GITHUB/COVIDtoTimeSeries/data/' )
+    outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+    countyPopulation, countyDeaths, fipsTable = main( outPath )
     rfips = dict()
     for s in fipsTable.keys():
         d = fipsTable[s]
