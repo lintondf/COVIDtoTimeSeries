@@ -202,6 +202,34 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                         s = states2[s[-2:]]
                                     if (s in stateCases) :
                                         stateCases[s] += row['Confirmed']
+                                        if not counties is None and countyColumn in row and isinstance(row[countyColumn], str):
+                                            county = row[countyColumn] + ' County, ' + s
+                                            if county in counties:
+                                                countyCases[county] += row['Confirmed']
+                                            elif s == 'Louisiana':
+                                                county = row[countyColumn] + ' Parish, ' + s
+                                                if county in counties:
+                                                    countyCases[county] += row['Confirmed']
+                                                else :
+                                                    print('Skipping ', row[countyColumn], s)
+                                            elif s == 'Alaska':
+                                                county = row[countyColumn] + 'Municipality, ' + s
+                                                if county in counties:
+                                                    countyCases[county] += row['Confirmed']
+                                                else :
+                                                    print('Skipping ', row[countyColumn], s)
+                                            elif s == 'District of Columbia':
+                                                countyCases['District of Columbia, District of Columbia'] += row['Confirmed']                                            
+                                            else:
+                                                if 'City' in row[countyColumn] :
+                                                    county = row[countyColumn].replace('City', 'County') + ', ' + s
+                                                else :
+                                                    county = row[countyColumn] + ' city, ' + s # VA
+                                                if county in counties:
+                                                    countyCases[county] += row['Confirmed']
+                                                elif row[countyColumn] != 'Unassigned' :
+                                                    print('Skipping ', row[countyColumn], s)
+                                        
                                     else :
                                         print("Skipping: ", s)
                         c = row[countryColumn]
@@ -244,9 +272,9 @@ if __name__ == '__main__':
 #     f.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
 #     g.sort_values(e.index[0], axis=1,ascending=False,inplace=True)
     h.sort_values(h.index[-1], axis=1,ascending=False,inplace=True)
-    h.to_csv("./county-deaths.csv")
+    h.to_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + "county-deaths.csv")
     hc.sort_values(hc.index[-1], axis=1,ascending=False,inplace=True)
-    hc.to_csv("./county-cases.csv")
+    hc.to_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + "county-cases.csv")
     f.to_csv("./state-deaths.csv")    
     g.to_csv("./country-deaths.csv")
     fc.to_csv("./state-cases.csv")    

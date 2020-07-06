@@ -29,11 +29,12 @@ from scipy.integrate import trapz
 from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
-from IHME import IHME
+# from IHME import IHME
 # import plotly
 # import plotly.figure_factory as ff
 from matplotlib import cm
 import us
+
 two2State = {  # yes these are redundant; but one is sorted by name and the other by 2 letter
         'AK': 'Alaska',
         'AL': 'Alabama',
@@ -155,9 +156,13 @@ def loadCountyPopulation( dataPath : str, fipsTable : dict):
 
 def loadCountyDeaths(dataPath : str, fipsTable : dict):
     path = dataPath + 'county-deaths.csv'
-    deaths = pd.read_csv(path, index_col=0)    
+    deaths = pd.read_csv(path, index_col=0) 
+    return loadCountyData(deaths, fipsTable)
+
+def loadCountyData( data, fipsTable : dict):
+       
     cdead = dict()
-    for where in deaths.columns:
+    for where in data.columns:
         fields = where.split(',')
         state = fields[1].strip()
         county = fields[0].strip()
@@ -172,7 +177,7 @@ def loadCountyDeaths(dataPath : str, fipsTable : dict):
                     if not cname in stateCounties :
                         print( '?', state, county, cname)
                         continue
-            cdead[stateCounties[cname]] = deaths.iloc[-1][where]
+            cdead[stateCounties[cname]] = data.iloc[-1][where]
         else :
             print('??', state)
     # spread NYC deaths across 5 boroughs per https://jamanetwork.com/journals/jama/fullarticle/2765524
@@ -198,19 +203,19 @@ def colorTupleToString(t):
         b = min(255, int(255.0 * t[2]))
         return ( '#%2.2x%2.2x%2.2x' % (r, g, b) )
     
-def mapcolors(values, nlevels):
-    minv = np.min(values)
-    maxv = np.max(values)
-    endpts = list(np.linspace(minv, maxv, nlevels,endpoint=False))
-    cs = []
-
-    for i in range(0, nlevels+1):
-        t = cm.jet(int(255.0*i/(nlevels+1)))
-        r = min(255, int(255.0 * t[0]))
-        g = min(255, int(255.0 * t[1]))
-        b = min(255, int(255.0 * t[2]))
-        cs.append( '#%2.2x%2.2x%2.2x' % (r, g, b) )
-    return cs, endpts
+# def mapcolors(values, nlevels):
+#     minv = np.min(values)
+#     maxv = np.max(values)
+#     endpts = list(np.linspace(minv, maxv, nlevels,endpoint=False))
+#     cs = []
+# 
+#     for i in range(0, nlevels+1):
+#         t = cm.jet(int(255.0*i/(nlevels+1)))
+#         r = min(255, int(255.0 * t[0]))
+#         g = min(255, int(255.0 * t[1]))
+#         b = min(255, int(255.0 * t[2]))
+#         cs.append( '#%2.2x%2.2x%2.2x' % (r, g, b) )
+#     return cs, endpts
 
 def loadLandAreas(dataPath : str):
     areas = pd.read_csv(dataPath + 'county-data.csv')
@@ -222,51 +227,94 @@ def loadLandAreas(dataPath : str):
         print(int(row[1]['fips']), row[1]['LND110210'], file=out)
     out.close()
     return fa
-    
-if __name__ == '__main__':
-    outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
-    countyPopulation, countyDeaths, fipsTable = main( outPath )
-    rfips = dict()
-    for s in fipsTable.keys():
-        d = fipsTable[s]
-        for c in d.keys():
-            rfips[d[c]] = c + ', ' + s
-    fips = list(countyDeaths.keys())
-    values = list(countyDeaths.values())
-    out = open('counties.csv', 'w')
-    for i in range(0,len(fips)):
-        def categeorize(rate):
-            if rate <= 0:
-                return 0.0
-            return 1e-3+np.ceil(np.log10(rate))
+
+class County:
+    def __init__(self):
+        self.fips = 0;
+        self.name = ''
+        self.state = ''
+        self.deaths = 0
+        self.cases = 0
+        self.popultation = 0
         
-        f = fips[i]
-        if f in countyPopulation :
-            c = categeorize( 1e6 * values[i] / countyPopulation[fips[i]])
-            print(fips[i],',"'+rfips[fips[i]]+'",',c,',',values[i],',', countyPopulation[fips[i]],',',1e6 * values[i] / countyPopulation[fips[i]], file=out)
-            values[i] = c
-    out.close()
-    lfips = []
-    lvalues = []
-    target = us.states.CA
-    for i in range(0,len(values)):
-        v = values[i]
-        stateFips = int(fips[i]) // 1000
-        if stateFips == int(target.fips) : # v == 0: # v >=1 and v < 4.0:
-            lfips.append(fips[i])
-            lvalues.append(int(v))
-    colorscale, endpts = mapcolors(values, 5-1) 
-#     print(colorscale)
-    colorscale = ['white', 'blue', 'yellow', 'orange', 'red']
-    colorscale = ['white', 
-                  colorTupleToString(cm.inferno(0)),
-                  colorTupleToString(cm.inferno(85)),
-                  colorTupleToString(cm.inferno(170)),
-                  colorTupleToString(cm.inferno(255)),
-                  ]
-    colorscale = np.array(colorscale)
-    order = np.unique(lvalues)
-    colorscale = colorscale[order]
+class Counties:
+    def __init__(self):
+        dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+        self.fipsTable = loadFIPSTable(dataPath)
+        self.countyPopulation = loadCountyPopulation(dataPath, self.fipsTable)
+        self.rfips = dict() # reverse fip
+        for s in self.fipsTable.keys():
+            d = self.fipsTable[s]
+            for c in d.keys():
+                self.rfips[d[c]] = c + ', ' + s
+        self.quartiles = []
+        
+    def update(self, countyCases, countyDeaths):
+        self.cases = loadCountyData(countyCases, self.fipsTable)
+        self.deaths = loadCountyData(countyDeaths, self.fipsTable)
+        fips = list(self.deaths.keys())
+        values = list(self.deaths.values())
+        out = open('counties.csv', 'w')
+        for i in range(0,len(fips)):
+            f = fips[i]
+            if f in self.countyPopulation :
+                pass
+                print(fips[i],',"'+self.rfips[fips[i]]+'",',self.cases[f],',',values[i],',', self.countyPopulation[fips[i]],',',1e6 * values[i] / self.countyPopulation[fips[i]], file=out)
+            else:
+                print('??', f)
+        out.close()
+                
+if __name__ == '__main__':
+    counties = Counties()
+    dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+    h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
+    hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
+    counties.update( hc, h )
+    
+    if False :
+        outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+        countyPopulation, countyDeaths, fipsTable = main( outPath )
+        rfips = dict()
+        for s in fipsTable.keys():
+            d = fipsTable[s]
+            for c in d.keys():
+                rfips[d[c]] = c + ', ' + s
+        fips = list(countyDeaths.keys())
+        values = list(countyDeaths.values())
+        out = open('counties.csv', 'w')
+        for i in range(0,len(fips)):
+            def categeorize(rate):
+                if rate <= 0:
+                    return 0.0
+                return 1e-3+np.ceil(np.log10(rate))
+            
+            f = fips[i]
+            if f in countyPopulation :
+                c = categeorize( 1e6 * values[i] / countyPopulation[fips[i]])
+                print(fips[i],',"'+rfips[fips[i]]+'",',c,',',values[i],',', countyPopulation[fips[i]],',',1e6 * values[i] / countyPopulation[fips[i]], file=out)
+                values[i] = c
+        out.close()
+#     lfips = []
+#     lvalues = []
+#     target = us.states.CA
+#     for i in range(0,len(values)):
+#         v = values[i]
+#         stateFips = int(fips[i]) // 1000
+#         if stateFips == int(target.fips) : # v == 0: # v >=1 and v < 4.0:
+#             lfips.append(fips[i])
+#             lvalues.append(int(v))
+#     colorscale, endpts = mapcolors(values, 5-1) 
+# #     print(colorscale)
+#     colorscale = ['white', 'blue', 'yellow', 'orange', 'red']
+#     colorscale = ['white', 
+#                   colorTupleToString(cm.inferno(0)),
+#                   colorTupleToString(cm.inferno(85)),
+#                   colorTupleToString(cm.inferno(170)),
+#                   colorTupleToString(cm.inferno(255)),
+#                   ]
+#     colorscale = np.array(colorscale)
+#     order = np.unique(lvalues)
+#     colorscale = colorscale[order]
 #     endpts = [1,2,3,4,5,6] 
 #     fig = ff.create_choropleth(
 #         fips=lfips, values=lvalues, scope=[target.abbr],
