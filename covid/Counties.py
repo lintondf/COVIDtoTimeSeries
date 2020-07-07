@@ -142,16 +142,17 @@ def loadCountyPopulation( dataPath : str, fipsTable : dict):
 #             print(state2Two[state], county)
             stateCounties = fipsTable[state2Two[state]]
             cname = county #.replace(" County", '').replace(' Parish', '').replace(' Borough', '').strip()
+            cname = cname.replace('ottineau', 'Bottineau')
             if not cname in stateCounties :
                 cname = county + '/city'
                 if not cname in stateCounties :
                     cname = county + '/town'
                     if not cname in stateCounties :
-                        print( '?', state, county, cname)
+                        print( '?~', state, county, cname)
                         continue
             cpop[stateCounties[cname]] = population.loc[where]['2019']
         else :
-            print('??', state)
+            print('?+', state)
     return cpop 
 
 def loadCountyDeaths(dataPath : str, fipsTable : dict):
@@ -170,6 +171,7 @@ def loadCountyData( data, fipsTable : dict):
 #             print(state2Two[state], county)
             stateCounties = fipsTable[state2Two[state]]
             cname = county.replace('Doña', 'Dona')
+            cname = cname.replace('ottineau', 'Bottineau')            
             if not cname in stateCounties :
                 cname = county + '/city'
                 if not cname in stateCounties :
@@ -179,7 +181,7 @@ def loadCountyData( data, fipsTable : dict):
                         continue
             cdead[stateCounties[cname]] = data.iloc[-1][where]
         else :
-            print('??', state)
+            print('?@', state)
     # spread NYC deaths across 5 boroughs per https://jamanetwork.com/journals/jama/fullarticle/2765524
     cdead['36047'] = 0.198 * cdead['36061'] # Kings
     cdead['36005'] = 0.259 * cdead['36061'] # Bronx
@@ -242,6 +244,9 @@ class Counties:
         dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
         self.fipsTable = loadFIPSTable(dataPath)
         self.countyPopulation = loadCountyPopulation(dataPath, self.fipsTable)
+        if "Doña Ana County" in self.countyPopulation:
+            self.countyPopulation["Dona Ana County"] = self.countyPopulation["Doña Ana County"]
+            self.countyPopulation.pop("Doña Ana County")
         self.rfips = dict() # reverse fip
         for s in self.fipsTable.keys():
             d = self.fipsTable[s]
@@ -254,15 +259,26 @@ class Counties:
         self.deaths = loadCountyData(countyDeaths, self.fipsTable)
         fips = list(self.deaths.keys())
         values = list(self.deaths.values())
-        out = open('counties.csv', 'w')
+#         out = open('counties.csv', 'w')
+        self.latest = pd.DataFrame(columns=['County', 'Cases', 'Deaths', 'Population', 'CaseRate', 'DeathRate'])
         for i in range(0,len(fips)):
             f = fips[i]
             if f in self.countyPopulation :
-                pass
-                print(fips[i],',"'+self.rfips[fips[i]]+'",',self.cases[f],',',values[i],',', self.countyPopulation[fips[i]],',',1e6 * values[i] / self.countyPopulation[fips[i]], file=out)
+#                 print(fips[i],',"'+self.rfips[fips[i]]+'",',self.cases[f],',',values[i],',', self.countyPopulation[fips[i]],',',1e6 * values[i] / self.countyPopulation[fips[i]], file=out)
+                row = dict();
+                row['County'] = self.rfips[fips[i]]
+                row['Cases'] = self.cases[f]
+                row['Deaths'] = values[i]
+                row['Population'] = self.countyPopulation[fips[i]]
+                row['CaseRate'] = 1e6 * row['Cases'] / row['Population']
+                row['DeathRate'] = 1e6 * row['Deaths'] / row['Population']
+                r = pd.DataFrame(row, index=[fips[i]])
+                self.latest = self.latest.append(r, sort=False)
             else:
-                print('??', f)
-        out.close()
+                print('?-', f)
+#         out.close()
+        self.latest.sort_values('DeathRate', axis=0,ascending=False,inplace=True)
+        self.latest['SumCases'] = self.latest['Cases'].cumsum()
                 
 if __name__ == '__main__':
     counties = Counties()

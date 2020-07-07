@@ -116,6 +116,7 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
     if not counties is None:
         h = pd.DataFrame(columns=counties.keys())
         hc = pd.DataFrame(columns=counties.keys())
+    skipped = dict()
         
     
     base = '%s/csse_covid_19_data/csse_covid_19_daily_reports/' % pathToRepository
@@ -167,13 +168,17 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                             if county in counties:
                                                 countyDeaths[county] += row['Deaths']
                                             else :
-                                                print('Skipping ', row[countyColumn], s)
+                                                if not (row[countyColumn] + ", " + s) in skipped:
+                                                    skipped[row[countyColumn] + ", " + s] = True;
+                                                    print('Skipping ', row[countyColumn], s)
                                         elif s == 'Alaska':
                                             county = row[countyColumn] + 'Municipality, ' + s
                                             if county in counties:
                                                 countyDeaths[county] += row['Deaths']
                                             else :
-                                                print('Skipping ', row[countyColumn], s)
+                                                if not (row[countyColumn] + ", " + s) in skipped:
+                                                    skipped[row[countyColumn] + ", " + s] = True;
+                                                    print('Skipping ', row[countyColumn], s)
                                         elif s == 'District of Columbia':
                                             countyDeaths['District of Columbia, District of Columbia'] += row['Deaths']                                            
                                         else:
@@ -184,14 +189,20 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                             if county in counties:
                                                 countyDeaths[county] += row['Deaths']
                                             elif row[countyColumn] != 'Unassigned' :
-                                                print('Skipping ', row[countyColumn], s)
+                                                if not (row[countyColumn] + ", " + s) in skipped:
+                                                    skipped[row[countyColumn] + ", " + s] = True;
+                                                    print('Skipping ', row[countyColumn], s)
                                 else :
-                                    print("Skipping: ", s)
+                                    if not (s) in skipped:
+                                        skipped[s] = True;
+                                        print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryDeaths) :
                             countryDeaths[c] += row['Deaths']
                         else :
-                            print("Skipping: ", c)
+                           if not (c) in skipped:
+                                skipped[c] = True;
+                                print("Skipping: ", c)
                     if (row['Confirmed'] > 0) :
                         if (row[countryColumn] == 'US'):
                                 s = row[stateColumn].strip().replace('D.C.', 'DC')
@@ -211,13 +222,17 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                                 if county in counties:
                                                     countyCases[county] += row['Confirmed']
                                                 else :
-                                                    print('Skipping ', row[countyColumn], s)
+                                                    if not (row[countyColumn] + ", " + s) in skipped:
+                                                        skipped[row[countyColumn] + ", " + s] = True;
+                                                        print('Skipping ', row[countyColumn], s)
                                             elif s == 'Alaska':
                                                 county = row[countyColumn] + 'Municipality, ' + s
                                                 if county in counties:
                                                     countyCases[county] += row['Confirmed']
                                                 else :
-                                                    print('Skipping ', row[countyColumn], s)
+                                                    if not (row[countyColumn] + ", " + s) in skipped:
+                                                        skipped[row[countyColumn] + ", " + s] = True;
+                                                        print('Skipping ', row[countyColumn], s)
                                             elif s == 'District of Columbia':
                                                 countyCases['District of Columbia, District of Columbia'] += row['Confirmed']                                            
                                             else:
@@ -228,15 +243,21 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                                                 if county in counties:
                                                     countyCases[county] += row['Confirmed']
                                                 elif row[countyColumn] != 'Unassigned' :
-                                                    print('Skipping ', row[countyColumn], s)
+                                                    if not (row[countyColumn] + ", " + s) in skipped:
+                                                        skipped[row[countyColumn] + ", " + s] = True;
+                                                        print('Skipping ', row[countyColumn], s)
                                         
                                     else :
-                                        print("Skipping: ", s)
+                                        if not (s) in skipped:
+                                            skipped[s] = True;
+                                            print("Skipping: ", s)
                         c = row[countryColumn]
                         if (c in countryCases) :
                             countryCases[c] += row['Confirmed']
                         else :
-                            print("Skipping: ", c)
+                            if not (c) in skipped:
+                                skipped[c] = True;
+                                print("Skipping: ", c)
                         
 #                 for n in countyDeaths :
 #                     countyCases[n] = countyCases[n] / counties[n]
@@ -254,6 +275,7 @@ def updateDeaths(pathToRepository, pull=True, counties=None):
                     h = h.append(e, sort=False)
                     e = pd.DataFrame(countyCases, index=[pd.to_datetime(name[0:-4])])
                     hc = hc.append(e, sort=False)
+    print(skipped)
     if counties is None:         
         return (f, g, fc, gc)
     else:    
@@ -266,6 +288,7 @@ if __name__ == '__main__':
     counties = dict()
     for i in range(0,len(countiesData.index)) :
         name = countiesData.index[i]
+        name = name.replace("Doña Ana County", "Dona Ana County")
         counties[name[1:]] = countiesData[['2019']].iloc[0].values[0] * 1e-6 # convert to millions
     f, g, fc, gc, h, hc = updateDeaths(pathToRepository, counties=counties)
 # uncomment to sort columns by ascending deaths                
