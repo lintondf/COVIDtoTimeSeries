@@ -230,14 +230,22 @@ def loadLandAreas(dataPath : str):
     out.close()
     return fa
 
-class County:
-    def __init__(self):
-        self.fips = 0;
-        self.name = ''
-        self.state = ''
+class State:
+    def __init__(self, fips : str):
+        self.which = us.states.lookup(fips, field='fips');
         self.deaths = 0
         self.cases = 0
-        self.popultation = 0
+        self.population = 0
+        self.counties = []
+        
+class County:
+    def __init__(self, state, fips, row):
+        self.fips = fips
+        self.name = row['County']
+        self.state = state
+        self.deaths = row['Deaths']
+        self.cases = row['Cases']
+        self.population = row['Population']
         
 class Counties:
     def __init__(self):
@@ -279,6 +287,32 @@ class Counties:
 #         out.close()
         self.latest.sort_values('DeathRate', axis=0,ascending=False,inplace=True)
         self.latest['SumCases'] = self.latest['Cases'].cumsum()
+        self.latest['SumDeaths'] = self.latest['Deaths'].cumsum()
+        self.latest['SumPopulation'] = self.latest['Population'].cumsum()
+        self.usPopulation = self.latest['SumPopulation'].iloc[-1]
+        self.usCases = self.latest['SumCases'].iloc[-1]
+        self.usDeaths = self.latest['SumDeaths'].iloc[-1]
+        
+        self.i25 = (len(self.latest[self.latest['SumDeaths'].le(0.25 * self.usDeaths)]))
+        self.i50 = (len(self.latest[self.latest['SumDeaths'].le(0.50 * self.usDeaths)]))
+        self.i75 = (len(self.latest[self.latest['SumDeaths'].le(0.75 * self.usDeaths)]))
+        self.len = (len(self.latest))
+        
+        whichStates = dict() # indexed by state long name; list of 5-digit county FIPS codes
+        for i in range(0,self.i25) :
+            state = us.states.lookup(self.latest.index[i][0:2], field='fips')
+            if state in whichStates:
+                whichStates[state].append(self.latest.index[i])
+            else:
+                whichStates[state] = [self.latest.index[i]]
+            c = County(state, self.latest.index[i], self.latest.iloc[i])
+#             print(self.latest.index[i], self.latest.index[i][0:2], state)
+#             print(self.latest.iloc[i])
+        print(len(whichStates))
+        for state in whichStates:
+            print(state, state.abbr, len(whichStates[state]))
+            for fips in whichStates[state]:
+                print('  ', fips, self.latest.loc[fips]['County'], self.latest.loc[fips]['Population'])
                 
 if __name__ == '__main__':
     counties = Counties()
