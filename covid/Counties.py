@@ -29,11 +29,31 @@ from scipy.integrate import trapz
 from sortedcontainers import SortedSet
 from Population import loadPopulation, loadStatePopulations
 from Deaths import updateDeaths
+from Analysis4 import smooth
+
 # from IHME import IHME
 # import plotly
 # import plotly.figure_factory as ff
 from matplotlib import cm
 import us
+
+# Allocation of NYC data to counties
+#  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
+#  https://jamanetwork.com/journals/jama/fullarticle/2765524
+nycDeaths = {
+    '36047': 132, # Kings/Brooklyn
+    '36005': 173, # Bronx
+    '36085': 117, # Richmond/Staten Island
+    '36081': 154, # Queens
+    '36061':  91 # New York/Manhattan
+    }
+nycHospitalizations = {
+    '36047': 404, # Kings/Brooklyn
+    '36005': 634, # Bronx
+    '36085': 373, # Richmond/Staten Island
+    '36081': 568, # Queens
+    '36061': 331 # New York/Manhattan
+    }
 
 two2State = {  # yes these are redundant; but one is sorted by name and the other by 2 letter
         'AK': 'Alaska',
@@ -128,6 +148,17 @@ def loadFIPSTable(dataPath:str):
 #         print(row)
         sd[name] = '%2.2d%3.3d' % (row[1]['State FIPS Code'], row[1]['County FIPS Code'])
     return stateCounties
+
+def handleSpecialCounties(county):
+    cname = county.replace('ottineau', 'Bottineau')
+    cname = cname.replace('Doña', 'Dona')
+    cname = cname.replace('Anchorage Municipality', 'Anchorage Borough/municipality')
+    cname = cname.replace('Juneau City and Borough', 'Juneau Borough/city')
+    cname = cname.replace('Juneau City and Borough', 'Juneau Borough/city')
+    cname = cname.replace('Sitka City and Borough', 'Sitka Borough/city')
+    cname = cname.replace('Wrangell City and Borough', 'Wrangell Borough/city')
+    cname = cname.replace('Yakutat City and Borough', 'Yakutat Borough/city')
+    return cname
     
 def loadCountyPopulation( dataPath : str, fipsTable : dict):
     path = dataPath + 'US-Counties-Population.csv'
@@ -141,8 +172,9 @@ def loadCountyPopulation( dataPath : str, fipsTable : dict):
         if len(state) > 0 and state in state2Two and state2Two[state] in fipsTable:
 #             print(state2Two[state], county)
             stateCounties = fipsTable[state2Two[state]]
-            cname = county #.replace(" County", '').replace(' Parish', '').replace(' Borough', '').strip()
-            cname = cname.replace('ottineau', 'Bottineau')
+            cname = handleSpecialCounties(county)
+#             if cname == 'Kalawao County':
+#                 continue            
             if not cname in stateCounties :
                 cname = county + '/city'
                 if not cname in stateCounties :
@@ -158,10 +190,18 @@ def loadCountyPopulation( dataPath : str, fipsTable : dict):
 def loadCountyDeaths(dataPath : str, fipsTable : dict):
     path = dataPath + 'county-deaths.csv'
     deaths = pd.read_csv(path, index_col=0) 
-    return loadCountyData(deaths, fipsTable)
+    return loadCountyData(deaths, fipsTable, nycDeaths)
 
-def loadCountyData( data, fipsTable : dict):
-       
+def nyc2Scale( nyc : dict):
+    total = 0
+    for b in nyc:
+        total += nyc[b]
+    for b in nyc:
+        nyc[b] = nyc[b]/total
+    return nyc
+
+def loadCountyData( data, fipsTable : dict, nyc : dict):
+    nyc = nyc2Scale(nyc)
     cdead = dict()
     for where in data.columns:
         fields = where.split(',')
@@ -170,8 +210,9 @@ def loadCountyData( data, fipsTable : dict):
         if len(state) > 0 and state in state2Two and state2Two[state] in fipsTable:
 #             print(state2Two[state], county)
             stateCounties = fipsTable[state2Two[state]]
-            cname = county.replace('Doña', 'Dona')
-            cname = cname.replace('ottineau', 'Bottineau')            
+            cname = handleSpecialCounties(county);
+#             if cname == 'Kalawao County':
+#                 continue
             if not cname in stateCounties :
                 cname = county + '/city'
                 if not cname in stateCounties :
@@ -183,11 +224,11 @@ def loadCountyData( data, fipsTable : dict):
         else :
             print('?@', state)
     # spread NYC deaths across 5 boroughs per https://jamanetwork.com/journals/jama/fullarticle/2765524
-    cdead['36047'] = 0.198 * cdead['36061'] # Kings
-    cdead['36005'] = 0.259 * cdead['36061'] # Bronx
-    cdead['36085'] = 0.175 * cdead['36061'] # Richmond
-    cdead['36081'] = 0.231 * cdead['36061'] # Queens
-    cdead['36061'] = 0.137 * cdead['36061'] # New York
+    cdead['36047'] = nyc['36047'] * cdead['36061'] # Kings
+    cdead['36005'] = nyc['36005'] * cdead['36061'] # Bronx
+    cdead['36085'] = nyc['36085'] * cdead['36061'] # Richmond
+    cdead['36081'] = nyc['36081'] * cdead['36061'] # Queens
+    cdead['36061'] = nyc['36061'] * cdead['36061'] # New York
     
     return cdead 
         
@@ -238,6 +279,16 @@ class State:
         self.population = 0
         self.counties = []
         
+    def __str__(self):
+        return '%s %3d %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.which.abbr, len(self.counties), self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
+
+    def add(self, county):
+        self.counties.append(county)
+        self.counties.sort(key=lambda x: x.deaths, reverse=True)
+        self.deaths += county.deaths
+        self.cases += county.cases
+        self.population += county.population
+        
 class County:
     def __init__(self, state, fips, row):
         self.fips = fips
@@ -247,6 +298,12 @@ class County:
         self.cases = row['Cases']
         self.population = row['Population']
         
+    def __str__(self):
+        return '%s %-32s %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.fips, self.name, self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
+ 
+def statisticsString(deaths, cases, population):
+    return '%6s %6.3f %6s %6.3f %8s' % ('{:6,.0f}'.format(deaths), 1e6*deaths/population, '{:6,.0f}'.format(cases), 1e6*cases/population, '{:8,.0f}'.format(population))
+       
 class Counties:
     def __init__(self):
         dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
@@ -260,18 +317,17 @@ class Counties:
             d = self.fipsTable[s]
             for c in d.keys():
                 self.rfips[d[c]] = c + ', ' + s
-        self.quartiles = []
         
-    def update(self, countyCases, countyDeaths):
-        self.cases = loadCountyData(countyCases, self.fipsTable)
-        self.deaths = loadCountyData(countyDeaths, self.fipsTable)
+    def update(self, countyCases, countyDeaths, include=lambda pop: True):
+        self.cases = loadCountyData(countyCases, self.fipsTable, nycHospitalizations)
+        self.deaths = loadCountyData(countyDeaths, self.fipsTable, nycDeaths)
         fips = list(self.deaths.keys())
         values = list(self.deaths.values())
 #         out = open('counties.csv', 'w')
         self.latest = pd.DataFrame(columns=['County', 'Cases', 'Deaths', 'Population', 'CaseRate', 'DeathRate'])
         for i in range(0,len(fips)):
             f = fips[i]
-            if f in self.countyPopulation :
+            if f in self.countyPopulation and include(self.countyPopulation[f]) :
 #                 print(fips[i],',"'+self.rfips[fips[i]]+'",',self.cases[f],',',values[i],',', self.countyPopulation[fips[i]],',',1e6 * values[i] / self.countyPopulation[fips[i]], file=out)
                 row = dict();
                 row['County'] = self.rfips[fips[i]]
@@ -282,8 +338,8 @@ class Counties:
                 row['DeathRate'] = 1e6 * row['Deaths'] / row['Population']
                 r = pd.DataFrame(row, index=[fips[i]])
                 self.latest = self.latest.append(r, sort=False)
-            else:
-                print('?-', f)
+#             else:
+#                 print('?-', f, values[i], self.cases[f], self.countyPopulation[f])
 #         out.close()
         self.latest.sort_values('DeathRate', axis=0,ascending=False,inplace=True)
         self.latest['SumCases'] = self.latest['Cases'].cumsum()
@@ -298,28 +354,89 @@ class Counties:
         self.i75 = (len(self.latest[self.latest['SumDeaths'].le(0.75 * self.usDeaths)]))
         self.len = (len(self.latest))
         
-        whichStates = dict() # indexed by state long name; list of 5-digit county FIPS codes
-        for i in range(0,self.i25) :
-            state = us.states.lookup(self.latest.index[i][0:2], field='fips')
-            if state in whichStates:
-                whichStates[state].append(self.latest.index[i])
-            else:
-                whichStates[state] = [self.latest.index[i]]
-            c = County(state, self.latest.index[i], self.latest.iloc[i])
-#             print(self.latest.index[i], self.latest.index[i][0:2], state)
-#             print(self.latest.iloc[i])
-        print(len(whichStates))
+        print('%4d %s' % (self.len, statisticsString( self.usDeaths, self.usCases, self.usPopulation)))
+        
+    def inventory(self):
+        buildStates = dict()
+        for i in range(0, self.len):
+            f2 = self.latest.index[i][0:2]
+            s = State(f2)
+            if not f2 in buildStates:
+                buildStates[f2] = s
+            s = buildStates[f2]
+            c = County(s, self.latest.index[i], self.latest.iloc[i])
+            s.add(c)
+        states = list(buildStates.values())
+        states.sort(key=lambda x: x.which.abbr, reverse=False)
+#         for state in states:
+#             print(state)
+        counties = buildStates['02'].counties
+        counties.sort(key=lambda x: x.name, reverse=False)
+        for c in counties:
+            print(c)
+        
+        
+    def printSubsets(self):
+        def stateSubset(fr, to):
+            buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
+            for i in range(fr, to) :
+                f2 = self.latest.index[i][0:2]
+                s = State(f2)
+                if not f2 in buildStates:
+                    buildStates[f2] = s
+                s = buildStates[f2]
+                c = County(s, self.latest.index[i], self.latest.iloc[i])
+                s.add(c)
+            whichStates = list(buildStates.values())
+            whichStates.sort(key=lambda x: x.deaths, reverse=True)
+            return whichStates
+        
+        whichStates = stateSubset(0, self.i25)
+        print(0.25, len(whichStates))
         for state in whichStates:
-            print(state, state.abbr, len(whichStates[state]))
-            for fips in whichStates[state]:
-                print('  ', fips, self.latest.loc[fips]['County'], self.latest.loc[fips]['Population'])
+            print(state)
+            for county in state.counties:
+                print('  ', county)
                 
+        whichStates = stateSubset(self.i25, self.i50)
+        print(0.5, len(whichStates))
+        for state in whichStates:
+            print(state)
+            for county in state.counties:
+                print('  ', county)
+                
+        print(0.75, self.i75-self.i50)
+        print(1.00, self.len-self.i75)
+        
 if __name__ == '__main__':
     counties = Counties()
     dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+    
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
-    counties.update( hc, h )
+    
+#     fDeath = nyc2Scale(nycDeaths)
+#     fCases = nyc2Scale(nycHospitalizations)
+#     for f in nycDeaths:
+#         h[f] = fDeath[f] * h["New York County, New York"]
+#         hc[f] = fCases[f] * hc["New York County, New York"]
+    #TODO add NY bourogh columns by allocation
+    #TODO compute smooths /day deaths and cases for all counties
+#     counties.update( hc, h )
+#     counties.inventory()
+    print('Larger Counties')
+    counties.update( hc, h, include=lambda pop: pop>=50000 )
+    rfips = dict()
+    for s in counties.fipsTable.keys():
+        d = counties.fipsTable[s]
+        for c in d.keys():
+            rfips[d[c]] = c + ', ' + two2State[s]
+    for i in range(0,10) :
+        print(h[[rfips[counties.latest.index[i]]]])
+    counties.printSubsets()
+    print('Smaller Counties')
+    counties.update( hc, h, include=lambda pop: pop<50000 )
+    counties.printSubsets()
     
     if False :
         outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'

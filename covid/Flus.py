@@ -4,6 +4,7 @@ Created on Jun 29, 2020
 @author: lintondf
 '''
 import os
+import datetime
 from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
@@ -43,8 +44,9 @@ def compareDeaths(path, countries, countriesPopulation):
     plt.setp(ax1.get_xticklabels(), rotation=30, ha='right')   
     ax2 = ax1.twiny()
     lasti = rates.index[-1]
-    ax2.plot(rates, color='k', label='Sine')
+    ax2.plot(rates, color='k', label='Deaths')
     ax2.annotate('%.2f' % rates.iloc[-1], xy=(lasti, rates.iloc[-1])) 
+    ax2.set_xlim([datetime.date(2020,1,1), datetime.date(2020,12,31)])
     plt.setp(ax2.get_xticklabels(), rotation=-30, ha='right')
     ax1.set_ylabel('US Deaths per Million')
     fig.tight_layout() 

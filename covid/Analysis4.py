@@ -158,9 +158,6 @@ class Analysis():
         T = np.asarray(((lnCases.index-lnCases.index[0]).days))
         T = T.reshape(-1, 1)
         Y = np.asarray(lnCases['Ln']).reshape(-1, 1)
-            
-#         lowess = sm.nonparametric.lowess
-#         trend = lowess(Y[:,0], T[:,0], frac=0.5, it=10)[:,1]
         trend = smooth(Y[:,0], T[:,0])
 
 #         try:
