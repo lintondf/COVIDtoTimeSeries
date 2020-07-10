@@ -40,6 +40,7 @@ import us
 # Allocation of NYC data to counties
 #  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
 #  https://jamanetwork.com/journals/jama/fullarticle/2765524
+# More recent from NYC Health: https://raw.githubusercontent.com/nychealth/coronavirus-data/master/by-boro.csv
 nycDeaths = {
     '36047': 132, # Kings/Brooklyn
     '36005': 173, # Bronx
@@ -271,6 +272,15 @@ def loadLandAreas(dataPath : str):
     out.close()
     return fa
 
+def statisticsString(deaths, cases, population, deathRate=None, caseRate=None, sep=' '):
+    dr = 'N/A' + sep
+    if not deathRate is None:
+        dr = '%6.3f%s' % (1e6*max(0,deathRate)/population, sep)
+    cr = 'N/A' + sep
+    if not caseRate is None:
+        cr = '%6.3f%s' % (1e6*max(0,caseRate)/population, sep)
+    return '%6s %6.3f%s %s%6s %9.3f%s %s%8s' % ('{:6,.0f}'.format(deaths)+sep, 1e6*deaths/population, sep, dr, '{:6,.0f}'.format(cases)+sep, 1e6*cases/population, sep, cr, '{:8,.0f}'.format(population)+sep)
+       
 class State:
     def __init__(self, fips : str):
         self.which = us.states.lookup(fips, field='fips');
@@ -279,6 +289,9 @@ class State:
         self.population = 0
         self.counties = []
         
+    def toTableRow(self):
+        return '|%s|%d|%s\n' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population, sep='|')) 
+           
     def __str__(self):
         return '%s %3d %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.which.abbr, len(self.counties), self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
 
@@ -297,13 +310,15 @@ class County:
         self.deaths = row['Deaths']
         self.cases = row['Cases']
         self.population = row['Population']
+        self.deathRate = row['DeathRate']
+        self.caseRate = row['CaseRate']
         
+    def toTableRow(self):
+        return '| |%s|%s\n' % (self.name, statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate, sep='|')) 
+           
     def __str__(self):
-        return '%s %-32s %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.fips, self.name, self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
+        return '%s %-40s %s' % (self.fips, self.name, statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate))
  
-def statisticsString(deaths, cases, population):
-    return '%6s %6.3f %6s %6.3f %8s' % ('{:6,.0f}'.format(deaths), 1e6*deaths/population, '{:6,.0f}'.format(cases), 1e6*cases/population, '{:8,.0f}'.format(population))
-       
 class Counties:
     def __init__(self):
         dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
@@ -316,15 +331,20 @@ class Counties:
         for s in self.fipsTable.keys():
             d = self.fipsTable[s]
             for c in d.keys():
-                self.rfips[d[c]] = c + ', ' + s
+                self.rfips[d[c]] = c + ', ' + two2State[s]
+            
+    def getTableHeader(self):
+        header1 = ("|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|\n")
+        header2 = ("|:--|:--|--:|--:|--:|--:|--:|--:|--:|\n")
+        return [header1, header2]
         
-    def update(self, countyCases, countyDeaths, include=lambda pop: True):
+    def update(self, countyCases, countyDeaths, deathTrend, casesTrend, include=lambda pop: True):
         self.cases = loadCountyData(countyCases, self.fipsTable, nycHospitalizations)
         self.deaths = loadCountyData(countyDeaths, self.fipsTable, nycDeaths)
         fips = list(self.deaths.keys())
         values = list(self.deaths.values())
 #         out = open('counties.csv', 'w')
-        self.latest = pd.DataFrame(columns=['County', 'Cases', 'Deaths', 'Population', 'CaseRate', 'DeathRate'])
+        self.latest = pd.DataFrame(columns=['County', 'Cases', 'Deaths', 'Population', 'PDR', 'CaseRate', 'DeathRate'])
         for i in range(0,len(fips)):
             f = fips[i]
             if f in self.countyPopulation and include(self.countyPopulation[f]) :
@@ -334,14 +354,19 @@ class Counties:
                 row['Cases'] = self.cases[f]
                 row['Deaths'] = values[i]
                 row['Population'] = self.countyPopulation[fips[i]]
-                row['CaseRate'] = 1e6 * row['Cases'] / row['Population']
-                row['DeathRate'] = 1e6 * row['Deaths'] / row['Population']
+                row['PDR'] = 1e6*values[i] / self.countyPopulation[fips[i]]
+                if row['County'] in deathTrend:
+                    row['CaseRate'] = (casesTrend[row['County']][-1]-casesTrend[row['County']][-2])  # delta cases/last day
+                    row['DeathRate'] = (deathTrend[row['County']][-1]-deathTrend[row['County']][-2]) # delta deaths/last day
+                else:
+                    row['CaseRate'] = None
+                    row['DeathRate'] = None
                 r = pd.DataFrame(row, index=[fips[i]])
                 self.latest = self.latest.append(r, sort=False)
 #             else:
 #                 print('?-', f, values[i], self.cases[f], self.countyPopulation[f])
 #         out.close()
-        self.latest.sort_values('DeathRate', axis=0,ascending=False,inplace=True)
+        self.latest.sort_values('PDR', axis=0,ascending=False,inplace=True)
         self.latest['SumCases'] = self.latest['Cases'].cumsum()
         self.latest['SumDeaths'] = self.latest['Deaths'].cumsum()
         self.latest['SumPopulation'] = self.latest['Population'].cumsum()
@@ -376,35 +401,45 @@ class Counties:
             print(c)
         
         
+    def stateSubset(self, fr, to):
+        buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
+        for i in range(fr, to) :
+            f2 = self.latest.index[i][0:2]
+            s = State(f2)
+            if not f2 in buildStates:
+                buildStates[f2] = s
+            s = buildStates[f2]
+            c = County(s, self.latest.index[i], self.latest.iloc[i])
+            s.add(c)
+        whichStates = list(buildStates.values())
+        whichStates.sort(key=lambda x: x.deaths, reverse=True)
+        return whichStates
+    
+    def tableSubset(self, fr, to):
+        whichStates = self.stateSubset(fr, to)
+        lines = self.getTableHeader()
+        for state in whichStates:
+            lines.append( state.toTableRow() )
+            for county in state.counties:
+                lines.append( county.toTableRow() )
+        return lines
+
     def printSubsets(self):
-        def stateSubset(fr, to):
-            buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
-            for i in range(fr, to) :
-                f2 = self.latest.index[i][0:2]
-                s = State(f2)
-                if not f2 in buildStates:
-                    buildStates[f2] = s
-                s = buildStates[f2]
-                c = County(s, self.latest.index[i], self.latest.iloc[i])
-                s.add(c)
-            whichStates = list(buildStates.values())
-            whichStates.sort(key=lambda x: x.deaths, reverse=True)
-            return whichStates
-        
-        whichStates = stateSubset(0, self.i25)
+        whichStates = self.stateSubset(0, self.i25)
         print(0.25, len(whichStates))
         for state in whichStates:
             print(state)
             for county in state.counties:
                 print('  ', county)
                 
-        whichStates = stateSubset(self.i25, self.i50)
-        print(0.5, len(whichStates))
-        for state in whichStates:
-            print(state)
-            for county in state.counties:
-                print('  ', county)
+#         whichStates = stateSubset(self.i25, self.i50)
+#         print(0.5, len(whichStates))
+#         for state in whichStates:
+#             print(state)
+#             for county in state.counties:
+#                 print('  ', county)
                 
+        print(0.50, self.i50-self.i25)
         print(0.75, self.i75-self.i50)
         print(1.00, self.len-self.i75)
         
@@ -414,29 +449,45 @@ if __name__ == '__main__':
     
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
-    
-#     fDeath = nyc2Scale(nycDeaths)
-#     fCases = nyc2Scale(nycHospitalizations)
-#     for f in nycDeaths:
-#         h[f] = fDeath[f] * h["New York County, New York"]
-#         hc[f] = fCases[f] * hc["New York County, New York"]
-    #TODO add NY bourogh columns by allocation
-    #TODO compute smooths /day deaths and cases for all counties
-#     counties.update( hc, h )
-#     counties.inventory()
-    print('Larger Counties')
-    counties.update( hc, h, include=lambda pop: pop>=50000 )
     rfips = dict()
     for s in counties.fipsTable.keys():
         d = counties.fipsTable[s]
         for c in d.keys():
             rfips[d[c]] = c + ', ' + two2State[s]
-    for i in range(0,10) :
-        print(h[[rfips[counties.latest.index[i]]]])
+   
+    fDeath = nyc2Scale(nycDeaths)
+    fCases = nyc2Scale(nycHospitalizations)
+    for f in nycDeaths:
+        if f != '36061':
+            h[rfips[f]] = fDeath[f] * h["New York County, New York"]
+            hc[rfips[f]] = fCases[f] * hc["New York County, New York"]
+    h["New York County, New York"] = fDeath['36061'] * h["New York County, New York"]
+    hc["New York County, New York"] = fCases['36061'] * hc["New York County, New York"]
+    #TODO compute smooths /day deaths and cases for all counties
+    deathTrend = dict()
+    casesTrend = dict()
+    T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
+    for county in h.columns :
+        if h[county].array[-1] >= 100:
+            print('Smoothing ', county)
+            Y = np.asarray(h[county]).reshape(-1, 1)
+            deathTrend[county] = smooth(Y[-21:,0], T[-21:,0])
+            Y = np.asarray(hc[county]).reshape(-1, 1)
+            casesTrend[county] = smooth(Y[-21:,0], T[-21:,0])
+    
+#     counties.update( hc, h )
+#     counties.inventory()
+    print('Larger Counties')
+    counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
+    table = counties.tableSubset(0, counties.i25)
+    out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
+    for line in table:
+        print(line, end='', file=out)
+    out.close()
     counties.printSubsets()
-    print('Smaller Counties')
-    counties.update( hc, h, include=lambda pop: pop<50000 )
-    counties.printSubsets()
+#     print('Smaller Counties')
+#     counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop<50000 )
+#     counties.printSubsets()
     
     if False :
         outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
