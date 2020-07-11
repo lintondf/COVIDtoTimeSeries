@@ -290,7 +290,7 @@ class State:
         self.counties = []
         
     def toTableRow(self):
-        return '|%s|%d|%s\n' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population, sep='|')) 
+        return '|%s|%d counties|%s\n' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population, sep='|')) 
            
     def __str__(self):
         return '%s %3d %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.which.abbr, len(self.counties), self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
@@ -314,7 +314,7 @@ class County:
         self.caseRate = row['CaseRate']
         
     def toTableRow(self):
-        return '| |%s|%s\n' % (self.name, statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate, sep='|')) 
+        return '| |%s|%s\n' % (self.name.split(',',1)[0].split('/',1)[0], statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate, sep='|')) 
            
     def __str__(self):
         return '%s %-40s %s' % (self.fips, self.name, statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate))
@@ -366,7 +366,7 @@ class Counties:
 #             else:
 #                 print('?-', f, values[i], self.cases[f], self.countyPopulation[f])
 #         out.close()
-        self.latest.sort_values('PDR', axis=0,ascending=False,inplace=True)
+        self.latest.sort_values('Deaths', axis=0,ascending=False,inplace=True)
         self.latest['SumCases'] = self.latest['Cases'].cumsum()
         self.latest['SumDeaths'] = self.latest['Deaths'].cumsum()
         self.latest['SumPopulation'] = self.latest['Population'].cumsum()
@@ -445,7 +445,13 @@ class Counties:
         
 if __name__ == '__main__':
     counties = Counties()
-    dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
+    dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'    
+    env = Environment(
+        loader=FileSystemLoader(home + '/GITHUB/COVIDtoTimeSeries/covid/templates'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    template = env.get_template("COUNTIES.mdt")
+
     
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
@@ -479,12 +485,31 @@ if __name__ == '__main__':
 #     counties.inventory()
     print('Larger Counties')
     counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
+    txt = '';
     table = counties.tableSubset(0, counties.i25)
-    out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
+    txt += ('\n# Larger Counties, Top 25% of Deaths #\n\n')
     for line in table:
-        print(line, end='', file=out)
+        txt += (line)
+    table = counties.tableSubset(counties.i25, counties.i50)
+    txt += ('\n# Larger Counties, 2nd 25% of Deaths #\n\n')
+    for line in table:
+        txt += (line)
+    table = counties.tableSubset(counties.i50, counties.i75)
+    txt += ('\n# Larger Counties, 3rd 25% of Deaths #\n\n')
+    for line in table:
+        txt += (line)
+    table = counties.tableSubset(counties.i75, counties.len)
+    txt += ('\n# Larger Counties, Bottom 25% of Deaths #\n\n')
+    for line in table:
+        txt += (line)
+
+    fields = dict();
+    fields.update({'table': txt})    
+    out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
+    print(template.render(fields), file=out)  
     out.close()
-    counties.printSubsets()
+    print('========================================================')
+#     counties.printSubsets()
 #     print('Smaller Counties')
 #     counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop<50000 )
 #     counties.printSubsets()
