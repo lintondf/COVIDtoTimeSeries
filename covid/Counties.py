@@ -4,6 +4,7 @@ Created on May 3, 2020
 @author: NOOK
 '''
 import os
+import copy
 from pathlib import Path
 import warnings
 import io
@@ -36,6 +37,7 @@ from Analysis4 import smooth
 # import plotly.figure_factory as ff
 from matplotlib import cm
 import us
+from Analysis import countries
 
 # Allocation of NYC data to counties
 #  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
@@ -281,12 +283,15 @@ def statisticsString(deaths, cases, population, deathRate=None, caseRate=None, s
         cr = '%6.3f%s' % (1e6*max(0,caseRate)/population, sep)
     return '%6s %6.3f%s %s%6s %9.3f%s %s%8s' % ('{:6,.0f}'.format(deaths)+sep, 1e6*deaths/population, sep, dr, '{:6,.0f}'.format(cases)+sep, 1e6*cases/population, sep, cr, '{:8,.0f}'.format(population)+sep)
        
-class State:
-    def __init__(self, fips : str):
-        self.which = us.states.lookup(fips, field='fips');
+class Group:
+    def __init__(self):
         self.deaths = 0
         self.cases = 0
         self.population = 0
+        
+class State(Group):
+    def __init__(self, fips : str):
+        self.which = us.states.lookup(fips, field='fips');
         self.counties = []
         
     def toTableRow(self):
@@ -302,7 +307,7 @@ class State:
         self.cases += county.cases
         self.population += county.population
         
-class County:
+class County(Group):
     def __init__(self, state, fips, row):
         self.fips = fips
         self.name = row['County']
@@ -400,51 +405,64 @@ class Counties:
         for c in counties:
             print(c)
         
-        
-    def stateSubset(self, fr, to):
-        buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
-        for i in range(fr, to) :
-            f2 = self.latest.index[i][0:2]
-            s = State(f2)
-            if not f2 in buildStates:
-                buildStates[f2] = s
-            s = buildStates[f2]
-            c = County(s, self.latest.index[i], self.latest.iloc[i])
-            s.add(c)
-        whichStates = list(buildStates.values())
-        whichStates.sort(key=lambda x: x.deaths, reverse=True)
-        return whichStates
+    def getTemplateDict(self, us : Group, sizeName : str) -> dict:
+        """
+    gSize
+    gPopulation
+    gDeaths
+    gPDR
+    gCases
+    gPCR
+    gPctOfUSDeaths
+    gPctOfUSCases
+    g1Pct
+    g1MCounties
+    g1NStates
+    g1Population
+    g1PctUSPopulation
+    g1Table
+            """
+        fields = dict()
+        fields.update({'gCount', self.len} )
+        fields.update({'gSize': sizeName})
+        return fields
     
-    def tableSubset(self, fr, to):
-        whichStates = self.stateSubset(fr, to)
-        lines = self.getTableHeader()
-        for state in whichStates:
-            lines.append( state.toTableRow() )
-            for county in state.counties:
-                lines.append( county.toTableRow() )
-        return lines
-
-    def printSubsets(self):
-        whichStates = self.stateSubset(0, self.i25)
-        print(0.25, len(whichStates))
-        for state in whichStates:
-            print(state)
-            for county in state.counties:
-                print('  ', county)
-                
-#         whichStates = stateSubset(self.i25, self.i50)
-#         print(0.5, len(whichStates))
-#         for state in whichStates:
-#             print(state)
-#             for county in state.counties:
-#                 print('  ', county)
-                
-        print(0.50, self.i50-self.i25)
-        print(0.75, self.i75-self.i50)
-        print(1.00, self.len-self.i75)
+    class Subset(Group):
+        
+        def __init__(self, countries : Counties):
+            self.countries = countries
+            
+        def update(self, fr : int, to : int):
+            self.fr = fr 
+            self.to = to
+            buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
+            for i in range(fr, to) :
+                f2 = self.countries.latest.index[i][0:2]
+                s = State(f2)
+                if not f2 in buildStates:
+                    buildStates[f2] = s
+                s = buildStates[f2]
+                c = County(s, self.countries.latest.index[i], self.countries.latest.iloc[i])
+                s.add(c)
+            self.whichStates = list(buildStates.values())
+            self.whichStates.sort(key=lambda x: x.deaths, reverse=True)
+            return self.whichStates
+    
+        def tableSubset(self):
+            lines = self.countries.getTableHeader()
+            for state in self.whichStates:
+                lines.append( state.toTableRow() )
+                for county in state.counties:
+                    lines.append( county.toTableRow() )
+            return lines
+    
+        def printSubsets(self):
+            for state in self.whichStates:
+                print(state)
+                for county in state.counties:
+                    print('  ', county)
         
 if __name__ == '__main__':
-    counties = Counties()
     dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'    
     env = Environment(
         loader=FileSystemLoader(home + '/GITHUB/COVIDtoTimeSeries/covid/templates'),
@@ -455,50 +473,52 @@ if __name__ == '__main__':
     
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
-    rfips = dict()
-    for s in counties.fipsTable.keys():
-        d = counties.fipsTable[s]
-        for c in d.keys():
-            rfips[d[c]] = c + ', ' + two2State[s]
-   
+
+    larger = Counties()
+    smaller = copy.deepcopy(larger)
+    us = Group()
+    us.population = sum(larger.countyPopulation.values())
+    us.deaths = h.iloc[-1].sum()
+    us.cases = hc.iloc[-1].sum()
+    
+    # reallocate NYC deaths to boroughs
     fDeath = nyc2Scale(nycDeaths)
     fCases = nyc2Scale(nycHospitalizations)
     for f in nycDeaths:
         if f != '36061':
-            h[rfips[f]] = fDeath[f] * h["New York County, New York"]
-            hc[rfips[f]] = fCases[f] * hc["New York County, New York"]
+            h[larger.rfips[f]] = fDeath[f] * h["New York County, New York"]
+            hc[larger.rfips[f]] = fCases[f] * hc["New York County, New York"]
     h["New York County, New York"] = fDeath['36061'] * h["New York County, New York"]
     hc["New York County, New York"] = fCases['36061'] * hc["New York County, New York"]
-    #TODO compute smooths /day deaths and cases for all counties
+    
+    # LOWESS smooth death and case trends
     deathTrend = dict()
     casesTrend = dict()
     T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
     for county in h.columns :
-        if h[county].array[-1] >= 100:
+        if h[county].array[-1] >= 10:
             print('Smoothing ', county)
             Y = np.asarray(h[county]).reshape(-1, 1)
-            deathTrend[county] = smooth(Y[-21:,0], T[-21:,0])
+            deathTrend[county] = smooth(Y[-21:,0], T[-22:,0])
             Y = np.asarray(hc[county]).reshape(-1, 1)
-            casesTrend[county] = smooth(Y[-21:,0], T[-21:,0])
+            casesTrend[county] = smooth(Y[-21:,0], T[-22:,0])
     
-#     counties.update( hc, h )
-#     counties.inventory()
     print('Larger Counties')
-    counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
+    larger.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
     txt = '';
-    table = counties.tableSubset(0, counties.i25)
+    table = larger.tableSubset(0, larger.i25)
     txt += ('\n# Larger Counties, Top 25% of Deaths #\n\n')
     for line in table:
         txt += (line)
-    table = counties.tableSubset(counties.i25, counties.i50)
+    table = larger.tableSubset(larger.i25, larger.i50)
     txt += ('\n# Larger Counties, 2nd 25% of Deaths #\n\n')
     for line in table:
         txt += (line)
-    table = counties.tableSubset(counties.i50, counties.i75)
+    table = larger.tableSubset(larger.i50, larger.i75)
     txt += ('\n# Larger Counties, 3rd 25% of Deaths #\n\n')
     for line in table:
         txt += (line)
-    table = counties.tableSubset(counties.i75, counties.len)
+    table = larger.tableSubset(larger.i75, larger.len)
     txt += ('\n# Larger Counties, Bottom 25% of Deaths #\n\n')
     for line in table:
         txt += (line)
