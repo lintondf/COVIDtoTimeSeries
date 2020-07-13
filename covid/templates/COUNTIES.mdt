@@ -1,0 +1,15 @@
+#Analysis of US By County#
+
+For the US counties analysis, the list of all 3,143 counties (or equivalent) is sorted by the absolute number of deaths from highest to lowest.  This sorted list is then divided into two parts: counties with populations of 50,000 or more and smaller counties.
+
+## Larger Population Counties ##
+
+{{largerCounties}}
+
+## Smaller Population Counties ##
+
+{{smallerCounties}}
+
+## All US Counties ##
+
+{{allCountiesTable}}

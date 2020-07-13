@@ -1,0 +1,13 @@
+There were {{gCount}} {{gSize}} population counties with a combined population of {{gPopulation}} ({{gPctofUSPopulation}}% of the US population).  In these counties there have been {{gDeaths}} deaths ({{gPDR}} deaths/million) and {{gCases}} confirmed cases ({{gPCR}} confirmed cases/million).  This group accounts for {{gPctOfUSDeaths}}% of all US deaths and for {{gPctOfUSCases}}% of all US cases.
+
+{{g1Pct}}% of this group's deaths ({{g1PctUSDeaths}}% of the total US deaths) occured in {{g1MCounties}} counties in {{g1NStates}} states with a combined population of {{g1Population}} ({{g1PctUSPopulation}}% of the total US population):
+
+{{g1Table}}
+
+The next {{g2Pct}}% of this group's deaths ({{g2PctUSDeaths}}% of the total US deaths) occured in {{g2MCounties}} counties in {{g2NStates}} states with a combined population of {{g2Population}} ({{g2PctUSPopulation}}% of the total US population):
+
+{{g2Table}}
+
+The next {{g3Pct}}% of this group's deaths ({{g3PctUSDeaths}}% of the total US deaths) occured in {{g3MCounties}} counties in {{g3NStates}} states with a combined population of {{g3Population}} ({{g3PctUSPopulation}}% of the total US population)
+
+The remaining {{g4Pct}}% of this group's deaths ({{g4PctUSDeaths}}% of the total US deaths) occured in {{g4MCounties}} counties in {{g4NStates}} states with a combined population of {{g4Population}} ({{g4PctUSPopulation}}% of the total US population) 

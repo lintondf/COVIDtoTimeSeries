@@ -38,6 +38,7 @@ from Analysis4 import smooth
 from matplotlib import cm
 import us
 from Analysis import countries
+from docutils.nodes import line
 
 # Allocation of NYC data to counties
 #  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
@@ -302,7 +303,6 @@ class State(Group):
         return '%s %3d %s' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population))
 
     def add(self, county):
-        print(county)
         self.counties.append(county)
         self.counties.sort(key=lambda x: x.deaths, reverse=True)
         self.deaths += county.deaths
@@ -429,11 +429,14 @@ class Counties(Group):
         fields.update({'gPctOfUSCases': '%.2f' % (100*self.cases / us.cases)})
         
         for prefix, subset in zip(['g1', 'g2', 'g3', 'g4'], self.subsets):
-            fields.update({prefix+'Pct': '%.2f' % (100*subset.deaths / us.deaths)})
+            fields.update({prefix+'Pct': '%.2f' % (100*subset.deaths / self.deaths)})
+            fields.update({prefix+'PctUSDeaths': '%.2f' % (100*subset.deaths / us.deaths)})
             fields.update({prefix+'MCounties': '{:,.0f}'.format(subset.to-subset.fr)})
             fields.update({prefix+'NStates': '%d' % len(subset.whichStates)})
             fields.update({prefix+'Population': '{:,.0f}'.format(subset.population)})
             fields.update({prefix+'PctUSPopulation': '%.2f' % (100*subset.population / us.population)})
+            fields.update({prefix+'Table': subset.tableSubset()} );
+            
         return fields
     
     class Subset(Group):
@@ -461,12 +464,15 @@ class Counties(Group):
                 self.population += s.population
     
         def tableSubset(self):
-            lines = self.countries.getTableHeader()
+            lines = self.counties.getTableHeader()
             for state in self.whichStates:
                 lines.append( state.toTableRow() )
                 for county in state.counties:
                     lines.append( county.toTableRow() )
-            return lines
+            txt = ''
+            for line in lines:
+                txt += line
+            return txt
     
         def printSubsets(self):
             for state in self.whichStates:
@@ -485,6 +491,7 @@ if __name__ == '__main__':
 
     larger = Counties()
     smaller = copy.deepcopy(larger)
+    all = copy.deepcopy(larger)
 
     
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
@@ -504,44 +511,43 @@ if __name__ == '__main__':
     deathTrend = dict()
     casesTrend = dict()
     T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
+    target = 'New York County, New York'
     for county in h.columns :
-        if h[county].array[-1] >= 1000:
+#         if county == target: # 'Brevard County, Florida':
+        if h[county].array[-1] >= 10:
             print('Smoothing ', county)
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(hc[county]).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-    
+    print(','.join(['%.5f' % num for num in deathTrend[target]]))
+    print(','.join(['%.5f' % num for num in casesTrend[target]]))
 
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
     usa.deaths = h.iloc[-1].sum()
     usa.cases = hc.iloc[-1].sum()
+
+    print('All Counties') 
+    all.update( hc, h, deathTrend, casesTrend)
+    allCounties = all.Subset( all, 0, all.len)
     
     print('Larger Counties')
     larger.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
-    fields = ( larger.getTemplateDict(usa, 'Larger'))
-#     txt = '';
-#     table = larger.tableSubset(0, larger.i25)
-#     txt += ('\n# Larger Counties, Top 25% of Deaths #\n\n')
-#     for line in table:
-#         txt += (line)
-#     table = larger.tableSubset(larger.i25, larger.i50)
-#     txt += ('\n# Larger Counties, 2nd 25% of Deaths #\n\n')
-#     for line in table:
-#         txt += (line)
-#     table = larger.tableSubset(larger.i50, larger.i75)
-#     txt += ('\n# Larger Counties, 3rd 25% of Deaths #\n\n')
-#     for line in table:
-#         txt += (line)
-#     table = larger.tableSubset(larger.i75, larger.len)
-#     txt += ('\n# Larger Counties, Bottom 25% of Deaths #\n\n')
-#     for line in table:
-#         txt += (line)
-# 
-#     fields.update({'table': txt})    
+    fields = ( larger.getTemplateDict(usa, 'larger'))
+    largerTxt = groupTemplate.render(fields)
+    print('Smaller Counties')
+    smaller.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop<50000 )
+    fields = ( smaller.getTemplateDict(usa, 'smaller'))  
+    smallerTxt = groupTemplate.render(fields)
+    
+    fields = dict();
+    fields.update({'largerCounties': largerTxt}) 
+    fields.update({'smallerCounties': smallerTxt}) 
+    fields.update({'allCountiesTable': allCounties.tableSubset()}) 
+     
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
-    print(template.render(fields), file=out)  
+    print(template.render(fields), file=out)
     out.close()
     print('========================================================')
 #     counties.printSubsets()
