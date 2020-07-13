@@ -291,6 +291,7 @@ class Group:
         
 class State(Group):
     def __init__(self, fips : str):
+        super().__init__()
         self.which = us.states.lookup(fips, field='fips');
         self.counties = []
         
@@ -298,9 +299,10 @@ class State(Group):
         return '|%s|%d counties|%s\n' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population, sep='|')) 
            
     def __str__(self):
-        return '%s %3d %6.0f %6.3f %6.0f %6.3f %8.0f' % (self.which.abbr, len(self.counties), self.deaths, 1e6*self.deaths/self.population, self.cases, 1e6*self.cases/self.population, self.population)
+        return '%s %3d %s' % (self.which.abbr, len(self.counties), statisticsString(self.deaths, self.cases, self.population))
 
     def add(self, county):
+        print(county)
         self.counties.append(county)
         self.counties.sort(key=lambda x: x.deaths, reverse=True)
         self.deaths += county.deaths
@@ -309,6 +311,7 @@ class State(Group):
         
 class County(Group):
     def __init__(self, state, fips, row):
+        super().__init__()
         self.fips = fips
         self.name = row['County']
         self.state = state
@@ -324,8 +327,9 @@ class County(Group):
     def __str__(self):
         return '%s %-40s %s' % (self.fips, self.name, statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate))
  
-class Counties:
+class Counties(Group):
     def __init__(self):
+        super().__init__()
         dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
         self.fipsTable = loadFIPSTable(dataPath)
         self.countyPopulation = loadCountyPopulation(dataPath, self.fipsTable)
@@ -375,16 +379,22 @@ class Counties:
         self.latest['SumCases'] = self.latest['Cases'].cumsum()
         self.latest['SumDeaths'] = self.latest['Deaths'].cumsum()
         self.latest['SumPopulation'] = self.latest['Population'].cumsum()
-        self.usPopulation = self.latest['SumPopulation'].iloc[-1]
-        self.usCases = self.latest['SumCases'].iloc[-1]
-        self.usDeaths = self.latest['SumDeaths'].iloc[-1]
-        
-        self.i25 = (len(self.latest[self.latest['SumDeaths'].le(0.25 * self.usDeaths)]))
-        self.i50 = (len(self.latest[self.latest['SumDeaths'].le(0.50 * self.usDeaths)]))
-        self.i75 = (len(self.latest[self.latest['SumDeaths'].le(0.75 * self.usDeaths)]))
+        self.population = self.latest['SumPopulation'].iloc[-1]
+        self.cases = self.latest['SumCases'].iloc[-1]
+        self.deaths = self.latest['SumDeaths'].iloc[-1]
+         
+        self.i25 = (len(self.latest[self.latest['SumDeaths'].le(0.25 * self.deaths)]))
+        self.i50 = (len(self.latest[self.latest['SumDeaths'].le(0.50 * self.deaths)]))
+        self.i75 = (len(self.latest[self.latest['SumDeaths'].le(0.75 * self.deaths)]))
         self.len = (len(self.latest))
+         
+        print('%4d %s' % (self.len, statisticsString( self.deaths, self.cases, self.population)))
         
-        print('%4d %s' % (self.len, statisticsString( self.usDeaths, self.usCases, self.usPopulation)))
+        self.subsets = []
+        self.subsets.append( self.Subset( self, 0, self.i25 ) )
+        self.subsets.append( self.Subset( self, self.i25, self.i50 ) )
+        self.subsets.append( self.Subset( self, self.i50, self.i75 ) )
+        self.subsets.append( self.Subset( self, self.i75, self.len ) )
         
     def inventory(self):
         buildStates = dict()
@@ -406,47 +416,49 @@ class Counties:
             print(c)
         
     def getTemplateDict(self, us : Group, sizeName : str) -> dict:
-        """
-    gSize
-    gPopulation
-    gDeaths
-    gPDR
-    gCases
-    gPCR
-    gPctOfUSDeaths
-    gPctOfUSCases
-    g1Pct
-    g1MCounties
-    g1NStates
-    g1Population
-    g1PctUSPopulation
-    g1Table
-            """
         fields = dict()
-        fields.update({'gCount', self.len} )
+        fields.update({'gCount': '%d' % self.len} )
         fields.update({'gSize': sizeName})
+        fields.update({'gPopulation': '{:,.0f}'.format(self.population)})
+        fields.update({'gPctofUSPopulation': '%.2f' % (100*self.population / us.population)})
+        fields.update({'gDeaths': '{:,.0f}'.format(self.deaths)})
+        fields.update({'gCases': '{:,.0f}'.format(self.cases)})
+        fields.update({'gPDR': '%.3f' % (1e6*self.deaths / self.population)})
+        fields.update({'gPCR': '%.3f' % (1e6*self.cases / self.population)})
+        fields.update({'gPctOfUSDeaths': '%.2f' % (100*self.deaths / us.deaths)})
+        fields.update({'gPctOfUSCases': '%.2f' % (100*self.cases / us.cases)})
+        
+        for prefix, subset in zip(['g1', 'g2', 'g3', 'g4'], self.subsets):
+            fields.update({prefix+'Pct': '%.2f' % (100*subset.deaths / us.deaths)})
+            fields.update({prefix+'MCounties': '{:,.0f}'.format(subset.to-subset.fr)})
+            fields.update({prefix+'NStates': '%d' % len(subset.whichStates)})
+            fields.update({prefix+'Population': '{:,.0f}'.format(subset.population)})
+            fields.update({prefix+'PctUSPopulation': '%.2f' % (100*subset.population / us.population)})
         return fields
     
     class Subset(Group):
         
-        def __init__(self, countries : Counties):
-            self.countries = countries
-            
-        def update(self, fr : int, to : int):
+        def __init__(self, counties, fr : int, to : int):
+            super().__init__()
+            print(self, fr, to, self.population )
+            self.counties = counties
             self.fr = fr 
             self.to = to
             buildStates = dict() # indexed by 2-digit state FIPS code; list of State objects
             for i in range(fr, to) :
-                f2 = self.countries.latest.index[i][0:2]
+                f2 = self.counties.latest.index[i][0:2]
                 s = State(f2)
                 if not f2 in buildStates:
                     buildStates[f2] = s
                 s = buildStates[f2]
-                c = County(s, self.countries.latest.index[i], self.countries.latest.iloc[i])
+                c = County(s, self.counties.latest.index[i], self.counties.latest.iloc[i])
                 s.add(c)
             self.whichStates = list(buildStates.values())
             self.whichStates.sort(key=lambda x: x.deaths, reverse=True)
-            return self.whichStates
+            for s in self.whichStates:
+                self.deaths += s.deaths
+                self.cases += s.cases
+                self.population += s.population
     
         def tableSubset(self):
             lines = self.countries.getTableHeader()
@@ -469,17 +481,14 @@ if __name__ == '__main__':
         autoescape=select_autoescape(['html', 'xml'])
     )
     template = env.get_template("COUNTIES.mdt")
+    groupTemplate = env.get_template("COUNTIES_group.mdt")
+
+    larger = Counties()
+    smaller = copy.deepcopy(larger)
 
     
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
-
-    larger = Counties()
-    smaller = copy.deepcopy(larger)
-    us = Group()
-    us.population = sum(larger.countyPopulation.values())
-    us.deaths = h.iloc[-1].sum()
-    us.cases = hc.iloc[-1].sum()
     
     # reallocate NYC deaths to boroughs
     fDeath = nyc2Scale(nycDeaths)
@@ -496,35 +505,41 @@ if __name__ == '__main__':
     casesTrend = dict()
     T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
     for county in h.columns :
-        if h[county].array[-1] >= 10:
+        if h[county].array[-1] >= 1000:
             print('Smoothing ', county)
             Y = np.asarray(h[county]).reshape(-1, 1)
-            deathTrend[county] = smooth(Y[-21:,0], T[-22:,0])
+            deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(hc[county]).reshape(-1, 1)
-            casesTrend[county] = smooth(Y[-21:,0], T[-22:,0])
+            casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
+    
+
+    usa = Group()
+    usa.population = sum(larger.countyPopulation.values())
+    usa.deaths = h.iloc[-1].sum()
+    usa.cases = hc.iloc[-1].sum()
     
     print('Larger Counties')
     larger.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop>=50000 )
-    txt = '';
-    table = larger.tableSubset(0, larger.i25)
-    txt += ('\n# Larger Counties, Top 25% of Deaths #\n\n')
-    for line in table:
-        txt += (line)
-    table = larger.tableSubset(larger.i25, larger.i50)
-    txt += ('\n# Larger Counties, 2nd 25% of Deaths #\n\n')
-    for line in table:
-        txt += (line)
-    table = larger.tableSubset(larger.i50, larger.i75)
-    txt += ('\n# Larger Counties, 3rd 25% of Deaths #\n\n')
-    for line in table:
-        txt += (line)
-    table = larger.tableSubset(larger.i75, larger.len)
-    txt += ('\n# Larger Counties, Bottom 25% of Deaths #\n\n')
-    for line in table:
-        txt += (line)
-
-    fields = dict();
-    fields.update({'table': txt})    
+    fields = ( larger.getTemplateDict(usa, 'Larger'))
+#     txt = '';
+#     table = larger.tableSubset(0, larger.i25)
+#     txt += ('\n# Larger Counties, Top 25% of Deaths #\n\n')
+#     for line in table:
+#         txt += (line)
+#     table = larger.tableSubset(larger.i25, larger.i50)
+#     txt += ('\n# Larger Counties, 2nd 25% of Deaths #\n\n')
+#     for line in table:
+#         txt += (line)
+#     table = larger.tableSubset(larger.i50, larger.i75)
+#     txt += ('\n# Larger Counties, 3rd 25% of Deaths #\n\n')
+#     for line in table:
+#         txt += (line)
+#     table = larger.tableSubset(larger.i75, larger.len)
+#     txt += ('\n# Larger Counties, Bottom 25% of Deaths #\n\n')
+#     for line in table:
+#         txt += (line)
+# 
+#     fields.update({'table': txt})    
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
     print(template.render(fields), file=out)  
     out.close()
