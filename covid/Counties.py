@@ -320,6 +320,11 @@ class County(Group):
         self.population = row['Population']
         self.deathRate = row['DeathRate']
         self.caseRate = row['CaseRate']
+    
+    def plot(self, ax1):
+        ax1.plot(self.cases, self.deaths, linestyle='', markeredgecolor='none', marker='.' )
+        if not self.caseRate is None:
+            ax1.plot(self.caseRate, self.deathRate, linestyle='', markeredgecolor='none', marker='+' )
         
     def toTableRow(self):
         return '| |%s|%s\n' % (self.name.split(',',1)[0].split('/',1)[0], statisticsString(self.deaths, self.cases, self.population, self.deathRate, self.caseRate, sep='|')) 
@@ -395,6 +400,11 @@ class Counties(Group):
         self.subsets.append( self.Subset( self, self.i25, self.i50 ) )
         self.subsets.append( self.Subset( self, self.i50, self.i75 ) )
         self.subsets.append( self.Subset( self, self.i75, self.len ) )
+        
+        fig, ax1 = plt.subplots()
+        ss = self.subsets[0]
+        ss.plot(ax1)
+        plt.show()
         
     def inventory(self):
         buildStates = dict()
@@ -479,6 +489,11 @@ class Counties(Group):
                 print(state)
                 for county in state.counties:
                     print('  ', county)
+        
+        def plot(self, ax1):
+            for state in self.whichStates:
+                for county in state.counties:
+                    county.plot(ax1)
         
 if __name__ == '__main__':
     dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'    
