@@ -334,7 +334,7 @@ class Analysis():
 
             ax1.semilogy(state.index[:], (scaled), linestyle='solid', color=color, label='%s (%5.1f %s/1M)' % (one, scaled[-1], what)) # 
 #             ax1.semilogy(state.index[:], (values/pop), linestyle='', markeredgecolor='none', marker='.', color=color)
-#             ax1.annotate('%5.1f' % (scaled[-1]),
+#             ax1og.annotate('%5.1f' % (scaled[-1]),
 #                     xy=(state.index[-1], scaled[-1]), xycoords='data',
 #                     xytext=(-10, -30), textcoords='offset points',
 #                     arrowprops=dict(arrowstyle="->"))
