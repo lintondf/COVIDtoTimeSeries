@@ -242,8 +242,6 @@ class Analysis():
                 ypct[1:] = (values[1:,0] - values[0:-1,0])/pop
                 T = np.asarray(((state.index-state.index[0]).days))
                 T = T.reshape(-1, 1)
-#                 lowess = sm.nonparametric.lowess
-#                 deaths = lowess(ypct[:], T[:,0], frac=0.5, it=10)[:,1]
                 deaths = smooth(ypct[:], T[:,0])
                 
                 state = statesCases[[one]]
@@ -254,8 +252,6 @@ class Analysis():
                 ypct[1:] = (values[1:,0] - values[0:-1,0])/pop
                 T = np.asarray(((state.index-state.index[0]).days))
                 T = T.reshape(-1, 1)
-#                 lowess = sm.nonparametric.lowess
-#                 cases = lowess(ypct[:], T[:,0], frac=0.5, it=10)[:,1]
                 cases = smooth(ypct[:], T[:,0])
                 if (deaths[-22:] != 0).all() and (cases[-22:] != 0).all():
                     data[one] = (deaths[-22:], cases[-22:]) # [-22,-15,-8,-1]
@@ -496,8 +492,8 @@ class Analysis():
             g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
             fc = pd.read_csv(outPath + "/data/states-cases.csv", parse_dates=True, index_col=0)
             gc = pd.read_csv(outPath + "/data/countries-cases.csv", parse_dates=True, index_col=0)
-            h = pd.read_csv(outPath + "county-deaths.csv", parse_dates=True, index_col=0)
-            hc = pd.read_csv(outPath + "county-cases.csv", parse_dates=True, index_col=0)
+            h = pd.read_csv(outPath + "/data/county-deaths.csv", parse_dates=True, index_col=0)
+            hc = pd.read_csv(outPath + "/data/county-cases.csv", parse_dates=True, index_col=0)
             
         self.asOf = (f.index[-1])
         
@@ -521,7 +517,6 @@ class Analysis():
         topFour = ['California', 'Florida', 'New York', 'Texas', 'US']
         for one in topFour:
             four[one] = data[one]
-        # TODO four limits from all limits
         xymax = self.plotAllStatesRates(outPath+"/analysis/AllDailyCasesVsDeaths.png", data )
         self.plotAllStatesRates(outPath+"/analysis/FourDailyCasesVsDeaths.png", four, xmax=xymax[0], ymax=xymax[1] )
         
@@ -694,4 +689,5 @@ if __name__ == '__main__':
     out = outPath + '/analysis/FL-%4d-%02d-%02d.txt' % (today.year, today.month, today.day);
     options = ' -Dsun.java2d.cmm=sun.java2d.cmm.kcms.KcmsServiceProvider'
     os.system('java %s -jar %s/covid/pdfbox-app-2.0.9.jar ExtractText %s/covid/latest.pdf %s' % (options, outPath, outPath, out))
+    os.system('rm %s/covid/latest.pdf' % outPath)
     runAnalysis()
