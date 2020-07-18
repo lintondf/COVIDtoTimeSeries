@@ -474,18 +474,30 @@ class Analysis():
         
     def main(self, reload, pathToRepository, outPath):
         if (reload) :
-            f, g, fc, gc = updateDeaths(pathToRepository, pull=False)
+            countiesData = pd.read_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + 'US-Counties-Population.csv', encoding='utf8', index_col=0).fillna(0)
+            counties = dict()
+            for i in range(0,len(countiesData.index)) :
+                name = countiesData.index[i]
+                name = name.replace("Doña Ana County", "Dona Ana County")
+                counties[name[1:]] = countiesData[['2019']].iloc[0].values[0] * 1e-6 # convert to millions
+            f, g, fc, gc, h, hc = updateDeaths(pathToRepository, pull=False, counties=counties)
             f.sort_values(f.index[-1], axis=1,ascending=False,inplace=True)
             g.sort_values(g.index[-1], axis=1,ascending=False,inplace=True)
             f.to_csv(outPath + "/data/states.csv")
             g.to_csv(outPath + "/data/countries.csv")
             fc.to_csv(outPath + "/data/states-cases.csv")
             gc.to_csv(outPath + "/data/countries-cases.csv")
+            h.sort_values(h.index[-1], axis=1,ascending=False,inplace=True)
+            h.to_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + "county-deaths.csv")
+            hc.sort_values(hc.index[-1], axis=1,ascending=False,inplace=True)
+            hc.to_csv(home + '/GITHUB/COVIDtoTimeSeries/data/' + "county-cases.csv")
         else :
             f = pd.read_csv(outPath + "/data/states.csv", parse_dates=True, index_col=0)
             g = pd.read_csv(outPath + "/data/countries.csv", parse_dates=True, index_col=0)
             fc = pd.read_csv(outPath + "/data/states-cases.csv", parse_dates=True, index_col=0)
             gc = pd.read_csv(outPath + "/data/countries-cases.csv", parse_dates=True, index_col=0)
+            h = pd.read_csv(outPath + "county-deaths.csv", parse_dates=True, index_col=0)
+            hc = pd.read_csv(outPath + "county-cases.csv", parse_dates=True, index_col=0)
             
         self.asOf = (f.index[-1])
         
