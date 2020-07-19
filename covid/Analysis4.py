@@ -227,13 +227,37 @@ class Analysis():
                     
         return scaledTrend, x3ddr, y1ddr**nD, y3raw, links
     
+    def generateAllStateLatestTrends(self, statesDeaths, statesCases, population):
+        data = dict();
+        for one in population.keys():
+            if (one in statesDeaths.columns and one in statesCases.columns) :
+                state = statesDeaths[[one]]
+                state = state[(state.T != 0).any()].apply(pd.to_numeric, errors='coerce')
+                pop = population[one]
+                values = np.asarray(state[[state.columns[0]]].values)
+                T = np.asarray(((state.index-state.index[0]).days))
+                T = T.reshape(-1, 1)
+                deaths = smooth(values[:,0]/pop, T[:,0])
+                ypct = 0.0*values[:,0]
+                ypct[1:] = (values[1:,0] - values[0:-1,0])/pop
+                deathRates = smooth(ypct[:], T[:,0])
+                state = statesCases[[one]]
+                state = state[(state.T != 0).any()].apply(pd.to_numeric, errors='coerce')
+                pop = population[one]
+                T = np.asarray(((state.index-state.index[0]).days))
+                T = T.reshape(-1, 1)
+                values = np.asarray(state[[state.columns[0]]].values)
+                cases = smooth(values[:,0]/pop, T[:,0])
+                ypct = 0.0*values[:,0]
+                ypct[1:] = (values[1:,0] - values[0:-1,0])/pop
+                caseRates = smooth(ypct[:], T[:,0])
+                data[one] = [deaths[-1], deathRates[-1], deathRates[-1]-deathRates[-2], cases[-1], caseRates[-1], caseRates[-1]-caseRates[-2]]
+        return data
+    
     def generateAllStatesRates(self, statesDeaths, statesCases, population):
         data = dict();
         for one in population.keys():
             if (one in statesDeaths.columns and one in statesCases.columns) :
-                print(one)
-                if (one == 'South Dakota' or one == 'SD'):
-                    print(one)
                 state = statesDeaths[[one]]
                 state = state[(state.T != 0).any()].apply(pd.to_numeric, errors='coerce')
                 pop = population[one]
@@ -512,6 +536,13 @@ class Analysis():
 
         population = statesPopulation;
         
+#         data = self.generateAllStateLatestTrends(f, fc, population)
+#         out = open('trends.csv', 'w')
+#         for one in data.keys():
+#             d = data[one]
+#             print('"' + one + '"', d[0], d[1], d[2], d[3], d[4], d[5], file=out)
+#         out.close()
+#         exit(0)
         data = self.generateAllStatesRates(f, fc, population)
         four = dict()
         topFour = ['California', 'Florida', 'New York', 'Texas', 'US']
