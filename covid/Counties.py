@@ -495,7 +495,7 @@ class Counties(Group):
                 for county in state.counties:
                     county.plot(ax1)
         
-if __name__ == '__main__':
+def main():
     dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'    
     env = Environment(
         loader=FileSystemLoader(home + '/GITHUB/COVIDtoTimeSeries/covid/templates'),
@@ -526,9 +526,9 @@ if __name__ == '__main__':
     deathTrend = dict()
     casesTrend = dict()
     T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
-    target = 'New York County, New York'
+    target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
-#         if county == target: # 'Brevard County, Florida':
+#         if county == target:
         if h[county].array[-1] >= 10:
             print('Smoothing ', county)
             Y = np.asarray(h[county]).reshape(-1, 1)
@@ -570,63 +570,5 @@ if __name__ == '__main__':
 #     counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop<50000 )
 #     counties.printSubsets()
     
-    if False :
-        outPath = home + '/GITHUB/COVIDtoTimeSeries/data/'
-        countyPopulation, countyDeaths, fipsTable = main( outPath )
-        rfips = dict()
-        for s in fipsTable.keys():
-            d = fipsTable[s]
-            for c in d.keys():
-                rfips[d[c]] = c + ', ' + s
-        fips = list(countyDeaths.keys())
-        values = list(countyDeaths.values())
-        out = open('counties.csv', 'w')
-        for i in range(0,len(fips)):
-            def categeorize(rate):
-                if rate <= 0:
-                    return 0.0
-                return 1e-3+np.ceil(np.log10(rate))
-            
-            f = fips[i]
-            if f in countyPopulation :
-                c = categeorize( 1e6 * values[i] / countyPopulation[fips[i]])
-                print(fips[i],',"'+rfips[fips[i]]+'",',c,',',values[i],',', countyPopulation[fips[i]],',',1e6 * values[i] / countyPopulation[fips[i]], file=out)
-                values[i] = c
-        out.close()
-#     lfips = []
-#     lvalues = []
-#     target = us.states.CA
-#     for i in range(0,len(values)):
-#         v = values[i]
-#         stateFips = int(fips[i]) // 1000
-#         if stateFips == int(target.fips) : # v == 0: # v >=1 and v < 4.0:
-#             lfips.append(fips[i])
-#             lvalues.append(int(v))
-#     colorscale, endpts = mapcolors(values, 5-1) 
-# #     print(colorscale)
-#     colorscale = ['white', 'blue', 'yellow', 'orange', 'red']
-#     colorscale = ['white', 
-#                   colorTupleToString(cm.inferno(0)),
-#                   colorTupleToString(cm.inferno(85)),
-#                   colorTupleToString(cm.inferno(170)),
-#                   colorTupleToString(cm.inferno(255)),
-#                   ]
-#     colorscale = np.array(colorscale)
-#     order = np.unique(lvalues)
-#     colorscale = colorscale[order]
-#     endpts = [1,2,3,4,5,6] 
-#     fig = ff.create_choropleth(
-#         fips=lfips, values=lvalues, scope=[target.abbr],
-# #         binning_endpoints=endpts,
-#         colorscale=colorscale.tolist(), # order=order.tolist(),
-#         show_state_data=True,
-#         state_outline={'color': 'rgb(0,0,0)', 'width': 1.0},
-#         show_hover=True,
-# #         asp = 2.9,
-#         title_text = 'USA County Death Rate Categories',
-#         legend_title = 'Population'
-#     )
-#     fig.layout.template = None
-#     fig.show()
-#     plotly.io.orca.config.executable = '/Users/blinton/anaconda3/bin/orca'
-#     fig.write_image("plotly.png")
+if __name__ == '__main__':
+    main()
