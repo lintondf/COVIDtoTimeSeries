@@ -715,10 +715,11 @@ def runAnalysis():
 
 if __name__ == '__main__':
     outPath = home + "/GITHUB/COVIDtoTimeSeries"
-    urllib.request.urlretrieve('http://ww11.doh.state.fl.us/comm/_partners/covid19_report_archive/state_reports_latest.pdf', 'latest.pdf')
     today = datetime.today()
     out = outPath + '/analysis/FL-%4d-%02d-%02d.txt' % (today.year, today.month, today.day);
-    options = ' -Dsun.java2d.cmm=sun.java2d.cmm.kcms.KcmsServiceProvider'
-    os.system('java %s -jar %s/covid/pdfbox-app-2.0.9.jar ExtractText %s/covid/latest.pdf %s' % (options, outPath, outPath, out))
-    os.system('rm %s/covid/latest.pdf' % outPath)
+    if not os.path.isfile(out) :
+        urllib.request.urlretrieve('http://ww11.doh.state.fl.us/comm/_partners/covid19_report_archive/state_reports_latest.pdf', 'latest.pdf')
+        options = ' -Dsun.java2d.cmm=sun.java2d.cmm.kcms.KcmsServiceProvider'
+        os.system('java %s -jar %s/covid/pdfbox-app-2.0.9.jar ExtractText %s/covid/latest.pdf %s' % (options, outPath, outPath, out))
+        os.system('rm %s/covid/latest.pdf' % outPath)
     runAnalysis()
