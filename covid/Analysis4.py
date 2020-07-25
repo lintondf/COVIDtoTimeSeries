@@ -53,6 +53,8 @@ register_matplotlib_converters()
 # import sys
 # sys.stderr= MyStderr(sys.stderr)
 
+startDate = '2020-04-01'
+
 Y_UPPER = 20 # upper y limit for DDGR charts
 nD = 3 # 3DRR
 home = os.path.expanduser('~')
@@ -519,6 +521,12 @@ class Analysis():
             h = pd.read_csv(outPath + "/data/county-deaths.csv", parse_dates=True, index_col=0)
             hc = pd.read_csv(outPath + "/data/county-cases.csv", parse_dates=True, index_col=0)
             
+        f = f[startDate:]
+        fc = fc[startDate:]
+        g = g[startDate:]
+        gc = gc[startDate:]
+        h = h[startDate:]
+        hc = hc[startDate:]
         self.asOf = (f.index[-1])
         
         statesPopulation = loadStatePopulations();
