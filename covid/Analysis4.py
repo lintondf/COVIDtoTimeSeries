@@ -129,6 +129,13 @@ def smooth( y, t ):
 #     IMF = CEEMDAN().emd(y, t)
 #     return IMF[-1,:]
 
+def smoothColumn( df, cname):
+    T = np.asarray(((df.index-df.index[0]).days))
+    T = T.reshape(-1, 1)
+    Y = np.asarray(df[cname].values).reshape(-1, 1)
+    return smooth(Y[:,0], T[:,0])
+    
+
 class Analysis():
     def __init__(self):
         self.asOf = datetime.now()
@@ -378,8 +385,8 @@ class Analysis():
 #                     xy=(state.index[-1], trend[-1]), xycoords='data',
 #                     xytext=(-10, 30), textcoords='offset points', color=color,
 #                     arrowprops=dict(arrowstyle="->"))
-        ax1.legend(loc='lower right')
-        ax2.legend(loc='lower right')
+        ax1.legend(loc='upper left')
+        ax2.legend(loc='upper left')
         fig1.tight_layout()
         fig2.tight_layout()
         plt.draw() # show()
