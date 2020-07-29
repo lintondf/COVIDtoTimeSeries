@@ -401,10 +401,10 @@ class Counties(Group):
         self.subsets.append( self.Subset( self, self.i50, self.i75 ) )
         self.subsets.append( self.Subset( self, self.i75, self.len ) )
         
-        fig, ax1 = plt.subplots()
-        ss = self.subsets[0]
-        ss.plot(ax1)
-        plt.show()
+#         fig, ax1 = plt.subplots()
+#         ss = self.subsets[0]
+#         ss.plot(ax1)
+#         plt.show()
         
     def inventory(self):
         buildStates = dict()
