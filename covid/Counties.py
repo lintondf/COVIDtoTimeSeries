@@ -564,6 +564,9 @@ def main():
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
     print(template.render(fields), file=out)
     out.close()
+    outPath = home + '/GITHUB/COVIDtoTimeSeries'
+    os.system('git -C %s commit -a -m "daily update"' % outPath)
+    os.system('git -C %s push' % outPath)
     print('========================================================')
 #     counties.printSubsets()
 #     print('Smaller Counties')
