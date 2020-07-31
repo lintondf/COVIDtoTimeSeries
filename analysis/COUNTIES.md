@@ -1,4 +1,4 @@
-#Analysis of US By County#
+# Analysis of US By County #
 
 For the US counties analysis, the list of all 3,143 counties (or equivalent) is sorted by the absolute number of deaths from highest to lowest.  This sorted list is then divided into two parts: counties with populations of 50,000 or more and smaller counties.
 
@@ -8,33 +8,78 @@ There were 990 larger population counties with a combined population of 288,662,
 
 24.24% of this group's deaths (19.54% of the total US deaths) occured in 12 counties in 9 states with a combined population of 32,573,893 (9.92% of the total US population):
 
+
+### New Jersey ###
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NJ|3 counties| 5,639| 2346.095| N/A|59,287| 24666.246| N/A|2,403,568|
 | |Essex County| 2,100| 2628.368|  0.000|19,441| 24332.426| 42.238| 798,975|
 | |Bergen County| 2,040| 2188.367|  0.000|20,412| 21896.542| 42.348| 932,202|
 | |Hudson County| 1,499| 2229.358|  0.000|19,434| 28902.826| 24.756| 672,391|
+
+
+### Illinois ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IL|1 counties| 4,872| 945.977| N/A|104,687| 20326.653| N/A|5,150,233|
 | |Cook County| 4,872| 945.977|  1.705|104,687| 20326.653| 114.559|5,150,233|
+
+
+### California ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CA|1 counties| 4,559| 454.124| N/A|186,036| 18531.130| N/A|10,039,107|
 | |Los Angeles County| 4,559| 454.124|  6.535|186,036| 18531.130| 368.260|10,039,107|
+
+
+### New York ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|2 counties| 4,190| 1478.723| N/A|86,328| 30466.645| N/A|2,833,525|
 | |Nassau County| 2,194| 1616.892|  0.116|43,158| 31805.761| 35.597|1,356,924|
 | |Suffolk County| 1,996| 1351.753|  0.000|43,170| 29236.063| 47.720|1,476,601|
+
+
+### Michigan ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MI|1 counties| 2,798| 1599.458| N/A|26,924| 15390.921| N/A|1,749,343|
 | |Wayne County| 2,798| 1599.458|  2.577|26,924| 15390.921| 97.179|1,749,343|
+
+
+### Arizona ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AZ|1 counties| 2,011| 448.342| N/A|114,852| 25605.663| N/A|4,485,414|
 | |Maricopa County| 2,011| 448.342| 14.380|114,852| 25605.663| 368.476|4,485,414|
+
+
+### Massachusetts ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MA|1 counties| 1,971| 1222.933| N/A|25,535| 15843.529| N/A|1,611,699|
 | |Middlesex County| 1,971| 1222.933|  2.813|25,535| 15843.529| 31.125|1,611,699|
+
+
+### Pennsylvania ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |PA|1 counties| 1,691| 1067.507| N/A|30,213| 19073.093| N/A|1,584,064|
 | |Philadelphia County| 1,691| 1067.507| N/A|30,213| 19073.093| N/A|1,584,064|
+
+
+### Florida ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|1 counties| 1,515| 557.613| N/A|115,916| 42664.174| N/A|2,716,940|
 | |Miami-Dade County| 1,515| 557.613| 15.241|115,916| 42664.174| 1038.038|2,716,940|
 
 
+
 The next 25.29% of this group's deaths (20.38% of the total US deaths) occured in 32 counties in 13 states with a combined population of 35,222,999 (10.73% of the total US population):
 
+
+### New Jersey ###
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NJ|6 counties| 6,691| 1858.067| N/A|78,935| 21919.965| N/A|3,601,055|
@@ -44,6 +89,11 @@ The next 25.29% of this group's deaths (20.38% of the total US deaths) occured i
 | |Ocean County| 1,014| 1669.999|  1.398|10,356| 17055.729| 57.562| 607,186|
 | |Monmouth County|   858| 1386.566|  1.616|10,004| 16166.905| 48.700| 618,795|
 | |Morris County|   828| 1683.457|  0.000| 7,109| 14453.741| 20.256| 491,845|
+
+
+### Massachusetts ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MA|6 counties| 5,593| 1358.213| N/A|77,852| 18905.698| N/A|4,117,912|
 | |Essex County| 1,175| 1489.163|  2.846|17,119| 21696.150| 54.497| 789,034|
 | |Suffolk County| 1,054| 1311.097|  0.000|21,030| 26159.742| 45.668| 803,907|
@@ -51,37 +101,93 @@ The next 25.29% of this group's deaths (20.38% of the total US deaths) occured i
 | |Norfolk County|   979| 1385.165|  1.132|10,103| 14294.507| 48.813| 706,775|
 | |Plymouth County|   707| 1356.480|  1.124| 9,043| 17350.279| 25.590| 521,202|
 | |Hampden County|   692| 1483.794|  0.000| 7,353| 15766.384| 28.947| 466,372|
+
+
+### Connecticut ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CT|3 counties| 3,918| 1456.609| N/A|43,360| 16120.104| N/A|2,689,809|
 | |Hartford County| 1,411| 1582.335|  0.000|12,561| 14086.260| 78.242| 891,720|
 | |Fairfield County| 1,406| 1490.461|  1.622|17,786| 18854.444| 136.452| 943,332|
 | |New Haven County| 1,101| 1288.085|  1.353|13,013| 15224.210| 28.023| 854,757|
+
+
+### New York ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|3 counties| 3,019| 650.599| N/A|52,679| 11354.258| N/A|4,639,571|
 | |Westchester County| 1,445| 1493.531|  1.095|35,913| 37119.150| 40.310| 967,506|
 | |Bronx County|   832| 586.983|  1.646| 8,843|  6235.506| 55.909|1,418,207|
 | |Queens County|   741| 328.786|  0.922| 7,923|  3515.150| 31.518|2,253,858|
+
+
+### Maryland ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MD|3 counties| 2,474| 887.570| N/A|62,199| 22314.463| N/A|2,787,385|
 | |Baltimore County|   951| 1149.425|  8.632|22,619| 27338.434| 403.648| 827,370|
 | |Montgomery County|   789| 750.937|  0.952|17,397| 16557.722| 79.881|1,050,688|
 | |Prince George's County|   734| 807.190|  1.567|22,183| 24394.965| 163.732| 909,327|
+
+
+### Michigan ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MI|2 counties| 2,062| 967.368| N/A|23,808| 11169.305| N/A|2,131,556|
 | |Oakland County| 1,126| 895.368|  0.000|14,494| 11525.274| 101.890|1,257,584|
 | |Macomb County|   936| 1070.973|  0.000| 9,314| 10657.092| 137.823| 873,972|
+
+
+### Pennsylvania ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |PA|2 counties| 1,531| 1095.401| N/A|18,333| 13116.905| N/A|1,397,662|
 | |Montgomery County|   847| 1019.358|  1.203| 9,723| 11701.558| 64.562| 830,915|
 | |Delaware County|   684| 1206.888|  1.240| 8,610| 15191.964| 140.035| 566,747|
+
+
+### Florida ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|2 counties| 1,482| 429.622| N/A|87,008| 25223.015| N/A|3,449,548|
 | |Palm Beach County|   806| 538.493|  9.094|32,696| 21844.372| 376.946|1,496,770|
 | |Broward County|   676| 346.174| 11.778|54,312| 27812.685| 679.801|1,952,778|
+
+
+### Missouri ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MO|1 counties|   817| 821.762| N/A|16,959| 17057.850| N/A| 994,205|
 | |St. Louis County|   817| 821.762|  4.383|16,959| 17057.850| 623.111| 994,205|
+
+
+### Minnesota ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MN|1 counties|   810| 639.890| N/A|17,092| 13502.464| N/A|1,265,843|
 | |Hennepin County|   810| 639.890|  0.796|17,092| 13502.464| 155.585|1,265,843|
+
+
+### Indiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IN|1 counties|   717| 743.327| N/A|14,270| 14793.973| N/A| 964,582|
 | |Marion County|   717| 743.327|  1.738|14,270| 14793.973| 160.010| 964,582|
+
+
+### Texas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TX|1 counties|   707| 150.000| N/A|70,847| 15031.215| N/A|4,713,325|
 | |Harris County|   707| 150.000|  3.751|70,847| 15031.215| 335.109|4,713,325|
+
+
+### California ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CA|1 counties|   688| 278.481| N/A|36,629| 14826.277| N/A|2,470,546|
 | |Riverside County|   688| 278.481|  3.441|36,629| 14826.277| 291.838|2,470,546|
+
 
 
 The next 25.42% of this group's deaths (20.49% of the total US deaths) occured in 82 counties in 30 states with a combined population of 69,738,535 (21.25% of the total US population)
@@ -94,6 +200,8 @@ There were 2152 smaller population counties with a combined population of 39,577
 
 24.87% of this group's deaths (1.45% of the total US deaths) occured in 53 counties in 16 states with a combined population of 1,702,842 (0.52% of the total US population):
 
+
+### Louisiana ###
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |LA|10 counties|   433| 1469.465| N/A| 8,225| 27913.054| N/A| 294,665|
@@ -107,6 +215,11 @@ There were 2152 smaller population counties with a combined population of 39,577
 | |Union Parish|    32| 1447.440|  0.000|   573| 25918.220| 436.827|  22,108|
 | |St. James Parish|    30| 1422.071|  0.000|   611| 28962.837| 284.414|  21,096|
 | |Bienville Parish|    29| 2190.167|  0.000|   348| 26282.003| 204.329|  13,241|
+
+
+### Georgia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |GA|11 counties|   430| 1409.217| N/A| 7,153| 23442.160| N/A| 305,134|
 | |Sumter County|    56| 1896.762|  0.000|   713| 24149.844| 169.354|  29,524|
 | |Habersham County|    47| 1036.887|  0.000| 1,002| 22105.542| 450.401|  45,328|
@@ -119,6 +232,11 @@ There were 2152 smaller population counties with a combined population of 39,577
 | |Tift County|    34| 836.532|  0.000| 1,208| 29721.484| 373.711|  40,644|
 | |Early County|    31| 3042.198|  0.000|   339| 33267.910| 246.493|  10,190|
 | |Terrell County|    29| 3399.367|  0.000|   288| 33759.231| 351.659|   8,531|
+
+
+### Mississippi ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MS|9 counties|   394| 1282.853| N/A| 8,237| 26819.437| N/A| 307,128|
 | |Neshoba County|    85| 2919.157| 68.686| 1,167| 40078.302| 171.940|  29,118|
 | |Leflore County|    59| 2093.461| 37.605|   791| 28066.565| 422.947|  28,183|
@@ -129,46 +247,114 @@ There were 2152 smaller population counties with a combined population of 39,577
 | |Pike County|    30| 763.592|  0.000|   803| 20438.811| 642.610|  39,288|
 | |Bolivar County|    29| 946.846| 97.950|   889| 29025.728| 1257.020|  30,628|
 | |Washington County|    28| 637.682| 32.294| 1,389| 31633.606| 931.727|  43,909|
+
+
+### Alabama ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AL|3 counties|   151| 1622.452| N/A| 2,314| 24863.273| N/A|  93,069|
 | |Tallapoosa County|    78| 1932.271|  0.000|   781| 19347.487| 118.742|  40,367|
 | |Chambers County|    38| 1142.720|  0.000|   800| 24057.256| 174.507|  33,254|
 | |Butler County|    35| 1799.671|  0.000|   733| 37690.251| 266.712|  19,448|
+
+
+### Virginia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VA|3 counties|   113| 1357.749| N/A| 4,142| 49768.101| N/A|  83,226|
 | |Richmond County|    42| 4654.771| 65.967| 3,174| 351767.705| 3551.764|   9,023|
 | |Shenandoah County|    40| 917.095|  0.000|   665| 15246.698| 34.391|  43,616|
 | |Mecklenburg County|    31| 1013.502|  0.000|   303|  9906.169| 93.210|  30,587|
+
+
+### Iowa ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IA|3 counties|   107| 1132.431| N/A| 2,148| 22733.286| N/A|  94,487|
 | |Muscatine County|    47| 1101.631|  0.000|   795| 18633.977| 189.978|  42,664|
 | |Wapello County|    31| 886.499|  0.000|   821| 23477.938| 209.752|  34,969|
 | |Tama County|    29| 1720.660|  0.000|   532| 31565.207| 227.769|  16,854|
+
+
+### Indiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IN|3 counties|    94| 884.914| N/A| 1,148| 10807.249| N/A| 106,225|
 | |Greene County|    34| 1065.096|  0.000|   231|  7236.389| 92.912|  31,922|
 | |Decatur County|    32| 1204.865|  0.000|   304| 11446.214| 357.694|  26,559|
 | |Noble County|    28| 586.461|  0.000|   613| 12839.310| 80.187|  47,744|
+
+
+### South Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SC|2 counties|    81| 1134.104| N/A| 1,467| 20539.890| N/A|  71,422|
 | |Clarendon County|    50| 1481.701| 29.634|   740| 21929.175| 563.135|  33,745|
 | |Colleton County|    31| 822.783| 11.040|   727| 19295.591| 597.181|  37,677|
+
+
+### Florida ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|2 counties|    67| 775.113| N/A| 2,700| 31235.900| N/A|  86,439|
 | |Hendry County|    35| 832.897| 23.797| 1,618| 38503.641| 285.565|  42,022|
 | |Suwannee County|    32| 720.445|  0.000| 1,082| 24360.042| 466.467|  44,417|
+
+
+### New York ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|1 counties|    54| 1338.224| N/A|   291|  7211.538| N/A|  40,352|
 | |Orleans County|    54| 1338.224|  0.000|   291|  7211.538| 11.650|  40,352|
+
+
+### Arizona ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AZ|1 counties|    50| 1075.315| N/A| 2,577| 55421.739| N/A|  46,498|
 | |Santa Cruz County|    50| 1075.315|  8.910| 2,577| 55421.739| 442.954|  46,498|
+
+
+### Colorado ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CO|1 counties|    46| 1582.496| N/A|   673| 23152.608| N/A|  29,068|
 | |Morgan County|    46| 1582.496|  0.000|   673| 23152.608|  0.000|  29,068|
+
+
+### Nebraska ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NE|1 counties|    41| 2047.338| N/A| 1,896| 94676.920| N/A|  20,026|
 | |Dakota County|    41| 2047.338| 99.870| 1,896| 94676.920| 149.805|  20,026|
+
+
+### North Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NC|1 counties|    40| 898.170| N/A|   710| 15942.517| N/A|  44,535|
 | |Vance County|    40| 898.170|  0.000|   710| 15942.517| 145.685|  44,535|
+
+
+### Texas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TX|1 counties|    37| 1031.158| N/A|   452| 12596.845| N/A|  35,882|
 | |Washington County|    37| 1031.158|  9.056|   452| 12596.845| 61.438|  35,882|
+
+
+### Kentucky ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KY|1 counties|    33| 738.486| N/A|   390|  8727.566| N/A|  44,686|
 | |Hopkins County|    33| 738.486|  0.000|   390|  8727.566| 116.292|  44,686|
 
 
+
 The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in 104 counties in 26 states with a combined population of 3,206,698 (0.98% of the total US population):
 
+
+### Mississippi ###
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MS|14 counties|   294| 861.708| N/A| 9,310| 27287.409| N/A| 341,183|
@@ -186,6 +372,11 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Scott County|    17| 604.466|  5.578|   944| 33565.638| 142.563|  28,124|
 | |Simpson County|    17| 637.707| 43.817|   685| 25695.851| 804.347|  26,658|
 | |Walthall County|    17| 1189.976| 58.260|   420| 29399.412| 551.580|  14,286|
+
+
+### Georgia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |GA|11 counties|   235| 915.762| N/A| 6,282| 24480.062| N/A| 256,617|
 | |Randolph County|    26| 3835.940|  0.000|   246| 36293.892| 616.407|   6,778|
 | |Coffee County|    24| 554.618| 23.109| 1,281| 29602.755| 538.345|  43,273|
@@ -198,6 +389,11 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Turner County|    18| 2254.227|  0.000|   216| 27050.720| 250.470|   7,985|
 | |Wilcox County|    18| 2084.540|  0.000|   155| 17950.203| 116.542|   8,635|
 | |Putnam County|    17| 768.570|  0.000|   355| 16049.550| 587.730|  22,119|
+
+
+### Louisiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |LA|11 counties|   231| 632.865| N/A| 7,756| 21248.908| N/A| 365,007|
 | |Avoyelles Parish|    26| 647.668| 20.412|   895| 22294.739| 548.027|  40,144|
 | |Jefferson Davis Parish|    24| 765.111| 18.377|   934| 29775.567| 288.204|  31,368|
@@ -210,6 +406,11 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Jackson Parish|    18| 1143.293|  0.000|   347| 22040.142| 148.205|  15,744|
 | |Plaquemines Parish|    18| 775.962|  0.000|   419| 18062.681| 86.218|  23,197|
 | |Natchitoches Parish|    16| 419.309| 12.319|   654| 17139.263| 461.587|  38,158|
+
+
+### Indiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IN|9 counties|   205| 560.665| N/A| 3,303|  9033.550| N/A| 365,637|
 | |Lawrence County|    27| 595.107|  0.000|   311|  6854.750| 101.177|  45,370|
 | |Dearborn County|    27| 545.918|  0.000|   441|  8916.657| 202.192|  49,458|
@@ -220,6 +421,11 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Marshall County|    21| 453.976| 12.435|   722| 15608.111| 129.707|  46,258|
 | |Daviess County|    19| 569.698|  0.000|   224|  6716.440| 183.154|  33,351|
 | |Henry County|    18| 375.219|  0.000|   354|  7379.305| 76.891|  47,972|
+
+
+### Texas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TX|10 counties|   190| 590.895| N/A| 7,461| 23203.523| N/A| 321,546|
 | |Val Verde County|    22| 448.751|  0.000| 1,396| 28475.268| 635.567|  49,025|
 | |Caldwell County|    22| 503.848| 29.349| 1,056| 24184.683| 148.864|  43,664|
@@ -231,6 +437,11 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Panola County|    17| 732.948|  0.000|   267| 11511.598| 141.136|  23,194|
 | |Deaf Smith County|    17| 916.640| 28.573|   565| 30464.790| 1119.445|  18,546|
 | |Shelby County|    16| 633.062|  0.000|   371| 14679.117| 271.396|  25,274|
+
+
+### Alabama ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AL|8 counties|   171| 772.735| N/A| 5,621| 25400.828| N/A| 221,292|
 | |Hale County|    25| 1706.368| 64.171|   438| 29895.570| 222.544|  14,651|
 | |Marion County|    24| 807.836|  0.000|   510| 17166.515| 336.174|  29,709|
@@ -240,67 +451,168 @@ The next 25.01% of this group's deaths (1.46% of the total US deaths) occured in
 | |Franklin County|    20| 637.714|  0.000| 1,144| 36477.265| 223.200|  31,362|
 | |Dale County|    18| 366.062| 20.337|   738| 15008.541| 250.459|  49,172|
 | |Sumter County|    17| 1367.989| 67.846|   352| 28325.420| 120.705|  12,427|
+
+
+### South Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SC|5 counties|   114| 782.580| N/A| 3,046| 20909.990| N/A| 145,672|
 | |Lee County|    26| 1545.044| 31.490|   485| 28821.013| 356.549|  16,828|
 | |Williamsburg County|    23| 757.376| 98.788|   848| 27924.131| 888.485|  30,368|
 | |Dillon County|    23| 754.618|  0.000|   536| 17585.879| 327.086|  30,479|
 | |Fairfield County|    23| 1029.221|  0.000|   517| 23135.096| 402.739|  22,347|
 | |Chesterfield County|    19| 416.210|  0.000|   660| 14457.831| 230.613|  45,650|
+
+
+### Virginia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VA|5 counties|   110| 1095.465| N/A| 2,725| 27137.650| N/A| 100,414|
 | |Northampton County|    28| 2391.119|  0.000|   292| 24935.952| 85.397|  11,710|
 | |Page County|    24| 1004.100|  0.000|   331| 13848.214| 24.118|  23,902|
 | |Colonial Heights city|    21| 1208.981| 57.571|   177| 10189.983| 67.746|  17,370|
 | |Manassas city|    20| 486.796|  0.000| 1,596| 38846.294| 159.282|  41,085|
 | |Galax city|    17| 2678.431| 67.301|   329| 51835.513| 241.045|   6,347|
+
+
+### Kentucky ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KY|4 counties|    85| 641.055| N/A| 1,653| 12466.627| N/A| 132,594|
 | |Shelby County|    22| 448.760|  0.000|   688| 14033.943| 203.982|  49,024|
 | |Graves County|    22| 590.350|  0.000|   471| 12638.867| 306.496|  37,266|
 | |Logan County|    22| 811.748| 17.365|   297| 10958.601| 75.309|  27,102|
 | |Adair County|    19| 989.480|  0.000|   197| 10259.348| 278.150|  19,202|
+
+
+### Iowa ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IA|4 counties|    82| 581.152| N/A| 2,509| 17781.841| N/A| 141,099|
 | |Jasper County|    24| 645.422|  4.219|   445| 11967.191| 53.785|  37,185|
 | |Marshall County|    24| 609.617| 11.941| 1,364| 34646.549| 152.404|  39,369|
 | |Mahaska County|    17| 769.405|  0.000|   133|  6019.461|  7.050|  22,095|
 | |Cerro Gordo County|    17| 400.471|  0.000|   567| 13356.890| 178.792|  42,450|
+
+
+### Ohio ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OH|3 counties|    59| 670.150| N/A|   605|  6871.876| N/A|  88,040|
 | |Ottawa County|    25| 616.903| 24.676|   335|  8266.502| 166.690|  40,525|
 | |Putnam County|    17| 502.053| 12.615|   181|  5345.383| 53.855|  33,861|
 | |Monroe County|    17| 1245.056|  0.000|    89|  6518.236|  0.000|  13,654|
+
+
+### Illinois ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IL|3 counties|    55| 598.483| N/A|   768|  8357.001| N/A|  91,899|
 | |Union County|    21| 1261.034|  0.000|   276| 16573.590| 90.074|  16,653|
 | |Jefferson County|    17| 451.120|  0.000|   171|  4537.735| 94.043|  37,684|
 | |Clinton County|    17| 452.585|  0.000|   321|  8545.871| 53.245|  37,562|
+
+
+### Florida ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|2 counties|    45| 488.737| N/A| 2,868| 31148.859| N/A|  92,074|
 | |Jackson County|    28| 603.266| 43.090| 1,553| 33459.732| 2431.663|  46,414|
 | |Gadsden County|    17| 372.317| 36.453| 1,315| 28799.825| 591.327|  45,660|
+
+
+### Oklahoma ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OK|2 counties|    44| 580.161| N/A| 1,199| 15809.391| N/A|  75,841|
 | |McCurtain County|    25| 761.452| 56.175|   814| 24792.885| 191.187|  32,832|
 | |Delaware County|    19| 441.768|  0.000|   385|  8951.615| 93.204|  43,009|
+
+
+### New York ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|2 counties|    42| 440.293| N/A|   471|  4937.573| N/A|  95,391|
 | |Tioga County|    24| 497.894|  0.000|   184|  3817.190| 26.810|  48,203|
 | |Greene County|    18| 381.453|  0.000|   287|  6082.055| 42.384|  47,188|
+
+
+### Pennsylvania ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |PA|1 counties|    26| 644.713| N/A|   208|  5157.707| N/A|  40,328|
 | |Susquehanna County|    26| 644.713|  0.000|   208|  5157.707| 28.822|  40,328|
+
+
+### Michigan ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MI|1 counties|    25| 548.186| N/A|   244|  5350.291| N/A|  45,605|
 | |Hillsdale County|    25| 548.186|  0.000|   244|  5350.291| 108.734|  45,605|
+
+
+### Maryland ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MD|1 counties|    23| 1184.224| N/A|   229| 11790.753| N/A|  19,422|
 | |Kent County|    23| 1184.224|  0.000|   229| 11790.753| 128.720|  19,422|
+
+
+### Utah ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |UT|1 counties|    22| 1437.157| N/A|   606| 39587.144| N/A|  15,308|
 | |San Juan County|    22| 1437.157| 10.248|   606| 39587.144| 428.474|  15,308|
+
+
+### Idaho ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ID|1 counties|    19| 470.204| N/A|   129|  3192.437| N/A|  40,408|
 | |Nez Perce County|    19| 470.204|  0.000|   129|  3192.437| 123.738|  40,408|
+
+
+### West Virginia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WV|1 counties|    19| 664.894| N/A|   157|  5494.121| N/A|  28,576|
 | |Jackson County|    19| 664.894|  0.000|   157|  5494.121|  0.000|  28,576|
+
+
+### Colorado ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CO|1 counties|    19| 933.386| N/A|   281| 13804.284| N/A|  20,356|
 | |Chaffee County|    19| 933.386|  0.000|   281| 13804.284| 32.901|  20,356|
+
+
+### North Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NC|1 counties|    17| 426.878| N/A|   336|  8437.123| N/A|  39,824|
 | |Pasquotank County|    17| 426.878|  0.000|   336|  8437.123| 288.515|  39,824|
+
+
+### Arkansas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AR|1 counties|    17| 354.499| N/A| 1,135| 23668.022| N/A|  47,955|
 | |Crittenden County|    17| 354.499|  0.000| 1,135| 23668.022| 166.823|  47,955|
+
+
+### New Mexico ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NM|1 counties|    17| 637.301| N/A|   318| 11921.275| N/A|  26,675|
 | |Cibola County|    17| 637.301|  0.000|   318| 11921.275| 352.507|  26,675|
+
+
+### Washington ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WA|1 counties|    17| 354.647| N/A|   326|  6800.876| N/A|  47,935|
 | |Kittitas County|    17| 354.647| 33.045|   326|  6800.876| 58.840|  47,935|
+
 
 
 The next 25.07% of this group's deaths (1.46% of the total US deaths) occured in 214 counties in 33 states with a combined population of 5,255,460 (1.60% of the total US population)
@@ -309,6 +621,8 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 
 ## All US Counties ##
 
+
+### New Jersey ###
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NJ|21 counties|15,809| 1779.854| N/A|180,324| 20301.750| N/A|8,882,190|
@@ -333,6 +647,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Hunterdon County|   126| 1013.098|  0.000| 1,125|  9045.517|  8.130| 124,371|
 | |Cape May County|    86| 934.387|  0.000|   803|  8724.562| 16.021|  92,039|
 | |Salem County|    83| 1330.448|  5.029|   867| 13897.572| 39.944|  62,385|
+
+
+### New York ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|62 counties|12,368| 635.748| N/A|221,728| 11397.791| N/A|19,453,561|
 | |Nassau County| 2,194| 1616.892|  0.116|43,158| 31805.761| 35.597|1,356,924|
 | |Suffolk County| 1,996| 1351.753|  0.000|43,170| 29236.063| 47.720|1,476,601|
@@ -396,6 +715,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Schoharie County|     0|  0.000| N/A|    68|  2193.619| N/A|  30,999|
 | |Schuyler County|     0|  0.000| N/A|    20|  1123.154| N/A|  17,807|
 | |Tompkins County|     0|  0.000| N/A|   227|  2221.570| N/A| 102,180|
+
+
+### California ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CA|58 counties| 9,026| 228.436| N/A|492,934| 12475.481| N/A|39,512,223|
 | |Los Angeles County| 4,559| 454.124|  6.535|186,036| 18531.130| 368.260|10,039,107|
 | |Riverside County|   688| 278.481|  3.441|36,629| 14826.277| 291.838|2,470,546|
@@ -455,6 +779,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Del Norte County|     0|  0.000| N/A|    88|  3164.102| N/A|  27,812|
 | |Amador County|     0|  0.000| N/A|   110|  2767.156| N/A|  39,752|
 | |Alpine County|     0|  0.000| N/A|     2|  1771.479| N/A|   1,129|
+
+
+### Massachusetts ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MA|14 counties| 8,573| 1243.815| N/A|116,252| 16866.442| N/A|6,892,503|
 | |Middlesex County| 1,971| 1222.933|  2.813|25,535| 15843.529| 31.125|1,611,699|
 | |Essex County| 1,175| 1489.163|  2.846|17,119| 21696.150| 54.497| 789,034|
@@ -470,6 +799,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Berkshire County|    45| 360.161|  0.000|   648|  5186.323|  6.082| 124,944|
 | |Nantucket County|     0|  0.000| N/A|     0|     0.000| N/A|  11,399|
 | |Dukes County|     0|  0.000| N/A|     0|     0.000| N/A|  17,332|
+
+
+### Illinois ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IL|102 counties| 7,478| 590.128| N/A|176,841| 13955.453| N/A|12,671,821|
 | |Cook County| 4,872| 945.977|  1.705|104,687| 20326.653| 114.559|5,150,233|
 | |DuPage County|   509| 551.510|  0.000|11,177| 12110.462| 87.367| 922,921|
@@ -573,6 +907,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Johnson County|     0|  0.000| N/A|    51|  4107.272| N/A|  12,417|
 | |Henderson County|     0|  0.000| N/A|     9|  1354.198| N/A|   6,646|
 | |Hardin County|     0|  0.000| N/A|    16|  4187.386| N/A|   3,821|
+
+
+### Pennsylvania ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |PA|67 counties| 7,194| 561.944| N/A|115,807|  9046.016| N/A|12,801,989|
 | |Philadelphia County| 1,691| 1067.507| N/A|30,213| 19073.093| N/A|1,584,064|
 | |Montgomery County|   847| 1019.358|  1.203| 9,723| 11701.558| 64.562| 830,915|
@@ -641,6 +980,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Greene County|     0|  0.000| N/A|   105|  2897.911| N/A|  36,233|
 | |Forest County|     0|  0.000| N/A|     9|  1241.893| N/A|   7,247|
 | |Cameron County|     0|  0.000| N/A|     5|  1124.353| N/A|   4,447|
+
+
+### Florida ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|67 counties| 6,586| 306.643| N/A|460,820| 21455.706| N/A|21,477,737|
 | |Miami-Dade County| 1,515| 557.613| 15.241|115,916| 42664.174| 1038.038|2,716,940|
 | |Palm Beach County|   806| 538.493|  9.094|32,696| 21844.372| 376.946|1,496,770|
@@ -709,6 +1053,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Lafayette County|     1| 118.737| N/A|   100| 11873.664| N/A|   8,422|
 | |Gulf County|     1| 73.319| N/A|   301| 22069.067| N/A|  13,639|
 | |Franklin County|     1| 82.474| N/A|   105|  8659.794| N/A|  12,125|
+
+
+### Michigan ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MI|83 counties| 6,369| 637.738| N/A|85,356|  8546.833| N/A|9,986,857|
 | |Wayne County| 2,798| 1599.458|  2.577|26,924| 15390.921| 97.179|1,749,343|
 | |Oakland County| 1,126| 895.368|  0.000|14,494| 11525.274| 101.890|1,257,584|
@@ -793,6 +1142,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Leelanau County|     0|  0.000| N/A|    62|  2849.134| N/A|  21,761|
 | |Lake County|     0|  0.000| N/A|    16|  1349.869| N/A|  11,853|
 | |Keweenaw County|     0|  0.000| N/A|     3|  1417.769| N/A|   2,116|
+
+
+### Texas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TX|254 counties| 6,274| 216.376| N/A|428,229| 14768.615| N/A|28,995,881|
 | |Harris County|   707| 150.000|  3.751|70,847| 15031.215| 335.109|4,713,325|
 | |Dallas County|   664| 251.943|  7.624|49,269| 18694.252| 299.372|2,635,516|
@@ -1048,6 +1402,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Delta County|     0|  0.000| N/A|    13|  2438.567| N/A|   5,331|
 | |Irion County|     0|  0.000| N/A|     8|  5208.333| N/A|   1,536|
 | |Jack County|     0|  0.000| N/A|    28|  3133.744| N/A|   8,935|
+
+
+### Connecticut ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CT|8 counties| 4,431| 1242.817| N/A|49,428| 13863.681| N/A|3,565,287|
 | |Hartford County| 1,411| 1582.335|  0.000|12,561| 14086.260| 78.242| 891,720|
 | |Fairfield County| 1,406| 1490.461|  1.622|17,786| 18854.444| 136.452| 943,332|
@@ -1057,6 +1416,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |New London County|   103| 388.377|  0.592| 1,396|  5263.833| 33.936| 265,206|
 | |Tolland County|    66| 437.895|  0.000| 1,011|  6707.758| 19.904| 150,721|
 | |Windham County|    15| 128.444|  0.000|   685|  5865.630| 51.378| 116,782|
+
+
+### Louisiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |LA|64 counties| 3,811| 819.783| N/A|114,471| 24623.806| N/A|4,648,794|
 | |Orleans Parish|   560| 1435.367|  7.973|10,204| 26154.446| 170.450| 390,144|
 | |Jefferson Parish|   513| 1186.146|  0.000|14,026| 32430.583| 282.691| 432,493|
@@ -1122,6 +1486,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |East Carroll Parish|     1| 145.751| N/A|   492| 71709.663| N/A|   6,861|
 | |Cameron Parish|     0|  0.000| N/A|   158| 22658.827| N/A|   6,973|
 | |Tensas Parish|     0|  0.000| N/A|    54| 12459.622| N/A|   4,334|
+
+
+### Arizona ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AZ|15 counties| 3,626| 498.165| N/A|170,798| 23465.399| N/A|7,278,717|
 | |Maricopa County| 2,011| 448.342| 14.380|114,852| 25605.663| 368.476|4,485,414|
 | |Pima County|   450| 429.685|  9.565|15,884| 15166.923| 295.050|1,047,279|
@@ -1138,6 +1507,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |La Paz County|    10| 473.754|  0.000|   468| 22171.688| 61.822|  21,108|
 | |Graham County|     8| 205.989| N/A|   435| 11200.659| N/A|  38,837|
 | |Greenlee County|     1| 105.285| N/A|    54|  5685.407| N/A|   9,498|
+
+
+### Georgia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |GA|159 counties| 3,589| 338.029| N/A|165,266| 15565.547| N/A|10,617,423|
 | |Fulton County|   383| 359.984|  4.147|17,286| 16247.203| 378.798|1,063,937|
 | |Cobb County|   297| 390.717|  3.289|10,920| 14365.756| 302.966| 760,141|
@@ -1298,6 +1672,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Glascock County|     0|  0.000| N/A|    21|  7068.327| N/A|   2,971|
 | |Crawford County|     0|  0.000| N/A|    87|  7013.866| N/A|  12,404|
 | |Berrien County|     0|  0.000| N/A|   252| 12991.700| N/A|  19,397|
+
+
+### Maryland ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MD|24 counties| 3,472| 574.294| N/A|87,177| 14419.718| N/A|6,045,680|
 | |Baltimore County|   951| 1149.425|  8.632|22,619| 27338.434| 403.648| 827,370|
 | |Montgomery County|   789| 750.937|  0.952|17,397| 16557.722| 79.881|1,050,688|
@@ -1323,6 +1702,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Caroline County|     3| 89.804| N/A|   418| 12512.722| N/A|  33,406|
 | |Baltimore city|     0|  0.000| N/A|     0|     0.000| N/A| 593,490|
 | |Garrett County|     0|  0.000| N/A|    45|  1550.975| N/A|  29,014|
+
+
+### Ohio ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OH|88 counties| 3,442| 294.462| N/A|89,626|  7667.485| N/A|11,689,100|
 | |Franklin County|   507| 385.037|  3.752|16,630| 12629.523| 209.788|1,316,756|
 | |Cuyahoga County|   465| 376.496|  4.858|12,212|  9887.683| 110.925|1,235,072|
@@ -1412,6 +1796,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Pike County|     0|  0.000| N/A|    61|  2196.457| N/A|  27,772|
 | |Paulding County|     0|  0.000| N/A|    57|  3052.699| N/A|  18,672|
 | |Morgan County|     0|  0.000| N/A|    17|  1171.767| N/A|  14,508|
+
+
+### Indiana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IN|92 counties| 2,746| 407.889| N/A|65,253|  9692.644| N/A|6,732,219|
 | |Marion County|   717| 743.327|  1.738|14,270| 14793.973| 160.010| 964,582|
 | |Lake County|   266| 547.897|  0.321| 6,878| 14167.043| 95.033| 485,493|
@@ -1505,6 +1894,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Knox County|     0|  0.000| N/A|   120|  3279.226| N/A|  36,594|
 | |Jay County|     0|  0.000| N/A|    77|  3767.861| N/A|  20,436|
 | |Crawford County|     0|  0.000| N/A|    40|  3781.791| N/A|  10,577|
+
+
+### Virginia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VA|133 counties| 2,141| 250.834| N/A|88,904| 10415.770| N/A|8,535,519|
 | |Fairfax County|   526| 458.375|  0.313|15,687| 13670.207| 44.767|1,147,532|
 | |Henrico County|   178| 538.060|  0.000| 3,509| 10607.041| 137.870| 330,818|
@@ -1639,6 +2033,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Bland County|     0|  0.000| N/A|     7|  1114.650| N/A|   6,280|
 | |Appomattox County|     0|  0.000| N/A|    67|  4210.923| N/A|  15,911|
 | |Bath County|     0|  0.000| N/A|     4|   964.553| N/A|   4,147|
+
+
+### North Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NC|100 counties| 1,922| 183.256| N/A|120,532| 11492.280| N/A|10,488,084|
 | |Mecklenburg County|   195| 175.619|  2.268|20,261| 18247.301| 241.799|1,110,356|
 | |Guilford County|   142| 264.346|  2.327| 5,042|  9386.158| 162.140| 537,174|
@@ -1740,6 +2139,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Clay County|     0|  0.000| N/A|    65|  5787.552| N/A|  11,231|
 | |Avery County|     0|  0.000| N/A|    82|  4670.502| N/A|  17,557|
 | |Alleghany County|     0|  0.000| N/A|    66|  5926.192| N/A|  11,137|
+
+
+### Colorado ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CO|64 counties| 1,822| 316.389| N/A|46,186|  8020.163| N/A|5,758,736|
 | |Denver County|   408| 561.048| N/A| 9,529| 13103.487| N/A| 727,211|
 | |Arapahoe County|   362| 551.333|  0.000| 6,798| 10353.493| 81.084| 656,590|
@@ -1805,6 +2209,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Mineral County|     0|  0.000| N/A|    18| 23407.022| N/A|     769|
 | |Lincoln County|     0|  0.000| N/A|     6|  1052.447| N/A|   5,701|
 | |Las Animas County|     0|  0.000| N/A|    15|  1034.055| N/A|  14,506|
+
+
+### South Carolina ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SC|46 counties| 1,667| 323.770| N/A|87,572| 17008.519| N/A|5,148,714|
 | |Greenville County|   175| 334.262|  9.626| 9,876| 18863.816| 245.185| 523,542|
 | |Charleston County|   158| 384.049| 17.757|11,260| 27369.557| 413.217| 411,406|
@@ -1852,6 +2261,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Allendale County|     3| 345.304| N/A|   172| 19797.422| N/A|   8,688|
 | |McCormick County|     2| 211.349| N/A|   100| 10567.473| N/A|   9,463|
 | |Union County|     2| 73.217| N/A|   307| 11238.834| N/A|  27,316|
+
+
+### Mississippi ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MS|82 counties| 1,611| 541.304| N/A|57,579| 19346.814| N/A|2,976,149|
 | |Hinds County|    97| 418.392| 14.668| 5,001| 21570.911| 555.417| 231,840|
 | |Lauderdale County|    88| 1187.184| 20.640| 1,281| 17281.619| 182.125|  74,125|
@@ -1935,6 +2349,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Quitman County|     1| 147.232| N/A|   204| 30035.336| N/A|   6,792|
 | |Issaquena County|     1| 753.580| N/A|    20| 15071.590| N/A|   1,327|
 | |Benton County|     0|  0.000| N/A|   115| 13924.204| N/A|   8,259|
+
+
+### Minnesota ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MN|87 counties| 1,594| 282.643| N/A|53,574|  9499.556| N/A|5,639,632|
 | |Hennepin County|   810| 639.890|  0.796|17,092| 13502.464| 155.585|1,265,843|
 | |Ramsey County|   258| 468.817|  3.084| 6,607| 12005.720| 173.535| 550,321|
@@ -2023,6 +2442,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Clearwater County|     0|  0.000| N/A|    14|  1587.662| N/A|   8,818|
 | |Carlton County|     0|  0.000| N/A|   120|  3345.321| N/A|  35,871|
 | |Big Stone County|     0|  0.000| N/A|    22|  4407.934| N/A|   4,991|
+
+
+### Washington ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WA|39 counties| 1,564| 205.387| N/A|55,617|  7303.714| N/A|7,614,893|
 | |King County|   649| 288.088|  0.391|15,025|  6669.531| 67.187|2,252,782|
 | |Yakima County|   204| 813.160|  7.972| 9,865| 39322.685| 215.816| 250,873|
@@ -2063,6 +2487,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Clallam County|     0|  0.000| N/A|    91|  1176.760| N/A|  77,331|
 | |Columbia County|     0|  0.000| N/A|    13|  3262.233| N/A|   3,985|
 | |Ferry County|     0|  0.000| N/A|    12|  1573.358| N/A|   7,627|
+
+
+### Alabama ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AL|67 counties| 1,516| 309.187| N/A|83,495| 17028.727| N/A|4,903,185|
 | |Jefferson County|   220| 334.056| 10.953|10,939| 16610.156| 273.571| 658,573|
 | |Mobile County|   181| 438.034|  4.488| 7,879| 19067.786| 464.655| 413,210|
@@ -2131,6 +2560,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Cleburne County|     1| 67.069| N/A|   110|  7377.599| N/A|  14,910|
 | |Lawrence County|     0|  0.000| N/A|   281|  8534.807| N/A|  32,924|
 | |Geneva County|     0|  0.000| N/A|   204|  7765.216| N/A|  26,271|
+
+
+### Missouri ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MO|115 counties| 1,206| 196.499| N/A|43,467|  7082.283| N/A|6,137,428|
 | |St. Louis County|   817| 821.762|  4.383|16,959| 17057.850| 623.111| 994,205|
 | |St. Charles County|    87| 216.406|  7.462| 3,288|  8178.657| 435.037| 402,022|
@@ -2247,6 +2681,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Wayne County|     0|  0.000| N/A|    24|  1864.367| N/A|  12,873|
 | |Worth County|     0|  0.000| N/A|     8|  3974.168| N/A|   2,013|
 | |Ray County|     0|  0.000| N/A|    79|  3432.097| N/A|  23,018|
+
+
+### Tennessee ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TN|95 counties| 1,017| 148.920| N/A|97,313| 14249.600| N/A|6,829,174|
 | |Shelby County|   275| 293.438|  3.145|20,082| 21428.434| 479.104| 937,166|
 | |Davidson County|   195| 280.922|  2.030|18,676| 26905.080| 236.461| 694,144|
@@ -2343,6 +2782,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Cannon County|     0|  0.000| N/A|   107|  7289.822| N/A|  14,678|
 | |Claiborne County|     0|  0.000| N/A|   195|  6101.568| N/A|  31,959|
 | |Clay County|     0|  0.000| N/A|    53|  6959.947| N/A|   7,615|
+
+
+### Wisconsin ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WI|72 counties|   919| 157.838| N/A|52,108|  8949.522| N/A|5,822,434|
 | |Milwaukee County|   433| 457.849|  2.372|19,069| 20163.345| 278.512| 945,726|
 | |Racine County|    75| 382.047|  5.151| 3,058| 15577.324| 184.808| 196,311|
@@ -2416,6 +2860,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Oconto County|     0|  0.000| N/A|   164|  4323.754| N/A|  37,930|
 | |Pierce County|     0|  0.000| N/A|   160|  3742.340| N/A|  42,754|
 | |Iowa County|     0|  0.000| N/A|    62|  2618.464| N/A|  23,678|
+
+
+### Iowa ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IA|99 counties|   865| 274.162| N/A|44,278| 14033.920| N/A|3,155,070|
 | |Polk County|   201| 410.069|  0.000| 9,388| 19152.891| 156.071| 490,161|
 | |Linn County|    87| 383.757|  0.000| 1,970|  8689.669| 191.375| 226,706|
@@ -2516,6 +2965,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Marion County|     0|  0.000| N/A|   142|  4270.291| N/A|  33,253|
 | |Lyon County|     0|  0.000| N/A|    98|  8336.878| N/A|  11,755|
 | |Kossuth County|     0|  0.000| N/A|    76|  5130.629| N/A|  14,813|
+
+
+### Nevada ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NV|17 counties|   794| 257.779| N/A|46,522| 15103.780| N/A|3,080,156|
 | |Clark County|   664| 292.935|  8.382|40,193| 17731.828| 394.884|2,266,715|
 | |Washoe County|   111| 235.409|  3.335| 4,965| 10529.798| 138.651| 471,519|
@@ -2534,6 +2988,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Storey County|     0|  0.000| N/A|     4|   970.167| N/A|   4,123|
 | |Pershing County|     0|  0.000| N/A|    13|  1933.086| N/A|   6,725|
 | |Mineral County|     0|  0.000| N/A|    11|  2441.731| N/A|   4,505|
+
+
+### Kentucky ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KY|120 counties|   731| 163.620| N/A|29,385|  6577.249| N/A|4,467,673|
 | |Jefferson County|   231| 301.269|  1.242| 6,687|  8721.146| 156.311| 766,757|
 | |Fayette County|    45| 139.253|  0.481| 2,604|  8058.127| 150.092| 323,152|
@@ -2655,6 +3114,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Cumberland County|     0|  0.000| N/A|    32|  4838.222| N/A|   6,614|
 | |Elliott County|     0|  0.000| N/A|     7|   931.223| N/A|   7,517|
 | |Estill County|     0|  0.000| N/A|    11|   779.810| N/A|  14,106|
+
+
+### New Mexico ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NM|33 counties|   635| 302.838| N/A|19,137|  9126.638| N/A|2,096,829|
 | |McKinley County|   219| 3068.645| 19.811| 3,977| 55726.036| 182.157|  71,367|
 | |San Juan County|   179| 1444.037|  4.275| 2,986| 24088.804| 161.277| 123,958|
@@ -2689,12 +3153,27 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Hidalgo County|     0|  0.000| N/A|    85| 20247.737| N/A|   4,198|
 | |De Baca County|     0|  0.000| N/A|     0|     0.000| N/A|   1,748|
 | |Guadalupe County|     0|  0.000| N/A|    31|  7209.302| N/A|   4,300|
+
+
+### District of Columbia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |DC|1 counties|   584| 827.490| N/A|12,057| 17083.977| N/A| 705,749|
 | |District of Columbia|   584| 827.490|  1.417|12,057| 17083.977| 92.483| 705,749|
+
+
+### Delaware ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |DE|3 counties|   571| 586.384| N/A|14,477| 14867.052| N/A| 973,764|
 | |New Castle County|   285| 510.064|  0.281| 6,743| 12067.944| 109.172| 558,753|
 | |Sussex County|   191| 815.455|  0.000| 5,583| 23836.055| 59.866| 234,225|
 | |Kent County|    95| 525.483|  0.000| 2,151| 11898.045| 48.020| 180,786|
+
+
+### Oklahoma ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OK|77 counties|   536| 135.457| N/A|35,710|  9024.580| N/A|3,956,971|
 | |Tulsa County|    98| 150.410|  3.881| 8,636| 13254.506| 406.721| 651,552|
 | |Oklahoma County|    96| 120.386|  2.508| 8,669| 10871.119| 261.031| 797,434|
@@ -2773,6 +3252,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Johnston County|     0|  0.000| N/A|    37|  3337.844| N/A|  11,085|
 | |Jefferson County|     0|  0.000| N/A|    27|  4498.500| N/A|   6,002|
 | |Haskell County|     0|  0.000| N/A|    32|  2534.252| N/A|  12,627|
+
+
+### Arkansas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AR|75 counties|   442| 146.464| N/A|40,175| 13312.660| N/A|3,017,804|
 | |Pulaski County|    76| 193.922|  2.552| 4,654| 11875.145| 196.642| 391,911|
 | |Washington County|    43| 179.776|  1.965| 5,855| 24478.755| 161.988| 239,187|
@@ -2849,6 +3333,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Searcy County|     0|  0.000| N/A|    25|  3172.186| N/A|   7,881|
 | |Scott County|     0|  0.000| N/A|    35|  3404.338| N/A|  10,281|
 | |Prairie County|     0|  0.000| N/A|    57|  7070.206| N/A|   8,062|
+
+
+### New Hampshire ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NH|10 counties|   415| 305.212| N/A| 6,541|  4810.581| N/A|1,359,711|
 | |Hillsborough County|   277| 664.229|  4.925| 3,717|  8913.135| 29.974| 417,025|
 | |Rockingham County|    95| 306.680|  1.468| 1,613|  5207.106| 21.296| 309,769|
@@ -2860,6 +3349,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Sullivan County|     1| 23.177| N/A|    38|   880.731| N/A|  43,146|
 | |Carroll County|     1| 20.446| N/A|    86|  1758.332| N/A|  48,910|
 | |Coos County|     0|  0.000| N/A|    16|   506.923| N/A|  31,563|
+
+
+### Kansas ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KS|105 counties|   356| 122.198| N/A|26,885|  9228.322| N/A|2,913,314|
 | |Johnson County|    98| 162.682|  1.929| 4,781|  7936.574| 158.525| 602,401|
 | |Wyandotte County|    95| 574.264|  7.611| 4,325| 26144.146| 389.176| 165,429|
@@ -2966,6 +3460,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Doniphan County|     0|  0.000| N/A|    44|  5789.474| N/A|   7,600|
 | |Decatur County|     0|  0.000| N/A|     5|  1768.659| N/A|   2,827|
 | |Comanche County|     0|  0.000| N/A|     3|  1764.706| N/A|   1,700|
+
+
+### Nebraska ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NE|93 counties|   328| 169.561| N/A|25,617| 13242.811| N/A|1,934,408|
 | |Douglas County|   127| 222.290|  2.967|10,050| 17590.627| 203.752| 571,327|
 | |Hall County|    46| 749.760|  0.000| 1,701| 27724.806| 102.217|  61,353|
@@ -3060,6 +3559,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Grant County|     0|  0.000| N/A|     0|     0.000| N/A|     623|
 | |Gosper County|     0|  0.000| N/A|    15|  7537.688| N/A|   1,990|
 | |Arthur County|     0|  0.000| N/A|     0|     0.000| N/A|     463|
+
+
+### Oregon ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OR|36 counties|   316| 74.922| N/A|18,131|  4298.751| N/A|4,217,737|
 | |Multnomah County|    90| 110.721|  3.528| 4,260|  5240.787| 89.192| 812,855|
 | |Marion County|    67| 192.629|  0.871| 2,533|  7282.544| 88.132| 347,818|
@@ -3097,6 +3601,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Gilliam County|     0|  0.000| N/A|     3|  1569.038| N/A|   1,912|
 | |Baker County|     0|  0.000| N/A|    25|  1550.484| N/A|  16,124|
 | |Columbia County|     0|  0.000| N/A|    73|  1394.354| N/A|  52,354|
+
+
+### Utah ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |UT|29 counties|   244| 76.108| N/A|31,596|  9855.400| N/A|3,205,958|
 | |Salt Lake County|   171| 147.358|  3.536|18,817| 16215.443| 161.826|1,160,437|
 | |Utah County|    33| 51.868|  1.572| 7,584| 11920.124| 139.368| 636,235|
@@ -3127,6 +3636,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Wayne County|     0|  0.000| N/A|     0|     0.000| N/A|   2,711|
 | |Weber County|     0|  0.000| N/A|     0|     0.000| N/A| 260,213|
 | |Uintah County|     0|  0.000| N/A|     0|     0.000| N/A|  35,734|
+
+
+### Idaho ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ID|44 counties|   177| 99.045| N/A|20,242| 11326.952| N/A|1,787,065|
 | |Ada County|    55| 114.206|  4.153| 7,681| 15949.351| 316.399| 481,587|
 | |Canyon County|    34| 147.923|  5.074| 4,595| 19991.386| 537.963| 229,849|
@@ -3172,6 +3686,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Bear Lake County|     0|  0.000| N/A|     6|   979.592| N/A|   6,125|
 | |Adams County|     0|  0.000| N/A|    18|  4191.896| N/A|   4,294|
 | |Latah County|     0|  0.000| N/A|    74|  1845.018| N/A|  40,108|
+
+
+### South Dakota ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SD|66 counties|   129| 145.819| N/A| 8,685|  9817.342| N/A| 884,659|
 | |Minnehaha County|    63| 326.198|  2.434| 4,133| 21399.650| 181.667| 193,134|
 | |Pennington County|    26| 228.521|  0.000|   804|  7066.579| 64.440| 113,775|
@@ -3239,6 +3758,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Walworth County|     0|  0.000| N/A|    18|  3311.868| N/A|   5,435|
 | |Ziebach County|     0|  0.000| N/A|     8|  2902.758| N/A|   2,756|
 | |Turner County|     0|  0.000| N/A|    42|  5009.542| N/A|   8,384|
+
+
+### Maine ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ME|16 counties|   122| 90.759| N/A| 3,887|  2891.657| N/A|1,344,212|
 | |Cumberland County|    68| 230.506|  0.000| 2,032|  6888.066| 19.773| 295,003|
 | |Waldo County|    14| 352.512|  0.000|    62|  1561.123|  0.000|  39,715|
@@ -3256,6 +3780,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Oxford County|     0|  0.000| N/A|    51|   879.690| N/A|  57,975|
 | |Sagadahoc County|     0|  0.000| N/A|    45|  1255.020| N/A|  35,856|
 | |Washington County|     0|  0.000| N/A|     7|   223.079| N/A|  31,379|
+
+
+### West Virginia ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WV|55 counties|   112| 62.495| N/A| 6,375|  3557.186| N/A|1,792,147|
 | |Kanawha County|    20| 112.281|  0.000|   747|  4193.708| 99.447| 178,124|
 | |Jackson County|    19| 664.894|  0.000|   157|  5494.121|  0.000|  28,576|
@@ -3312,6 +3841,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Monroe County|     0|  0.000| N/A|    19|  1431.262| N/A|  13,275|
 | |Hancock County|     0|  0.000| N/A|    92|  3193.336| N/A|  28,810|
 | |Hardy County|     0|  0.000| N/A|    54|  3919.861| N/A|  13,776|
+
+
+### North Dakota ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ND|53 counties|   103| 135.160| N/A| 6,291|  8255.234| N/A| 762,062|
 | |Cass County|    76| 417.759|  0.000| 2,872| 15786.899| 85.201| 181,923|
 | |Burleigh County|     4| 41.830| N/A|   877|  9171.146| N/A|  95,626|
@@ -3366,6 +3900,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Sargent County|     0|  0.000| N/A|     9|  2308.876| N/A|   3,898|
 | |Rolette County|     0|  0.000| N/A|    22|  1551.919| N/A|  14,176|
 | |Richland County|     0|  0.000| N/A|    82|  5068.925| N/A|  16,177|
+
+
+### Vermont ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VT|14 counties|    57| 91.348| N/A| 1,400|  2243.629| N/A| 623,989|
 | |Chittenden County|    39| 238.133|  0.000|   715|  4365.772|  1.904| 163,774|
 | |Franklin County|     6| 121.453| N/A|   115|  2327.841| N/A|  49,402|
@@ -3381,6 +3920,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Grand Isle County|     0|  0.000| N/A|    13|  1796.821| N/A|   7,235|
 | |Orange County|     0|  0.000| N/A|    15|   519.175| N/A|  28,892|
 | |Orleans County|     0|  0.000| N/A|    14|   517.809| N/A|  27,037|
+
+
+### Montana ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MT|56 counties|    55| 51.461| N/A| 3,814|  3568.561| N/A|1,068,778|
 | |Yellowstone County|    25| 154.991|  6.269|   983|  6094.234| 105.394| 161,300|
 | |Toole County|     6| 1266.892| N/A|    31|  6545.608| N/A|   4,736|
@@ -3438,12 +3982,22 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Hill County|     0|  0.000| N/A|    43|  2608.590| N/A|  16,484|
 | |Granite County|     0|  0.000| N/A|     6|  1775.673| N/A|   3,379|
 | |Golden Valley County|     0|  0.000| N/A|     3|  3654.080| N/A|     821|
+
+
+### Hawaii ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |HI|5 counties|    25| 17.657| N/A| 1,966|  1388.544| N/A|1,415,872|
 | |Honolulu County|    19| 19.496| N/A| 1,637|  1679.727| N/A| 974,563|
 | |Maui County|     6| 35.839| N/A|   167|   997.509| N/A| 167,417|
 | |Kauai County|     0|  0.000| N/A|    47|   650.132| N/A|  72,293|
 | |Kalawao County|     0|  0.000| N/A|     0|     0.000| N/A|      86|
 | |Hawaii County|     0|  0.000| N/A|   115|   570.683| N/A| 201,513|
+
+
+### Wyoming ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WY|23 counties|     1|  1.728| N/A| 2,686|  4640.965| N/A| 578,759|
 | |Johnson County|     1| 118.413| N/A|    22|  2605.092| N/A|   8,445|
 | |Big Horn County|     0|  0.000| N/A|    35|  2968.617| N/A|  11,790|
@@ -3468,6 +4022,11 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Albany County|     0|  0.000| N/A|    83|  2134.774| N/A|  38,880|
 | |Platte County|     0|  0.000| N/A|     5|   595.735| N/A|   8,393|
 | |Weston County|     0|  0.000| N/A|     5|   721.813| N/A|   6,927|
+
+
+### Alaska ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AK|29 counties|     0|  0.000| N/A|     0|     0.000| N/A| 731,545|
 | |Petersburg Borough|     0|  0.000| N/A|     0|     0.000| N/A|   3,266|
 | |Yukon-Koyukuk Census Area|     0|  0.000| N/A|     0|     0.000| N/A|   5,230|
@@ -3498,10 +4057,16 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 | |Aleutians East Borough|     0|  0.000| N/A|     0|     0.000| N/A|   3,337|
 | |Nome Census Area|     0|  0.000| N/A|     0|     0.000| N/A|  10,004|
 | |North Slope Borough|     0|  0.000| N/A|     0|     0.000| N/A|   9,832|
+
+
+### Rhode Island ###
+|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
+|:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |RI|5 counties|     0|  0.000| N/A|17,244| 16277.737| N/A|1,059,361|
 | |Providence County|     0|  0.000| N/A|14,549| 22770.847| N/A| 638,931|
 | |Newport County|     0|  0.000| N/A|   380|  4629.517| N/A|  82,082|
 | |Kent County|     0|  0.000| N/A| 1,421|  8649.234| N/A| 164,292|
 | |Bristol County|     0|  0.000| N/A|   304|  6270.756| N/A|  48,479|
 | |Washington County|     0|  0.000| N/A|   590|  4698.313| N/A| 125,577|
+
 

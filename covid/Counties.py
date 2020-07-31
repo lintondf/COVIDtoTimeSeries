@@ -237,12 +237,12 @@ def loadCountyData( data, fipsTable : dict, nyc : dict):
     return cdead 
         
     
-def main(dataPath : str):
-    fipsTable = loadFIPSTable(dataPath)
-    countyPopulation = loadCountyPopulation(dataPath, fipsTable)
-    countyDeaths = loadCountyDeaths(dataPath, fipsTable)
-    return countyPopulation, countyDeaths, fipsTable
-#     print(countyPopulation)
+# def main(dataPath : str):
+#     fipsTable = loadFIPSTable(dataPath)
+#     countyPopulation = loadCountyPopulation(dataPath, fipsTable)
+#     countyDeaths = loadCountyDeaths(dataPath, fipsTable)
+#     return countyPopulation, countyDeaths, fipsTable
+# #     print(countyPopulation)
 
 def colorTupleToString(t):
         r = min(255, int(255.0 * t[0]))
@@ -474,11 +474,15 @@ class Counties(Group):
                 self.population += s.population
     
         def tableSubset(self):
-            lines = self.counties.getTableHeader()
+            lines = []
             for state in self.whichStates:
+                lines.append('\n### %s ###\n' % state.which)
+                for line in self.counties.getTableHeader():
+                    lines.append(line)
                 lines.append( state.toTableRow() )
                 for county in state.counties:
                     lines.append( county.toTableRow() )
+                lines.append('\n')
             txt = ''
             for line in lines:
                 txt += line
