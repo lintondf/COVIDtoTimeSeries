@@ -564,6 +564,7 @@ def main():
     fields.update({'largerCounties': largerTxt}) 
     fields.update({'smallerCounties': smallerTxt}) 
     fields.update({'allCountiesTable': allCounties.tableSubset()}) 
+    fields.update({'TOC': statesTable()})
      
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
     print(template.render(fields), file=out)
@@ -576,6 +577,20 @@ def main():
 #     print('Smaller Counties')
 #     counties.update( hc, h, deathTrend, casesTrend, include=lambda pop: pop<50000 )
 #     counties.printSubsets()
+    
+    
+def statesTable():
+    txt = "|:--|:--|--:|--:|--:|--:|--:|--:|--:|\n"
+    i = 0
+    
+    for state in us.states.STATES:
+        if not state is None:
+            txt += ('|<a href="#%s">%s</a>' % (state.name.lower(), state.name))
+            i += 1
+            if (i >= 5):
+                i = 0
+                txt += ('|\n')
+    return txt
     
 if __name__ == '__main__':
     main()
