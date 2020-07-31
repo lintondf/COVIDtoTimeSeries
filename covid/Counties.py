@@ -580,7 +580,7 @@ def main():
     
     
 def statesTable():
-    txt = "|:--|:--|--:|--:|--:|--:|--:|--:|--:|\n"
+    txt = "||||||\n|:-:|:-:|:-:|:-:|:-:|\n"
     i = 0
     
     for state in us.states.STATES:

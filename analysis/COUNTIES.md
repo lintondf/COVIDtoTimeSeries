@@ -35,8 +35,8 @@ The next 25.07% of this group's deaths (1.46% of the total US deaths) occured in
 The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occured in 1,781 counties in 47 states with a combined population of 29,412,464 (8.96% of the total US population) 
 
 ## All US Counties ##
-
-|:--|:--|--:|--:|--:|--:|--:|--:|--:|
+||||||
+|:-:|:-:|:-:|:-:|:-:|
 |<a href="#alabama">Alabama</a>|<a href="#alaska">Alaska</a>|<a href="#arizona">Arizona</a>|<a href="#arkansas">Arkansas</a>|<a href="#california">California</a>|
 |<a href="#colorado">Colorado</a>|<a href="#connecticut">Connecticut</a>|<a href="#delaware">Delaware</a>|<a href="#florida">Florida</a>|<a href="#georgia">Georgia</a>|
 |<a href="#hawaii">Hawaii</a>|<a href="#idaho">Idaho</a>|<a href="#illinois">Illinois</a>|<a href="#indiana">Indiana</a>|<a href="#iowa">Iowa</a>|
@@ -49,7 +49,7 @@ The remaining 25.05% of this group's deaths (1.46% of the total US deaths) occur
 |<a href="#virginia">Virginia</a>|<a href="#washington">Washington</a>|<a href="#west virginia">West Virginia</a>|<a href="#wisconsin">Wisconsin</a>|<a href="#wyoming">Wyoming</a>|
 
 
-Statesi and counties sorted by highest total number of deaths.
+States and counties sorted by highest total number of deaths.
 
 
 ### New Jersey ###
