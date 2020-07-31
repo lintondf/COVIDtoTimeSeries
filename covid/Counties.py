@@ -445,7 +445,7 @@ class Counties(Group):
             fields.update({prefix+'NStates': '%d' % len(subset.whichStates)})
             fields.update({prefix+'Population': '{:,.0f}'.format(subset.population)})
             fields.update({prefix+'PctUSPopulation': '%.2f' % (100*subset.population / us.population)})
-            fields.update({prefix+'Table': subset.tableSubset()} );
+#             fields.update({prefix+'Table': subset.tableSubset()} );
             
         return fields
     
