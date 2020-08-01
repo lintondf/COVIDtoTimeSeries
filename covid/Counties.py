@@ -473,10 +473,14 @@ class Counties(Group):
                 self.cases += s.cases
                 self.population += s.population
     
-        def tableSubset(self):
+        def tableSubset(self, basePath, deathRateTrend, casesRateTrend):
             lines = []
             for state in self.whichStates:
                 lines.append('\n### %s ###\n' % state.which)
+                
+                path = '%s/%s.png' % (basePath, state.which)
+                plotStateCounties(path, '%s' % state.which, deathRateTrend, casesRateTrend )
+                
                 for line in self.counties.getTableHeader():
                     lines.append(line)
                 lines.append( state.toTableRow() )
@@ -510,7 +514,7 @@ def plotStateCounties(path, state, deathRates, caseRates):
        
 def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
     fig, ax1 = plt.subplots()
-    ax1.set_title('21 Day Case Rate vs Death Rate Trajectories')
+    ax1.set_title('7 Day Case Rate vs Death Rate Trajectories')
     ax1.set_xlabel("Deaths/day/1M")
     ax1.set_ylabel("Confirmed Cases/day/1M")
     for one in data.keys() :
@@ -569,20 +573,29 @@ def main():
     # LOWESS smooth death and case trends
     deathTrend = dict()
     casesTrend = dict()
+    deathRateTrend = dict()
+    casesRateTrend = dict()
     T = np.asarray(((h.index-h.index[0]).days)).reshape(-1, 1)
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
         if h[county].array[-1] >= 100:
-            print('Smoothing ', county)
-            Y = np.asarray(h[county].diff()).reshape(-1, 1)
+            print('Smoothing ', county, h[county].array[-1])
+            Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(hc[county].diff()).reshape(-1, 1)
+            Y = np.asarray(h[county].diff()).reshape(-1, 1)
+            S = smooth(Y[-7:,0], T[-7:,0])
+            S[S < 0.1] = np.nan
+            deathRateTrend[county] = S
+            Y = np.asarray(hc[county]).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-    print(','.join(['%.5f' % num for num in deathTrend[target]]))
-    print(','.join(['%.5f' % num for num in casesTrend[target]]))
+            Y = np.asarray(hc[county].diff()).reshape(-1, 1)
+            S = smooth(Y[-7:,0], T[-7:,0])
+            S[S < 0.1] = np.nan
+            casesRateTrend[county] = S
+#     print(','.join(['%.5f' % num for num in deathTrend[target]]))
+#     print(','.join(['%.5f' % num for num in casesTrend[target]]))
     
-    plotStateCounties('', 'New York', deathTrend, casesTrend )
 
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
@@ -605,7 +618,8 @@ def main():
     fields = dict();
     fields.update({'largerCounties': largerTxt}) 
     fields.update({'smallerCounties': smallerTxt}) 
-    fields.update({'allCountiesTable': allCounties.tableSubset()}) 
+    fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries/analysis/counties', deathRateTrend, casesRateTrend
+                                                               )}) 
     fields.update({'TOC': statesTable()})
      
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
