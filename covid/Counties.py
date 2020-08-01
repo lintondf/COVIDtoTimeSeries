@@ -474,11 +474,14 @@ class Counties(Group):
                 self.population += s.population
     
         def tableSubset(self, basePath, deathRateTrend, casesRateTrend):
+            # 
             lines = []
             for state in self.whichStates:
                 lines.append('\n### %s ###\n' % state.which)
                 
-                path = '%s/%s.png' % (basePath, state.which)
+                lines.append("\n![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/%s.png)\n" % state.which)
+                
+                path = '%s/analysis/counties/%s.png' % (basePath, state.which)
                 plotStateCounties(path, '%s' % state.which, deathRateTrend, casesRateTrend )
                 
                 for line in self.counties.getTableHeader():
@@ -520,7 +523,7 @@ def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):
     for one in data.keys() :
         xy = data[one]
         color = next(ax1._get_lines.prop_cycler)['color']
-        ax1.plot(xy[0],xy[1], color=color)
+#         ax1.plot(xy[0],xy[1], color=color)
         ax1.scatter(xy[0][-1], xy[1][-1], color=color)
         ax1.annotate( shortNames[one], xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
                 xytext=(5,5), textcoords='offset points')
@@ -618,7 +621,7 @@ def main():
     fields = dict();
     fields.update({'largerCounties': largerTxt}) 
     fields.update({'smallerCounties': smallerTxt}) 
-    fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries/analysis/counties', deathRateTrend, casesRateTrend
+    fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries', deathRateTrend, casesRateTrend
                                                                )}) 
     fields.update({'TOC': statesTable()})
      
