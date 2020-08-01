@@ -499,6 +499,30 @@ class Counties(Group):
                 for county in state.counties:
                     county.plot(ax1)
         
+def plotCountyRates(path, data, xmin=1e-1, xmax=None, ymin=1e1, ymax=None ):            
+    fig, ax1 = plt.subplots()
+    ax1.set_title('21 Day Case Rate vs Death Rate Trajectories')
+    ax1.set_xlabel("Deaths/day/1M")
+    ax1.set_ylabel("Confirmed Cases/day/1M")
+    for one in data.keys() :
+        name = one.split(',')[0].strip()
+        xy = data[one]
+        color = next(ax1._get_lines.prop_cycler)['color']
+        ax1.plot(xy[0],xy[1], color=color)
+        ax1.scatter(xy[0][-1], xy[1][-1], color=color)
+        ax1.annotate( name, xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
+                xytext=(5,5), textcoords='offset points')
+    ax1.set_xlim(xmin, xmax)
+    ax1.set_ylim(ymin, ymax)
+
+    ax1.set_yscale('log')
+    ax1.set_xscale('log')
+    fig.tight_layout()
+    plt.draw()
+    fig.savefig(path)
+    plt.close()      
+    return [ax1.get_xlim()[1], ax1.get_ylim()[1]] 
+        
 def main():
     dataPath = home + '/GITHUB/COVIDtoTimeSeries/data/'    
     env = Environment(
