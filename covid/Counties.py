@@ -478,8 +478,8 @@ class Counties(Group):
             lines = []
             for state in self.whichStates:
                 lines.append('\n### %s ###\n' % state.which)
-                
-                lines.append("\n![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/%s.png)\n" % state.which)
+                s = '%s' % state.which
+                lines.append("\n![%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/%s.png)\n" % (s,s.replace(' ','%20')))
                 
                 path = '%s/analysis/counties/%s.png' % (basePath, state.which)
                 plotStateCounties(path, '%s' % state.which, deathRateTrend, casesRateTrend )
@@ -517,7 +517,7 @@ def plotStateCounties(path, state, deathRates, caseRates):
        
 def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
     fig, ax1 = plt.subplots()
-    ax1.set_title('7 Day Case Rate vs Death Rate Trajectories')
+    ax1.set_title('Most Recent Smoothed Case Rates vs Death Rates')
     ax1.set_xlabel("Deaths/day/1M")
     ax1.set_ylabel("Confirmed Cases/day/1M")
     for one in data.keys() :
@@ -582,7 +582,7 @@ def main():
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
-        if h[county].array[-1] >= 100:
+        if h[county].array[-1] >= 10:
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
