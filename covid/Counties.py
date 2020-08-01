@@ -498,22 +498,30 @@ class Counties(Group):
             for state in self.whichStates:
                 for county in state.counties:
                     county.plot(ax1)
-        
-def plotCountyRates(path, data, xmin=1e-1, xmax=None, ymin=1e1, ymax=None ):            
+ 
+shortNames = dict()
+
+def plotStateCounties(path, state, deathRates, caseRates):
+    data = dict()
+    for c in deathRates.keys():
+        if c.endswith(state):
+            data[c] = (deathRates[c], caseRates[c])
+    plotCountyRates( path, data )
+       
+def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('21 Day Case Rate vs Death Rate Trajectories')
     ax1.set_xlabel("Deaths/day/1M")
     ax1.set_ylabel("Confirmed Cases/day/1M")
     for one in data.keys() :
-        name = one.split(',')[0].strip()
         xy = data[one]
         color = next(ax1._get_lines.prop_cycler)['color']
         ax1.plot(xy[0],xy[1], color=color)
         ax1.scatter(xy[0][-1], xy[1][-1], color=color)
-        ax1.annotate( name, xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
+        ax1.annotate( shortNames[one], xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
                 xytext=(5,5), textcoords='offset points')
-    ax1.set_xlim(xmin, xmax)
-    ax1.set_ylim(ymin, ymax)
+#     ax1.set_xlim(xmin, xmax)
+#     ax1.set_ylim(ymin, ymax)
 
     ax1.set_yscale('log')
     ax1.set_xscale('log')
@@ -540,6 +548,14 @@ def main():
     h = pd.read_csv(dataPath + "county-deaths.csv", parse_dates=True, index_col=0)
     hc = pd.read_csv(dataPath + "county-cases.csv", parse_dates=True, index_col=0)
     
+    # generate short county names
+    for c in h.columns:
+        name = c.split(',')[0].strip() # remove state
+        name = name.split(' ')
+        name = ' '.join( name[0:-1] )
+        shortNames[c] = name
+    print(shortNames)
+    
     # reallocate NYC deaths to boroughs
     fDeath = nyc2Scale(nycDeaths)
     fCases = nyc2Scale(nycHospitalizations)
@@ -557,14 +573,16 @@ def main():
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
-        if h[county].array[-1] >= 10:
+        if h[county].array[-1] >= 100:
             print('Smoothing ', county)
-            Y = np.asarray(h[county]).reshape(-1, 1)
+            Y = np.asarray(h[county].diff()).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(hc[county]).reshape(-1, 1)
+            Y = np.asarray(hc[county].diff()).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
     print(','.join(['%.5f' % num for num in deathTrend[target]]))
     print(','.join(['%.5f' % num for num in casesTrend[target]]))
+    
+    plotStateCounties('', 'New York', deathTrend, casesTrend )
 
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
