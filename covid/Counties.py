@@ -348,7 +348,7 @@ class Counties(Group):
                 self.rfips[d[c]] = c + ', ' + two2State[s]
             
     def getTableHeader(self):
-        header1 = ("|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|\n")
+        header1 = ("\n|State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|\n")
         header2 = ("|:--|:--|--:|--:|--:|--:|--:|--:|--:|\n")
         return [header1, header2]
         
@@ -517,7 +517,7 @@ def plotStateCounties(path, state, deathRates, caseRates):
        
 def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
     fig, ax1 = plt.subplots()
-    ax1.set_title('Most Recent Smoothed Case Rates vs Death Rates')
+    ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
     ax1.set_xlabel("Deaths/day/1M")
     ax1.set_ylabel("Confirmed Cases/day/1M")
     for one in data.keys() :
@@ -585,14 +585,14 @@ def main():
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(h[county].diff().rolling(window=14).mean()).reshape(-1, 1)
+            Y = np.asarray(h[county].diff().rolling(window=7).mean()).reshape(-1, 1)
             S = Y[-7:,0]
 #             S = smooth(Y[-7:,0], T[-7:,0])
 #             S[S < 0.1] = np.nan
             deathRateTrend[county] = S
             Y = np.asarray(hc[county]).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(hc[county].diff().rolling(window=14).mean()).reshape(-1, 1)
+            Y = np.asarray(hc[county].diff().rolling(window=7).mean()).reshape(-1, 1)
             S = Y[-7:,0]
 #             S = smooth(Y[-7:,0], T[-7:,0])
 #             S[S < 0.1] = np.nan

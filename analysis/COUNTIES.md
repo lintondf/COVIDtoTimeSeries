@@ -56,6 +56,7 @@ States and counties sorted by highest total number of deaths.
 ### New Jersey ###
 
 ![New Jersey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/New%20Jersey.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NJ|21 counties|15,830| 1782.218| N/A|181,373| 20419.851| N/A|8,882,190|
@@ -85,6 +86,7 @@ States and counties sorted by highest total number of deaths.
 ### New York ###
 
 ![New York](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/New%20York.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NY|62 counties|12,369| 635.825| N/A|222,613| 11443.312| N/A|19,453,561|
@@ -155,6 +157,7 @@ States and counties sorted by highest total number of deaths.
 ### California ###
 
 ![California](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/California.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CA|58 counties| 9,345| 236.509| N/A|506,613| 12821.678| N/A|39,512,223|
@@ -221,6 +224,7 @@ States and counties sorted by highest total number of deaths.
 ### Massachusetts ###
 
 ![Massachusetts](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Massachusetts.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MA|14 counties| 8,619| 1250.489| N/A|117,639| 17067.675| N/A|6,892,503|
@@ -243,6 +247,7 @@ States and counties sorted by highest total number of deaths.
 ### Illinois ###
 
 ![Illinois](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Illinois.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IL|102 counties| 7,503| 592.101| N/A|180,414| 14237.417| N/A|12,671,821|
@@ -353,6 +358,7 @@ States and counties sorted by highest total number of deaths.
 ### Pennsylvania ###
 
 ![Pennsylvania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Pennsylvania.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |PA|67 counties| 7,219| 563.897| N/A|117,468|  9175.762| N/A|12,801,989|
@@ -428,6 +434,7 @@ States and counties sorted by highest total number of deaths.
 ### Florida ###
 
 ![Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Florida.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |FL|67 counties| 7,022| 326.943| N/A|479,427| 22322.044| N/A|21,477,737|
@@ -503,6 +510,7 @@ States and counties sorted by highest total number of deaths.
 ### Texas ###
 
 ![Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Texas.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TX|254 counties| 6,728| 232.033| N/A|444,738| 15337.972| N/A|28,995,881|
@@ -765,6 +773,7 @@ States and counties sorted by highest total number of deaths.
 ### Michigan ###
 
 ![Michigan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Michigan.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MI|83 counties| 6,383| 639.140| N/A|86,904|  8701.837| N/A|9,986,857|
@@ -856,6 +865,7 @@ States and counties sorted by highest total number of deaths.
 ### Connecticut ###
 
 ![Connecticut](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Connecticut.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CT|8 counties| 4,432| 1243.098| N/A|49,567| 13902.668| N/A|3,565,287|
@@ -872,6 +882,7 @@ States and counties sorted by highest total number of deaths.
 ### Louisiana ###
 
 ![Louisiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Louisiana.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |LA|64 counties| 3,835| 824.945| N/A|116,270| 25010.788| N/A|4,648,794|
@@ -944,6 +955,7 @@ States and counties sorted by highest total number of deaths.
 ### Arizona ###
 
 ![Arizona](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Arizona.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AZ|15 counties| 3,746| 514.651| N/A|177,002| 24317.747| N/A|7,278,717|
@@ -967,6 +979,7 @@ States and counties sorted by highest total number of deaths.
 ### Georgia ###
 
 ![Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Georgia.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |GA|159 counties| 3,738| 352.063| N/A|172,457| 16242.830| N/A|10,617,423|
@@ -1134,6 +1147,7 @@ States and counties sorted by highest total number of deaths.
 ### Ohio ###
 
 ![Ohio](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Ohio.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OH|88 counties| 3,515| 300.707| N/A|92,087|  7878.023| N/A|11,689,100|
@@ -1230,6 +1244,7 @@ States and counties sorted by highest total number of deaths.
 ### Maryland ###
 
 ![Maryland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Maryland.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MD|24 counties| 3,490| 577.272| N/A|89,365| 14781.629| N/A|6,045,680|
@@ -1262,6 +1277,7 @@ States and counties sorted by highest total number of deaths.
 ### Indiana ###
 
 ![Indiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Indiana.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IN|92 counties| 2,771| 411.603| N/A|67,122|  9970.264| N/A|6,732,219|
@@ -1362,6 +1378,7 @@ States and counties sorted by highest total number of deaths.
 ### Virginia ###
 
 ![Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Virginia.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VA|133 counties| 2,215| 259.504| N/A|90,801| 10638.017| N/A|8,535,519|
@@ -1503,6 +1520,7 @@ States and counties sorted by highest total number of deaths.
 ### North Carolina ###
 
 ![North Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/North%20Carolina.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NC|100 counties| 1,979| 188.690| N/A|124,006| 11823.513| N/A|10,488,084|
@@ -1611,6 +1629,7 @@ States and counties sorted by highest total number of deaths.
 ### Colorado ###
 
 ![Colorado](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Colorado.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |CO|64 counties| 1,844| 320.209| N/A|47,249|  8204.752| N/A|5,758,736|
@@ -1683,6 +1702,7 @@ States and counties sorted by highest total number of deaths.
 ### South Carolina ###
 
 ![South Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/South%20Carolina.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SC|46 counties| 1,751| 340.085| N/A|90,599| 17596.433| N/A|5,148,714|
@@ -1737,6 +1757,7 @@ States and counties sorted by highest total number of deaths.
 ### Mississippi ###
 
 ![Mississippi](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Mississippi.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MS|82 counties| 1,693| 568.856| N/A|59,881| 20120.296| N/A|2,976,149|
@@ -1827,6 +1848,7 @@ States and counties sorted by highest total number of deaths.
 ### Minnesota ###
 
 ![Minnesota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Minnesota.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MN|87 counties| 1,606| 284.770| N/A|55,060|  9763.048| N/A|5,639,632|
@@ -1922,6 +1944,7 @@ States and counties sorted by highest total number of deaths.
 ### Washington ###
 
 ![Washington](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Washington.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WA|39 counties| 1,590| 208.801| N/A|57,323|  7527.749| N/A|7,614,893|
@@ -1969,6 +1992,7 @@ States and counties sorted by highest total number of deaths.
 ### Alabama ###
 
 ![Alabama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Alabama.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AL|67 counties| 1,553| 316.733| N/A|86,780| 17698.700| N/A|4,903,185|
@@ -2044,6 +2068,7 @@ States and counties sorted by highest total number of deaths.
 ### Missouri ###
 
 ![Missouri](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Missouri.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MO|115 counties| 1,223| 199.269| N/A|45,767|  7457.032| N/A|6,137,428|
@@ -2167,6 +2192,7 @@ States and counties sorted by highest total number of deaths.
 ### Tennessee ###
 
 ![Tennessee](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Tennessee.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |TN|95 counties| 1,051| 153.899| N/A|102,567| 15018.947| N/A|6,829,174|
@@ -2270,6 +2296,7 @@ States and counties sorted by highest total number of deaths.
 ### Wisconsin ###
 
 ![Wisconsin](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Wisconsin.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WI|72 counties|   947| 162.647| N/A|54,002|  9274.815| N/A|5,822,434|
@@ -2350,6 +2377,7 @@ States and counties sorted by highest total number of deaths.
 ### Iowa ###
 
 ![Iowa](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Iowa.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |IA|99 counties|   874| 277.014| N/A|45,288| 14354.040| N/A|3,155,070|
@@ -2457,6 +2485,7 @@ States and counties sorted by highest total number of deaths.
 ### Nevada ###
 
 ![Nevada](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Nevada.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NV|17 counties|   825| 267.844| N/A|48,766| 15832.315| N/A|3,080,156|
@@ -2482,6 +2511,7 @@ States and counties sorted by highest total number of deaths.
 ### Kentucky ###
 
 ![Kentucky](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Kentucky.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KY|120 counties|   740| 165.634| N/A|30,723|  6876.734| N/A|4,467,673|
@@ -2610,6 +2640,7 @@ States and counties sorted by highest total number of deaths.
 ### New Mexico ###
 
 ![New Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/New%20Mexico.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NM|33 counties|   651| 310.469| N/A|19,531|  9314.541| N/A|2,096,829|
@@ -2651,6 +2682,7 @@ States and counties sorted by highest total number of deaths.
 ### Delaware ###
 
 ![Delaware](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Delaware.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |DE|3 counties|   585| 600.762| N/A|14,656| 15050.875| N/A| 973,764|
@@ -2662,6 +2694,7 @@ States and counties sorted by highest total number of deaths.
 ### District of Columbia ###
 
 ![District of Columbia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/District%20of%20Columbia.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |DC|1 counties|   584| 827.490| N/A|12,057| 17083.977| N/A| 705,749|
@@ -2671,6 +2704,7 @@ States and counties sorted by highest total number of deaths.
 ### Oklahoma ###
 
 ![Oklahoma](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Oklahoma.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OK|77 counties|   549| 138.742| N/A|37,706|  9529.006| N/A|3,956,971|
@@ -2756,6 +2790,7 @@ States and counties sorted by highest total number of deaths.
 ### Arkansas ###
 
 ![Arkansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Arkansas.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AR|75 counties|   458| 151.766| N/A|41,618| 13790.823| N/A|3,017,804|
@@ -2839,6 +2874,7 @@ States and counties sorted by highest total number of deaths.
 ### New Hampshire ###
 
 ![New Hampshire](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/New%20Hampshire.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NH|10 counties|   416| 305.947| N/A| 6,613|  4863.534| N/A|1,359,711|
@@ -2857,6 +2893,7 @@ States and counties sorted by highest total number of deaths.
 ### Kansas ###
 
 ![Kansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Kansas.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |KS|105 counties|   357| 122.541| N/A|27,592|  9471.001| N/A|2,913,314|
@@ -2970,6 +3007,7 @@ States and counties sorted by highest total number of deaths.
 ### Nebraska ###
 
 ![Nebraska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Nebraska.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |NE|93 counties|   332| 171.629| N/A|26,251| 13570.560| N/A|1,934,408|
@@ -3071,6 +3109,7 @@ States and counties sorted by highest total number of deaths.
 ### Oregon ###
 
 ![Oregon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Oregon.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |OR|36 counties|   325| 77.056| N/A|18,817|  4461.397| N/A|4,217,737|
@@ -3115,6 +3154,7 @@ States and counties sorted by highest total number of deaths.
 ### Utah ###
 
 ![Utah](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Utah.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |UT|29 counties|   253| 78.916| N/A|32,366| 10095.578| N/A|3,205,958|
@@ -3152,6 +3192,7 @@ States and counties sorted by highest total number of deaths.
 ### Idaho ###
 
 ![Idaho](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Idaho.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ID|44 counties|   197| 110.237| N/A|21,110| 11812.665| N/A|1,787,065|
@@ -3204,6 +3245,7 @@ States and counties sorted by highest total number of deaths.
 ### South Dakota ###
 
 ![South Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/South%20Dakota.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |SD|66 counties|   134| 151.471| N/A| 8,867| 10023.071| N/A| 884,659|
@@ -3278,6 +3320,7 @@ States and counties sorted by highest total number of deaths.
 ### Maine ###
 
 ![Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Maine.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ME|16 counties|   123| 91.503| N/A| 3,935|  2927.366| N/A|1,344,212|
@@ -3302,6 +3345,7 @@ States and counties sorted by highest total number of deaths.
 ### West Virginia ###
 
 ![West Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/West%20Virginia.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WV|55 counties|   116| 64.727| N/A| 6,738|  3759.736| N/A|1,792,147|
@@ -3365,6 +3409,7 @@ States and counties sorted by highest total number of deaths.
 ### North Dakota ###
 
 ![North Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/North%20Dakota.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |ND|53 counties|   103| 135.160| N/A| 6,585|  8641.029| N/A| 762,062|
@@ -3426,6 +3471,7 @@ States and counties sorted by highest total number of deaths.
 ### Montana ###
 
 ![Montana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Montana.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |MT|56 counties|    61| 57.075| N/A| 4,081|  3818.379| N/A|1,068,778|
@@ -3490,6 +3536,7 @@ States and counties sorted by highest total number of deaths.
 ### Vermont ###
 
 ![Vermont](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Vermont.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |VT|14 counties|    57| 91.348| N/A| 1,413|  2264.463| N/A| 623,989|
@@ -3512,6 +3559,7 @@ States and counties sorted by highest total number of deaths.
 ### Hawaii ###
 
 ![Hawaii](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Hawaii.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |HI|5 counties|    25| 17.657| N/A| 2,174|  1535.450| N/A|1,415,872|
@@ -3525,6 +3573,7 @@ States and counties sorted by highest total number of deaths.
 ### Wyoming ###
 
 ![Wyoming](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Wyoming.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |WY|23 counties|     1|  1.728| N/A| 2,769|  4784.375| N/A| 578,759|
@@ -3556,6 +3605,7 @@ States and counties sorted by highest total number of deaths.
 ### Alaska ###
 
 ![Alaska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Alaska.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |AK|29 counties|     0|  0.000| N/A|     0|     0.000| N/A| 731,545|
@@ -3593,6 +3643,7 @@ States and counties sorted by highest total number of deaths.
 ### Rhode Island ###
 
 ![Rhode Island](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/Rhode%20Island.png)
+
 |State|County|Deaths|Deaths/1M|Deaths/day/1M|Cases|Cases/1M|Cases/day/1M|Population|
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|
 |RI|5 counties|     0|  0.000| N/A|17,244| 16277.737| N/A|1,059,361|
