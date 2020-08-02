@@ -523,15 +523,14 @@ def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):
     for one in data.keys() :
         xy = data[one]
         color = next(ax1._get_lines.prop_cycler)['color']
-#         ax1.plot(xy[0],xy[1], color=color)
+        ax1.plot(xy[0],xy[1], color=color)
         ax1.scatter(xy[0][-1], xy[1][-1], color=color)
         ax1.annotate( shortNames[one], xy=(xy[0][-1], xy[1][-1]), color=color, xycoords='data',
                 xytext=(5,5), textcoords='offset points')
 #     ax1.set_xlim(xmin, xmax)
 #     ax1.set_ylim(ymin, ymax)
-
-    ax1.set_yscale('log')
-    ax1.set_xscale('log')
+#     ax1.set_yscale('log')
+#     ax1.set_xscale('log')
     fig.tight_layout()
     plt.draw()
     fig.savefig(path)
@@ -586,15 +585,17 @@ def main():
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(h[county].diff()).reshape(-1, 1)
-            S = smooth(Y[-7:,0], T[-7:,0])
-            S[S < 0.1] = np.nan
+            Y = np.asarray(h[county].diff().rolling(window=14).mean()).reshape(-1, 1)
+            S = Y[-7:,0]
+#             S = smooth(Y[-7:,0], T[-7:,0])
+#             S[S < 0.1] = np.nan
             deathRateTrend[county] = S
             Y = np.asarray(hc[county]).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
-            Y = np.asarray(hc[county].diff()).reshape(-1, 1)
-            S = smooth(Y[-7:,0], T[-7:,0])
-            S[S < 0.1] = np.nan
+            Y = np.asarray(hc[county].diff().rolling(window=14).mean()).reshape(-1, 1)
+            S = Y[-7:,0]
+#             S = smooth(Y[-7:,0], T[-7:,0])
+#             S[S < 0.1] = np.nan
             casesRateTrend[county] = S
 #     print(','.join(['%.5f' % num for num in deathTrend[target]]))
 #     print(','.join(['%.5f' % num for num in casesTrend[target]]))
