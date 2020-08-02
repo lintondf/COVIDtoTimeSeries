@@ -621,8 +621,7 @@ def main():
     fields = dict();
     fields.update({'largerCounties': largerTxt}) 
     fields.update({'smallerCounties': smallerTxt}) 
-    fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries', deathRateTrend, casesRateTrend
-                                                               )}) 
+    fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries', deathRateTrend, casesRateTrend)}) 
     fields.update({'TOC': statesTable()})
      
     out = open(home + '/GITHUB/COVIDtoTimeSeries/analysis/COUNTIES.md', 'w')
