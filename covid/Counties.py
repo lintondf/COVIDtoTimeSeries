@@ -44,19 +44,19 @@ from docutils.nodes import line
 #  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
 #  https://jamanetwork.com/journals/jama/fullarticle/2765524
 # More recent from NYC Health: https://raw.githubusercontent.com/nychealth/coronavirus-data/master/by-boro.csv
-nycDeaths = {
-    '36047': 132, # Kings/Brooklyn
-    '36005': 173, # Bronx
-    '36085': 117, # Richmond/Staten Island
-    '36081': 154, # Queens
-    '36061':  91 # New York/Manhattan
+nycDeaths = { # from NYC health 8/2/20
+    '36047': 5625, # Kings/Brooklyn
+    '36005': 3924, # Bronx
+    '36085': 895, # Richmond/Staten Island
+    '36081': 5952, # Queens
+    '36061':  2505 # New York/Manhattan
     }
-nycHospitalizations = {
-    '36047': 404, # Kings/Brooklyn
-    '36005': 634, # Bronx
-    '36085': 373, # Richmond/Staten Island
-    '36081': 568, # Queens
-    '36061': 331 # New York/Manhattan
+nycHospitalizations = { # now CASE counts from NYC health 8/2/20
+    '36047': 2505, # Kings/Brooklyn
+    '36005': 49707, # Bronx
+    '36085': 14596, # Richmond/Staten Island
+    '36081': 14596, # Queens
+    '36061': 28668 # New York/Manhattan
     }
 
 two2State = {  # yes these are redundant; but one is sorted by name and the other by 2 letter
@@ -518,8 +518,8 @@ def plotStateCounties(path, state, deathRates, caseRates):
 def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
-    ax1.set_xlabel("Deaths/day/1M")
-    ax1.set_ylabel("Confirmed Cases/day/1M")
+    ax1.set_xlabel("Deaths/day/1M + 1")
+    ax1.set_ylabel("Confirmed Cases/day/1M + 1")
     for one in data.keys() :
         xy = data[one]
         color = next(ax1._get_lines.prop_cycler)['color']
@@ -581,7 +581,7 @@ def main():
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
-        if h[county].array[-1] >= 100:
+        if h[county].array[-1] >= 10:
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
@@ -600,7 +600,8 @@ def main():
 #     print(','.join(['%.5f' % num for num in deathTrend[target]]))
 #     print(','.join(['%.5f' % num for num in casesTrend[target]]))
     
-
+#     plotStateCounties('','Florida', deathRateTrend, casesRateTrend )
+    
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
     usa.deaths = h.iloc[-1].sum()
