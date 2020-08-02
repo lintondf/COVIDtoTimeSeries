@@ -529,8 +529,8 @@ def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):
                 xytext=(5,5), textcoords='offset points')
 #     ax1.set_xlim(xmin, xmax)
 #     ax1.set_ylim(ymin, ymax)
-#     ax1.set_yscale('log')
-#     ax1.set_xscale('log')
+    ax1.set_yscale('log')
+    ax1.set_xscale('log')
     fig.tight_layout()
     plt.draw()
     fig.savefig(path)
@@ -581,19 +581,19 @@ def main():
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
-        if h[county].array[-1] >= 10:
+        if h[county].array[-1] >= 100:
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county]).reshape(-1, 1)
             deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(h[county].diff().rolling(window=7).mean()).reshape(-1, 1)
-            S = Y[-7:,0]
+            S = Y[-7:,0] + 1 ######TODO testing
 #             S = smooth(Y[-7:,0], T[-7:,0])
 #             S[S < 0.1] = np.nan
             deathRateTrend[county] = S
             Y = np.asarray(hc[county]).reshape(-1, 1)
             casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(hc[county].diff().rolling(window=7).mean()).reshape(-1, 1)
-            S = Y[-7:,0]
+            S = Y[-7:,0] + 1 ######TODO testing
 #             S = smooth(Y[-7:,0], T[-7:,0])
 #             S[S < 0.1] = np.nan
             casesRateTrend[county] = S
