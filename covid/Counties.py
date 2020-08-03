@@ -538,6 +538,8 @@ def plotCountyRates(path, data, xmin=1, xmax=61, ymin=1, ymax=4001 ):
     ax1.set_ylim(ymin, ymax)
     ax1.set_yscale('log')
     ax1.set_xscale('log')
+    ax1.set_xticklabels(['0', '0', '9', '99', '999'])
+    ax1.set_yticklabels(['0', '0', '9', '99', '999', '9,999', '99,999'])
     fig.tight_layout()
     plt.draw()
     fig.savefig(path)
