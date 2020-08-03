@@ -621,6 +621,8 @@ def main():
     smallerTxt = groupTemplate.render(fields)
     
     fields = dict();
+    tag = 'at %s' % (datetime.date(datetime.now()))
+    fields.update({'date': tag})    
     fields.update({'largerCounties': largerTxt}) 
     fields.update({'smallerCounties': smallerTxt}) 
     fields.update({'allCountiesTable': allCounties.tableSubset(home + '/GITHUB/COVIDtoTimeSeries', deathRateTrend, casesRateTrend)}) 
