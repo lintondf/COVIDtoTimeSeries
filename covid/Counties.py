@@ -476,14 +476,21 @@ class Counties(Group):
         def tableSubset(self, basePath, deathRateTrend, casesRateTrend):
             # 
             lines = []
+            maxx = 0
+            maxy = 0
             for state in self.whichStates:
                 lines.append('\n### %s ###\n' % state.which)
                 s = '%s' % state.which
                 lines.append("\n![%s](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/counties/%s.png)\n" % (s,s.replace(' ','%20')))
                 
                 path = '%s/analysis/counties/%s.png' % (basePath, state.which)
-                plotStateCounties(path, '%s' % state.which, deathRateTrend, casesRateTrend )
-                
+                maxs = plotStateCounties(path, '%s' % state.which, deathRateTrend, casesRateTrend )
+                if maxs[0] > maxx:
+                    maxx = maxs[0]
+                    print( state.which, maxx, maxy)
+                if maxs[1] > maxy:
+                    maxy = maxs[1]
+                    print( state.which, maxx, maxy)
                 for line in self.counties.getTableHeader():
                     lines.append(line)
                 lines.append( state.toTableRow() )
@@ -513,9 +520,9 @@ def plotStateCounties(path, state, deathRates, caseRates):
     for c in deathRates.keys():
         if c.endswith(state):
             data[c] = (deathRates[c], caseRates[c])
-    plotCountyRates( path, data )
+    return plotCountyRates( path, data )
        
-def plotCountyRates(path, data, xmin=None, xmax=None, ymin=None, ymax=None ):            
+def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
     ax1.set_xlabel("Deaths/day/1M + 1")
