@@ -525,8 +525,8 @@ def plotStateCounties(path, state, deathRates, caseRates):
 def plotCountyRates(path, data, xmin=1, xmax=61, ymin=1, ymax=4001 ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
-    ax1.set_xlabel("Deaths/day/1M + 1")
-    ax1.set_ylabel("Confirmed Cases/day/1M + 1")
+    ax1.set_xlabel("Deaths/day/1M")
+    ax1.set_ylabel("Confirmed Cases/day/1M")
     for one in data.keys() :
         xy = data[one]
         color = next(ax1._get_lines.prop_cycler)['color']
