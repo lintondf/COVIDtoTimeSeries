@@ -581,7 +581,7 @@ def main():
     h["New York County, New York"] = fDeath['36061'] * h["New York County, New York"]
     hc["New York County, New York"] = fCases['36061'] * hc["New York County, New York"]
     
-    # LOWESS smooth death and case trends
+    # Moving average smooth death and case trends
     deathTrend = dict()
     casesTrend = dict()
     deathRateTrend = dict()
@@ -592,15 +592,15 @@ def main():
 #         if county == target:
         if h[county].array[-1] >= 10:
             print('Smoothing ', county, h[county].array[-1])
-            Y = np.asarray(h[county]).reshape(-1, 1)
-            deathTrend[county] = smooth(Y[-22:,0], T[-22:,0])
+            Y = np.asarray(h[county].rolling(window=7).mean()).reshape(-1, 1)
+            deathTrend[county] = Y[-22:,0] # smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(h[county].diff().rolling(window=7).mean()).reshape(-1, 1)
             S = Y[-7:,0] + 1 ######TODO testing
 #             S = smooth(Y[-7:,0], T[-7:,0])
 #             S[S < 0.1] = np.nan
             deathRateTrend[county] = S
-            Y = np.asarray(hc[county]).reshape(-1, 1)
-            casesTrend[county] = smooth(Y[-22:,0], T[-22:,0])
+            Y = np.asarray(hc[county].rolling(window=7).mean()).reshape(-1, 1)
+            casesTrend[county] = Y[-22:,0] # smooth(Y[-22:,0], T[-22:,0])
             Y = np.asarray(hc[county].diff().rolling(window=7).mean()).reshape(-1, 1)
             S = Y[-7:,0] + 1 ######TODO testing
 #             S = smooth(Y[-7:,0], T[-7:,0])
