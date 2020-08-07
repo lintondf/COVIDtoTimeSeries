@@ -590,7 +590,7 @@ def main():
     target = 'New York County, New York' # 'Brevard County, Florida'
     for county in h.columns :
 #         if county == target:
-        if h[county].array[-1] >= 10:
+        if h[county].array[-1] >= 0:
             print('Smoothing ', county, h[county].array[-1])
             Y = np.asarray(h[county].rolling(window=7).mean()).reshape(-1, 1)
             deathTrend[county] = Y[-22:,0] # smooth(Y[-22:,0], T[-22:,0])
