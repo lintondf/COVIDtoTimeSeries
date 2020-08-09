@@ -522,7 +522,7 @@ def plotStateCounties(path, state, deathRates, caseRates):
             data[c] = (deathRates[c], caseRates[c])
     return plotCountyRates( path, data )
        
-def plotCountyRates(path, data, xmin=1, xmax=61, ymin=1, ymax=4001 ):            
+def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
     ax1.set_xlabel("Deaths/day/1M")
