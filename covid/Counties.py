@@ -39,6 +39,8 @@ from matplotlib import cm
 import us
 from Analysis import countries
 from docutils.nodes import line
+from statsmodels.imputation.tests.test_ros import Test_ROS_HelselAppendixB
+from math import floor
 
 # Allocation of NYC data to counties
 #  R. K. Wadhera, et al, "Variation in COVID-19 Hospitalizations and Deaths Across New York City Boroughs", April 29, 2020
@@ -522,6 +524,31 @@ def plotStateCounties(path, state, deathRates, caseRates):
             data[c] = (deathRates[c], caseRates[c])
     return plotCountyRates( path, data )
        
+def adjustAxisLabels( ax ):
+    def adjust(texts):
+        labels = []
+        debug = ''
+        for text in texts:
+            v = float(text.__str__()[5:].split(',')[0])
+            debug += '  %5.2f/' % v
+            if v <= 0:
+                labels.append('0')
+            elif v != floor(v):
+                labels.append('')
+            else:
+                labels.append('%d' % int(v))
+            debug += labels[-1]
+#         print(debug)
+        return labels
+    
+    majorx = ax.get_xticklabels(minor=False)
+    minorx = ax.get_xticklabels(minor=True)
+    ax.set_xticklabels( adjust(majorx), minor=False )
+    ax.set_xticklabels( adjust(minorx), minor=True )
+    ax.set_yticklabels( adjust(majorx), minor=False )
+    ax.set_yticklabels( adjust(minorx), minor=True )
+    
+                
 def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):            
     fig, ax1 = plt.subplots()
     ax1.set_title('7-Day Moving Average Case Rates vs Death Rates')
@@ -538,9 +565,10 @@ def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):
     ax1.set_ylim(ymin, ymax)
     ax1.set_yscale('log')
     ax1.set_xscale('log')
-    ax1.set_xticklabels(['0', '0', '9', '99', '999'])
-    ax1.set_yticklabels(['0', '0', '9', '99', '999', '9,999', '99,999'])
-    fig.tight_layout()
+    adjustAxisLabels(ax1)
+#     ax1.set_xticklabels(['0', '0', '9', '99', '999'])
+#     ax1.set_yticklabels(['0', '0', '9', '99', '999', '9,999', '99,999'])
+#     fig.tight_layout()
     plt.draw()
     fig.savefig(path)
     plt.close()      
