@@ -525,11 +525,12 @@ def plotStateCounties(path, state, deathRates, caseRates):
     return plotCountyRates( path, data )
        
 def adjustAxisLabels( ax ):
-    def adjust(texts):
+    def adjust(texts, which):
         labels = []
         debug = ''
         for text in texts:
-            v = float(text.__str__()[5:].split(',')[0])
+#             print(text)
+            v = float(text.__str__()[5:].split(',')[which])
             debug += '  %5.2f/' % v
             if v <= 0:
                 labels.append('0')
@@ -543,10 +544,16 @@ def adjustAxisLabels( ax ):
     
     majorx = ax.get_xticklabels(minor=False)
     minorx = ax.get_xticklabels(minor=True)
-    ax.set_xticklabels( adjust(majorx), minor=False )
-    ax.set_xticklabels( adjust(minorx), minor=True )
-    ax.set_yticklabels( adjust(majorx), minor=False )
-    ax.set_yticklabels( adjust(minorx), minor=True )
+    majorx = adjust(majorx,which=0)
+    minorx = adjust(minorx,which=0)
+    ax.set_xticklabels( majorx, minor=False )
+    ax.set_xticklabels( minorx, minor=True )
+    majory = ax.get_yticklabels(minor=False)
+    minory = ax.get_yticklabels(minor=True)
+    majory = adjust(majory,which=1)
+    minory = adjust(minory,which=1)
+    ax.set_yticklabels( majory, minor=False )
+    ax.set_yticklabels( minory, minor=True )
     
                 
 def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):            
@@ -565,11 +572,12 @@ def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):
     ax1.set_ylim(ymin, ymax)
     ax1.set_yscale('log')
     ax1.set_xscale('log')
+    plt.draw()
     adjustAxisLabels(ax1)
+    plt.draw()
 #     ax1.set_xticklabels(['0', '0', '9', '99', '999'])
 #     ax1.set_yticklabels(['0', '0', '9', '99', '999', '9,999', '99,999'])
 #     fig.tight_layout()
-    plt.draw()
     fig.savefig(path)
     plt.close()      
     return [ax1.get_xlim()[1], ax1.get_ylim()[1]] 
