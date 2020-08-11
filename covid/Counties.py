@@ -17,6 +17,7 @@ from seasonal import fit_seasons, adjust_seasons, fit_trend
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
+import matplotlib.ticker as ticker
 from pandas.plotting import register_matplotlib_converters
 import statsmodels.api as sm
 from sklearn import linear_model
@@ -525,37 +526,25 @@ def plotStateCounties(path, state, deathRates, caseRates):
     return plotCountyRates( path, data )
        
 def adjustAxisLabels( ax ):
-    def adjust(texts, which):
-        labels = []
-        debug = ''
-        for text in texts:
-            print(text)
-            v = float(text.__str__()[5:].split(',')[which])
-            debug += '  %5.2f/' % v
-            if v <= 0:
-                labels.append('0')
-            elif v != floor(v):
-                labels.append('')
-            else:
-                labels.append('%d' % int(v))
-            debug += labels[-1]
-        print(debug)
-        return labels
-    
-    print(plt.xticks())
-    print(plt.yticks())
-    majorx = ax.get_xticklabels(minor=False)
-    minorx = ax.get_xticklabels(minor=True)
-    majorx = adjust(majorx,which=0)
-    minorx = adjust(minorx,which=0)
-    ax.set_xticklabels( majorx, minor=False )
-    ax.set_xticklabels( minorx, minor=True )
-    majory = ax.get_yticklabels(minor=False)
-    minory = ax.get_yticklabels(minor=True)
-    majory = adjust(majory,which=1)
-    minory = adjust(minory,which=1)
-    ax.set_yticklabels( majory, minor=False )
-    ax.set_yticklabels( minory, minor=True )
+    def formatMajor(x, pos=None):
+        str = ''
+        if x == int(x):
+            str = '%d' % int(x)
+        return str
+    def formatMinor(x, pos=None):
+        str = ''
+        y = np.log10(x)
+        y = np.floor(y)
+        y = x / 10**y
+        d = int(y) % 10
+        if (d > 1 and d <5) or (d == 6) or (d == 8):
+            str = '%d' % int(x)
+        return str
+
+    ax.xaxis.set_major_formatter(ticker.FuncFormatter(formatMajor))    
+    ax.xaxis.set_minor_formatter(ticker.FuncFormatter(formatMinor))    
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(formatMajor))    
+    ax.yaxis.set_minor_formatter(ticker.FuncFormatter(formatMinor))    
     
                 
 def plotCountyRates(path, data, xmin=1, xmax=None, ymin=1, ymax=None ):            
@@ -647,7 +636,7 @@ def main():
 #     print(','.join(['%.5f' % num for num in deathTrend[target]]))
 #     print(','.join(['%.5f' % num for num in casesTrend[target]]))
     
-    plotStateCounties('','Florida', deathRateTrend, casesRateTrend )
+    plotStateCounties('test.png','Florida', deathRateTrend, casesRateTrend )
     
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
