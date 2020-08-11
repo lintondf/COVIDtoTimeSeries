@@ -529,7 +529,7 @@ def adjustAxisLabels( ax ):
         labels = []
         debug = ''
         for text in texts:
-#             print(text)
+            print(text)
             v = float(text.__str__()[5:].split(',')[which])
             debug += '  %5.2f/' % v
             if v <= 0:
@@ -539,9 +539,11 @@ def adjustAxisLabels( ax ):
             else:
                 labels.append('%d' % int(v))
             debug += labels[-1]
-#         print(debug)
+        print(debug)
         return labels
     
+    print(plt.xticks())
+    print(plt.yticks())
     majorx = ax.get_xticklabels(minor=False)
     minorx = ax.get_xticklabels(minor=True)
     majorx = adjust(majorx,which=0)
@@ -645,7 +647,7 @@ def main():
 #     print(','.join(['%.5f' % num for num in deathTrend[target]]))
 #     print(','.join(['%.5f' % num for num in casesTrend[target]]))
     
-#     plotStateCounties('','Florida', deathRateTrend, casesRateTrend )
+    plotStateCounties('','Florida', deathRateTrend, casesRateTrend )
     
     usa = Group()
     usa.population = sum(larger.countyPopulation.values())
