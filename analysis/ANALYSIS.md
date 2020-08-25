@@ -1,11 +1,11 @@
 # State and Country COVID-19 Analysis #
-## Updated: at 2020-08-24 for data as of 2020-08-23 ##
+## Updated: at 2020-08-25 for data as of 2020-08-24 ##
 
 Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
 
 # US Confirmed Case Rates vs. Death Rates #
 
-The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.  These four states comprise 33.2% of the US population and account for 37.9% of deaths and 40.2% of confirmed cases.  Per capita data is expressed per million of population.  One per million is 0.0001%.  1% is 10,000 per million.  
+The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.  These four states comprise 33.2% of the US population and account for 38.0% of deaths and 40.2% of confirmed cases.  Per capita data is expressed per million of population.  One per million is 0.0001%.  1% is 10,000 per million.  
 
 ![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestDeaths.png)
 
@@ -54,16 +54,16 @@ Daily Death Rate of Growth (DDRG) in the 10 US States with the highest death tol
 
 |State|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|
 |:--|--:|--:|--:|--:|--:|--:|--:|
-|[New York](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20York.png)| 145   |   32894|    1690.882|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[New Jersey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Jersey.png)| 145   |   15951|    1795.789|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[California](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/California.png)| 145   |   12295|     311.171|   1.2%/ 58|   1.1%/ 61|   1.1%/ 62|   1.1%/ 63 |
-|[Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Texas.png)| 145   |   12344|     425.718|   1.9%/ 37|   1.7%/ 41|   1.6%/ 43|   1.6%/ 44 |
-|[Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)| 145   |   10757|     500.829|   1.7%/ 41|   1.5%/ 47|   1.4%/ 49|   1.4%/ 51 |
-|[Massachusetts](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Massachusetts.png)| 145   |    8931|    1285.166|   0.2%/436|   0.2%/445|   0.2%/448|   0.2%/450 |
-|[Illinois](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Illinois.png)| 145   |    8089|     638.383|   0.2%/294|   0.2%/287|   0.2%/285|   0.2%/283 |
-|[Pennsylvania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Pennsylvania.png)| 145   |    7563|     590.790|   0.2%/302|   0.2%/290|   0.2%/288|   0.2%/285 |
-|[Michigan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Michigan.png)| 145   |    6655|     666.366|   0.1%/465|   0.2%/444|   0.2%/439|   0.2%/434 |
-|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Georgia.png)| 145   |    5152|     485.195|   1.4%/ 50|   1.4%/ 50|   1.4%/ 50|   1.4%/ 50 |
+|[New York](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20York.png)| 146   |   32899|    1691.165|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[New Jersey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Jersey.png)| 146   |   15954|    1796.215|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[California](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/California.png)| 146   |   12412|     314.135|   1.2%/ 60|   1.1%/ 64|   1.1%/ 66|   1.0%/ 67 |
+|[Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Texas.png)| 146   |   12500|     431.087|   1.8%/ 39|   1.6%/ 44|   1.5%/ 46|   1.4%/ 48 |
+|[Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)| 146   |   10896|     507.305|   1.6%/ 44|   1.3%/ 52|   1.3%/ 55|   1.2%/ 58 |
+|[Massachusetts](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Massachusetts.png)| 146   |    8946|    1287.291|   0.2%/432|   0.2%/437|   0.2%/439|   0.2%/440 |
+|[Illinois](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Illinois.png)| 146   |    8106|     639.706|   0.2%/306|   0.2%/304|   0.2%/304|   0.2%/303 |
+|[Pennsylvania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Pennsylvania.png)| 146   |    7577|     591.897|   0.2%/318|   0.2%/315|   0.2%/315|   0.2%/314 |
+|[Michigan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Michigan.png)| 146   |    6665|     667.328|   0.1%/464|   0.2%/446|   0.2%/442|   0.2%/437 |
+|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Georgia.png)| 146   |    5215|     491.147|   1.4%/ 51|   1.3%/ 52|   1.3%/ 52|   1.3%/ 52 |
 
 
 - Days - Number of days since first death
@@ -83,16 +83,16 @@ Daily Death Rate of Growth (DDRG) in the 10 countries with the highest death tol
 
 |Country|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|
 |:--|--:|--:|--:|--:|--:|--:|--:|
-|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)| 145   |  177790|     539.501|   0.6%/113|   0.6%/119|   0.6%/121|   0.6%/122 |
-|[Brazil](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Brazil.png)| 145   |  115608|     546.836|   0.9%/ 74|   0.9%/ 78|   0.9%/ 79|   0.9%/ 80 |
-|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 145   |   61418|     485.221|   1.1%/ 65|   1.0%/ 71|   0.9%/ 73|   0.9%/ 75 |
-|[India](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/India.png)| 145   |   58429|      42.924|   1.9%/ 36|   1.8%/ 38|   1.8%/ 39|   1.8%/ 39 |
-|[United Kingdom](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Kingdom.png)| 145   |   47212|     710.640|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Italy](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Italy.png)| 145   |   35443|     588.380|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 145   |   30498|     454.685|   0.0%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Spain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Spain.png)| 145   |   28799|     611.442|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.1%/ *** |
-|[Peru](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Peru.png)| 145   |   28209|     877.929|   0.8%/ 86|   0.7%/ 96|   0.7%/ 99|   0.7%/103 |
-|[Iran](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iran.png)| 145   |   20940|     251.143|   0.8%/ 86|   0.7%/ 99|   0.7%/103|   0.6%/108 |
+|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)| 146   |  178652|     542.119|   0.6%/118|   0.5%/127|   0.5%/129|   0.5%/132 |
+|[Brazil](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Brazil.png)| 146   |  116475|     550.940|   0.9%/ 77|   0.8%/ 83|   0.8%/ 84|   0.8%/ 85 |
+|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 146   |   61897|     489.005|   1.0%/ 68|   0.9%/ 76|   0.9%/ 78|   0.9%/ 81 |
+|[India](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/India.png)| 146   |   59416|      43.649|   1.9%/ 37|   1.8%/ 39|   1.7%/ 40|   1.7%/ 40 |
+|[United Kingdom](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Kingdom.png)| 146   |   40992|     617.016|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Italy](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Italy.png)| 146   |   35458|     588.621|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 146   |   30514|     454.919|   0.0%/ ***|   0.0%/ ***|   0.1%/ ***|   0.1%/ *** |
+|[Spain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Spain.png)| 146   |   28830|     612.095|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Peru](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Peru.png)| 146   |   28552|     888.592|   0.8%/ 87|   0.7%/ 97|   0.7%/100|   0.7%/104 |
+|[Iran](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iran.png)| 146   |   21060|     252.586|   0.8%/ 88|   0.7%/102|   0.6%/107|   0.6%/111 |
 
 
 # US and Selected States #
@@ -118,58 +118,58 @@ Click on the link in the first column to view the deaths and DDRG charts for a s
 
 |State|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|
 |:--|--:|--:|--:|--:|--:|--:|--:|
-|[Alabama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Alabama.png)| 145   |    2055|     419.142|   0.9%/ 75|   0.8%/ 89|   0.7%/ 93|   0.7%/ 98 |
-|[Alaska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Alaska.png)| 145   |      31|      42.208|   1.2%/ 58|   1.1%/ 61|   1.1%/ 62|   1.1%/ 63 |
-|[Arizona](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Arizona.png)| 145   |    4874|     669.603|   1.0%/ 69|   0.8%/ 85|   0.8%/ 90|   0.7%/ 96 |
-|[Arkansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Arkansas.png)| 145   |     686|     227.294|   1.8%/ 39|   1.7%/ 40|   1.7%/ 40|   1.7%/ 41 |
-|[California](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/California.png)| 145   |   12295|     311.171|   1.2%/ 58|   1.1%/ 61|   1.1%/ 62|   1.1%/ 63 |
-|[Colorado](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Colorado.png)| 145   |    1920|     333.404|   0.2%/349|   0.2%/369|   0.2%/374|   0.2%/379 |
-|[Connecticut](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Connecticut.png)| 145   |    4463|    1251.832|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Delaware](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Delaware.png)| 145   |     599|     615.403|   0.1%/497|   0.1%/462|   0.2%/452|   0.2%/443 |
-|[Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)| 145   |   10757|     500.829|   1.7%/ 41|   1.5%/ 47|   1.4%/ 49|   1.4%/ 51 |
-|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Georgia.png)| 145   |    5152|     485.195|   1.4%/ 50|   1.4%/ 50|   1.4%/ 50|   1.4%/ 50 |
-|[Hawaii](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Hawaii.png)| 145   |      47|      33.509|   2.5%/ 28|   2.8%/ 24|   2.9%/ 24|   3.0%/ 23 |
-|[Idaho](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Idaho.png)| 145   |     319|     178.288|   2.1%/ 33|   1.9%/ 36|   1.9%/ 37|   1.8%/ 38 |
-|[Illinois](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Illinois.png)| 145   |    8089|     638.383|   0.2%/294|   0.2%/287|   0.2%/285|   0.2%/283 |
-|[Indiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Indiana.png)| 145   |    3222|     478.667|   0.4%/171|   0.4%/164|   0.4%/162|   0.4%/160 |
-|[Iowa](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Iowa.png)| 145   |    1040|     329.591|   0.8%/ 85|   0.8%/ 84|   0.8%/ 84|   0.8%/ 83 |
-|[Kansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Kansas.png)| 145   |     431|     147.906|   0.8%/ 88|   0.7%/ 93|   0.7%/ 95|   0.7%/ 96 |
-|[Kentucky](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Kentucky.png)| 145   |     866|     193.746|   0.9%/ 78|   1.0%/ 72|   1.0%/ 70|   1.0%/ 68 |
-|[Louisiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Louisiana.png)| 145   |    4756|    1022.957|   0.8%/ 88|   0.8%/ 90|   0.8%/ 91|   0.8%/ 91 |
-|[Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)| 145   |     130|      96.351|   0.3%/224|   0.3%/210|   0.3%/206|   0.3%/201 |
-|[Maryland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maryland.png)| 145   |    3700|     611.932|   0.2%/319|   0.2%/353|   0.2%/362|   0.2%/373 |
-|[Massachusetts](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Massachusetts.png)| 145   |    8931|    1285.166|   0.2%/436|   0.2%/445|   0.2%/448|   0.2%/450 |
-|[Michigan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Michigan.png)| 145   |    6655|     666.366|   0.1%/465|   0.2%/444|   0.2%/439|   0.2%/434 |
-|[Minnesota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Minnesota.png)| 145   |    1807|     320.425|   0.5%/138|   0.5%/128|   0.6%/126|   0.6%/124 |
-|[Mississippi](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Mississippi.png)| 145   |    2292|     769.971|   1.3%/ 55|   1.1%/ 61|   1.1%/ 63|   1.1%/ 65 |
-|[Missouri](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Missouri.png)| 145   |    1461|     238.027|   0.6%/110|   0.6%/112|   0.6%/113|   0.6%/113 |
-|[Montana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Montana.png)| 145   |      95|      88.576|   1.5%/ 47|   1.1%/ 64|   1.0%/ 70|   0.9%/ 78 |
-|[Nebraska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Nebraska.png)| 145   |     380|     196.220|   0.6%/110|   0.6%/111|   0.6%/111|   0.6%/111 |
-|[Nevada](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Nevada.png)| 145   |    1217|     395.022|   1.8%/ 39|   1.7%/ 40|   1.7%/ 40|   1.7%/ 40 |
-|[New Hampshire](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Hampshire.png)| 145   |     429|     315.217|   0.2%/433|   0.2%/430|   0.2%/427|   0.2%/423 |
-|[New Jersey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Jersey.png)| 145   |   15951|    1795.789|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[New Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Mexico.png)| 145   |     748|     356.887|   0.6%/109|   0.6%/115|   0.6%/116|   0.6%/118 |
-|[New York](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20York.png)| 145   |   32894|    1690.882|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[North Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/North%20Carolina.png)| 145   |    2552|     243.360|   1.1%/ 63|   1.0%/ 67|   1.0%/ 68|   1.0%/ 69 |
-|[North Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/North%20Dakota.png)| 145   |     135|     177.614|   1.3%/ 53|   1.4%/ 50|   1.4%/ 49|   1.4%/ 48 |
-|[Ohio](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Ohio.png)| 145   |    3996|     341.851|   0.6%/117|   0.6%/122|   0.6%/123|   0.6%/125 |
-|[Oklahoma](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Oklahoma.png)| 145   |     730|     184.548|   1.4%/ 51|   1.4%/ 51|   1.4%/ 51|   1.4%/ 51 |
-|[Oregon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Oregon.png)| 145   |     425|     100.879|   1.1%/ 61|   1.0%/ 66|   1.0%/ 68|   1.0%/ 70 |
-|[Pennsylvania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Pennsylvania.png)| 145   |    7563|     590.790|   0.2%/302|   0.2%/290|   0.2%/288|   0.2%/285 |
-|[Puerto Rico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Puerto%20Rico.png)| 145   |     393|     123.051|   2.5%/ 28|   2.5%/ 27|   2.5%/ 27|   2.5%/ 27 |
-|[Rhode Island](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Rhode%20Island.png)| 145   |    1030|     972.225|   0.1%/619|   0.1%/575|   0.1%/565|   0.1%/554 |
-|[South Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/South%20Carolina.png)| 145   |    2558|     496.909|   1.5%/ 45|   1.4%/ 51|   1.3%/ 53|   1.3%/ 55 |
-|[South Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/South%20Dakota.png)| 145   |     162|     183.267|   0.8%/ 84|   0.7%/ 93|   0.7%/ 96|   0.7%/ 98 |
-|[Tennessee](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Tennessee.png)| 145   |    1563|     228.718|   1.9%/ 36|   2.0%/ 35|   2.0%/ 34|   2.0%/ 34 |
-|[Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Texas.png)| 145   |   12344|     425.718|   1.9%/ 37|   1.7%/ 41|   1.6%/ 43|   1.6%/ 44 |
-|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/US.png)| 145   |  177790|     539.501|   0.6%/113|   0.6%/119|   0.6%/121|   0.6%/122 |
-|[Utah](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Utah.png)| 145   |     393|     122.543|   0.9%/ 74|   0.8%/ 87|   0.8%/ 90|   0.7%/ 95 |
-|[Vermont](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Vermont.png)| 145   |      58|      93.503|   0.0%/ ***|   0.0%/ ***|   0.0%/ --|   0.0%/ *** |
-|[Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Virginia.png)| 145   |    2474|     289.884|   0.4%/159|   0.4%/192|   0.3%/202|   0.3%/213 |
-|[Washington](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Washington.png)| 145   |    1875|     246.261|   0.7%/ 95|   0.7%/ 96|   0.7%/ 97|   0.7%/ 97 |
-|[West Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/West%20Virginia.png)| 145   |     181|     101.108|   1.9%/ 37|   1.8%/ 37|   1.8%/ 38|   1.8%/ 38 |
-|[Wisconsin](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Wisconsin.png)| 145   |    1086|     186.580|   0.6%/111|   0.6%/119|   0.6%/121|   0.6%/122 |
-|[Wyoming](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Wyoming.png)| 133   |      35|      60.444|   1.8%/ 39|   2.2%/ 32|   2.3%/ 30|   2.4%/ 29 |
+|[Alabama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Alabama.png)| 146   |    2067|     421.559|   0.9%/ 80|   0.7%/ 97|   0.7%/103|   0.6%/110 |
+|[Alaska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Alaska.png)| 146   |      31|      42.857|   1.2%/ 58|   1.1%/ 61|   1.1%/ 62|   1.1%/ 63 |
+|[Arizona](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Arizona.png)| 146   |    4901|     673.358|   1.0%/ 72|   0.8%/ 91|   0.7%/ 97|   0.7%/103 |
+|[Arkansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Arkansas.png)| 146   |     697|     230.998|   1.8%/ 39|   1.7%/ 41|   1.7%/ 41|   1.7%/ 41 |
+|[California](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/California.png)| 146   |   12412|     314.135|   1.2%/ 60|   1.1%/ 64|   1.1%/ 66|   1.0%/ 67 |
+|[Colorado](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Colorado.png)| 146   |    1923|     333.918|   0.2%/355|   0.2%/375|   0.2%/380|   0.2%/385 |
+|[Connecticut](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Connecticut.png)| 146   |    4464|    1251.997|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Delaware](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Delaware.png)| 146   |     600|     616.567|   0.1%/466|   0.2%/424|   0.2%/413|   0.2%/402 |
+|[Florida](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Florida.png)| 146   |   10896|     507.305|   1.6%/ 44|   1.3%/ 52|   1.3%/ 55|   1.2%/ 58 |
+|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Georgia.png)| 146   |    5215|     491.147|   1.4%/ 51|   1.3%/ 52|   1.3%/ 52|   1.3%/ 52 |
+|[Hawaii](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Hawaii.png)| 146   |      49|      34.494|   2.3%/ 31|   2.5%/ 27|   2.6%/ 26|   2.7%/ 26 |
+|[Idaho](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Idaho.png)| 146   |     323|     180.786|   1.9%/ 36|   1.7%/ 40|   1.7%/ 41|   1.6%/ 42 |
+|[Illinois](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Illinois.png)| 146   |    8106|     639.706|   0.2%/306|   0.2%/304|   0.2%/304|   0.2%/303 |
+|[Indiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Indiana.png)| 146   |    3234|     480.373|   0.4%/179|   0.4%/175|   0.4%/174|   0.4%/174 |
+|[Iowa](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Iowa.png)| 146   |    1048|     332.188|   0.8%/ 87|   0.8%/ 87|   0.8%/ 87|   0.8%/ 87 |
+|[Kansas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Kansas.png)| 146   |     433|     148.738|   0.7%/ 96|   0.7%/105|   0.6%/107|   0.6%/110 |
+|[Kentucky](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Kentucky.png)| 146   |     875|     195.777|   0.9%/ 78|   1.0%/ 72|   1.0%/ 70|   1.0%/ 69 |
+|[Louisiana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Louisiana.png)| 146   |    4789|    1030.156|   0.8%/ 90|   0.7%/ 94|   0.7%/ 95|   0.7%/ 96 |
+|[Maine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maine.png)| 146   |     130|      96.721|   0.3%/208|   0.4%/189|   0.4%/184|   0.4%/179 |
+|[Maryland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Maryland.png)| 146   |    3706|     612.929|   0.2%/328|   0.2%/364|   0.2%/374|   0.2%/385 |
+|[Massachusetts](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Massachusetts.png)| 146   |    8946|    1287.291|   0.2%/432|   0.2%/437|   0.2%/439|   0.2%/440 |
+|[Michigan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Michigan.png)| 146   |    6665|     667.328|   0.1%/464|   0.2%/446|   0.2%/442|   0.2%/437 |
+|[Minnesota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Minnesota.png)| 146   |    1816|     321.995|   0.5%/143|   0.5%/135|   0.5%/133|   0.5%/131 |
+|[Mississippi](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Mississippi.png)| 146   |    2311|     776.449|   1.2%/ 59|   1.0%/ 68|   1.0%/ 71|   0.9%/ 73 |
+|[Missouri](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Missouri.png)| 146   |    1468|     239.154|   0.6%/118|   0.6%/124|   0.5%/126|   0.5%/128 |
+|[Montana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Montana.png)| 146   |      95|      89.205|   1.4%/ 50|   1.0%/ 71|   0.9%/ 78|   0.8%/ 88 |
+|[Nebraska](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Nebraska.png)| 146   |     382|     197.562|   0.6%/110|   0.6%/112|   0.6%/112|   0.6%/113 |
+|[Nevada](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Nevada.png)| 146   |    1233|     400.368|   1.6%/ 43|   1.5%/ 45|   1.5%/ 45|   1.5%/ 46 |
+|[New Hampshire](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Hampshire.png)| 146   |     429|     315.640|   0.2%/449|   0.2%/447|   0.2%/445|   0.2%/442 |
+|[New Jersey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Jersey.png)| 146   |   15954|    1796.215|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[New Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20Mexico.png)| 146   |     752|     358.813|   0.6%/112|   0.6%/119|   0.6%/121|   0.6%/123 |
+|[New York](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/New%20York.png)| 146   |   32899|    1691.165|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[North Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/North%20Carolina.png)| 146   |    2573|     245.317|   1.0%/ 67|   1.0%/ 73|   0.9%/ 74|   0.9%/ 76 |
+|[North Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/North%20Dakota.png)| 146   |     137|     179.958|   1.3%/ 53|   1.4%/ 50|   1.4%/ 50|   1.4%/ 49 |
+|[Ohio](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Ohio.png)| 146   |    4014|     343.382|   0.6%/124|   0.5%/132|   0.5%/134|   0.5%/136 |
+|[Oklahoma](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Oklahoma.png)| 146   |     738|     186.600|   1.3%/ 54|   1.3%/ 55|   1.3%/ 55|   1.2%/ 55 |
+|[Oregon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Oregon.png)| 146   |     429|     101.698|   1.0%/ 66|   0.9%/ 74|   0.9%/ 77|   0.9%/ 79 |
+|[Pennsylvania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Pennsylvania.png)| 146   |    7577|     591.897|   0.2%/318|   0.2%/315|   0.2%/315|   0.2%/314 |
+|[Puerto Rico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Puerto%20Rico.png)| 146   |     402|     125.721|   2.4%/ 29|   2.4%/ 29|   2.4%/ 29|   2.4%/ 29 |
+|[Rhode Island](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Rhode%20Island.png)| 146   |    1032|     973.844|   0.1%/588|   0.1%/540|   0.1%/528|   0.1%/517 |
+|[South Carolina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/South%20Carolina.png)| 146   |    2585|     501.982|   1.5%/ 47|   1.3%/ 55|   1.2%/ 57|   1.2%/ 60 |
+|[South Dakota](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/South%20Dakota.png)| 146   |     163|     184.286|   0.8%/ 90|   0.7%/102|   0.7%/105|   0.6%/108 |
+|[Tennessee](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Tennessee.png)| 146   |    1590|     232.725|   1.8%/ 38|   1.9%/ 37|   1.9%/ 37|   1.9%/ 37 |
+|[Texas](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Texas.png)| 146   |   12500|     431.087|   1.8%/ 39|   1.6%/ 44|   1.5%/ 46|   1.4%/ 48 |
+|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/US.png)| 146   |  178652|     542.119|   0.6%/118|   0.5%/127|   0.5%/129|   0.5%/132 |
+|[Utah](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Utah.png)| 146   |     396|     123.380|   0.9%/ 77|   0.8%/ 92|   0.7%/ 96|   0.7%/101 |
+|[Vermont](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Vermont.png)| 146   |      58|      93.446|   0.0%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Virginia.png)| 146   |    2482|     290.816|   0.4%/161|   0.4%/191|   0.3%/199|   0.3%/209 |
+|[Washington](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Washington.png)| 146   |    1886|     247.706|   0.7%/100|   0.7%/105|   0.7%/106|   0.6%/107 |
+|[West Virginia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/West%20Virginia.png)| 146   |     184|     102.639|   1.8%/ 38|   1.8%/ 39|   1.8%/ 39|   1.7%/ 40 |
+|[Wisconsin](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Wisconsin.png)| 146   |    1091|     187.384|   0.6%/116|   0.6%/126|   0.5%/128|   0.5%/131 |
+|[Wyoming](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/states/Wyoming.png)| 134   |      36|      62.261|   1.5%/ 46|   1.8%/ 39|   1.8%/ 38|   1.9%/ 37 |
 
 
 # All Countries #
@@ -178,138 +178,138 @@ Click on the link in the first column to view the deaths and DDRG chart for a sp
  
 |Country|Days|Deaths|Deaths/1M|DDRG[6:7]|DDRG[2:3]|DDRG[1:2]|DDRG[0:1]|
 |:--|--:|--:|--:|--:|--:|--:|--:|
-|[Afghanistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Afghanistan.png)| 145   |    1402|      43.515|   0.3%/214|   0.3%/254|   0.3%/268|   0.2%/284 |
-|[Albania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Albania.png)| 145   |     257|      90.369|   1.7%/ 41|   1.4%/ 50|   1.3%/ 53|   1.2%/ 56 |
-|[Algeria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Algeria.png)| 145   |    1444|      33.581|   0.7%/ 99|   0.6%/107|   0.6%/109|   0.6%/111 |
-|[Angola](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Angola.png)| 145   |     105|       3.364|   1.8%/ 38|   1.3%/ 52|   1.2%/ 57|   1.1%/ 64 |
-|[Argentina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Argentina.png)| 145   |    7128|     158.610|   3.0%/ 23|   2.9%/ 24|   2.9%/ 24|   2.9%/ 24 |
-|[Armenia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Armenia.png)| 145   |     857|     289.793|   0.5%/127|   0.5%/145|   0.5%/151|   0.4%/156 |
-|[Australia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Australia.png)| 145   |     573|      22.305|   3.5%/ 19|   3.2%/ 22|   3.1%/ 22|   3.0%/ 23 |
-|[Austria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Austria.png)| 145   |     732|      82.222|   0.1%/716|   0.1%/693|   0.1%/688|   0.1%/683 |
-|[Azerbaijan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Azerbaijan.png)| 145   |     527|      52.327|   0.4%/182|   0.2%/425|   0.1%/630|   0.1%/ *** |
-|[Bahrain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bahrain.png)| 145   |     185|     119.571|   1.0%/ 70|   1.0%/ 71|   1.0%/ 72|   1.0%/ 72 |
-|[Bangladesh](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bangladesh.png)| 145   |    3943|      23.407|   1.0%/ 66|   1.0%/ 67|   1.0%/ 67|   1.0%/ 67 |
-|[Belarus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Belarus.png)| 145   |     638|      67.778|   0.6%/111|   0.6%/110|   0.6%/110|   0.6%/109 |
-|[Belgium](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Belgium.png)| 145   |    9988|     866.696|   0.1%/864|   0.1%/763|   0.1%/741|   0.1%/721 |
-|[Benin](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Benin.png)| 140   |      40|       3.372|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Bolivia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bolivia.png)| 145   |    4597|     400.768|   1.6%/ 44|   1.3%/ 52|   1.3%/ 55|   1.2%/ 57 |
-|[Bosnia and Herzegovina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bosnia%20and%20Herzegovina.png)| 145   |     552|     167.305|   1.7%/ 40|   1.6%/ 44|   1.6%/ 45|   1.5%/ 45 |
-|[Botswana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Botswana.png)| 145   |       3|       1.393|   2.0%/ 35|   1.5%/ 46|   1.4%/ 50|   1.3%/ 55 |
-|[Brazil](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Brazil.png)| 145   |  115608|     546.836|   0.9%/ 74|   0.9%/ 78|   0.9%/ 79|   0.9%/ 80 |
-|[Bulgaria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bulgaria.png)| 145   |     562|      80.818|   1.4%/ 50|   1.2%/ 58|   1.1%/ 61|   1.1%/ 63 |
-|[Burkina Faso](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Burkina%20Faso.png)| 145   |      55|       2.644|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ *** |
-|[Burundi](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Burundi.png)| 133   |       1|       0.091|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Cameroon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Cameroon.png)| 145   |     409|      15.396|   0.2%/305|   0.2%/285|   0.2%/281|   0.3%/277 |
-|[Canada](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Canada.png)| 145   |    9120|     240.007|   0.1%/983|   0.1%/980|   0.1%/979|   0.1%/977 |
-|[Central African Republic](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Central%20African%20Republic.png)|  93   |      61|      11.159|   0.1%/554|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Chad](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Chad.png)| 118   |      76|       4.688|   0.0%/ --|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
-|[Chile](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Chile.png)| 145   |   10886|     569.757|   0.5%/128|   0.5%/141|   0.5%/144|   0.5%/148 |
-|[China](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/China.png)| 145   |    4715|       3.362|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Colombia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Colombia.png)| 145   |   17668|     357.688|   2.1%/ 33|   1.8%/ 38|   1.7%/ 40|   1.7%/ 41 |
-|[Costa Rica](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Costa%20Rica.png)| 145   |     386|      76.297|   3.1%/ 22|   2.5%/ 27|   2.4%/ 29|   2.2%/ 31 |
-|[Croatia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Croatia.png)| 145   |     173|      42.442|   0.6%/124|   0.4%/162|   0.4%/175|   0.4%/189 |
-|[Cuba](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Cuba.png)| 145   |      89|       7.907|   0.1%/855|   0.1%/779|   0.1%/760|   0.1%/739 |
-|[Denmark](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Denmark.png)| 145   |     623|     106.967|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Dominican Republic](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Dominican%20Republic.png)| 145   |    1588|     153.305|   1.3%/ 52|   1.3%/ 55|   1.2%/ 56|   1.2%/ 56 |
-|[Ecuador](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ecuador.png)| 145   |    6279|     359.434|   0.5%/151|   0.5%/149|   0.5%/148|   0.5%/147 |
-|[Egypt](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Egypt.png)| 145   |    5298|      52.835|   0.3%/210|   0.3%/273|   0.2%/294|   0.2%/319 |
-|[El Salvador](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/El%20Salvador.png)| 145   |     684|     105.387|   1.4%/ 48|   1.2%/ 59|   1.1%/ 63|   1.0%/ 67 |
-|[Equatorial Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Equatorial%20Guinea.png)| 124   |      84|      62.074|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Ethiopia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ethiopia.png)| 141   |     695|       7.047|   3.7%/ 19|   3.6%/ 19|   3.5%/ 19|   3.5%/ 20 |
-|[Finland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Finland.png)| 145   |     335|      60.566|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 145   |   30498|     454.685|   0.0%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Gabon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Gabon.png)| 145   |      53|      24.446|   0.2%/314|   0.2%/342|   0.2%/347|   0.2%/352 |
-|[Gambia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Gambia.png)| 145   |      87|      37.057|   8.0%/  8|  10.1%/  7|   2.9%/ 23|   2.4%/ 29 |
-|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Georgia.png)| 142   |      17|       4.582|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ -- |
-|[Germany](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Germany.png)| 145   |    9275|     111.550|   0.1%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Ghana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ghana.png)| 145   |     267|       8.823|   1.7%/ 42|   1.6%/ 43|   1.6%/ 43|   1.6%/ 43 |
-|[Greece](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Greece.png)| 145   |     240|      22.335|   0.8%/ 83|   1.0%/ 72|   1.0%/ 70|   1.0%/ 68 |
-|[Guatemala](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guatemala.png)| 145   |    2615|     157.484|   1.2%/ 56|   1.1%/ 62|   1.1%/ 64|   1.1%/ 66 |
-|[Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guinea.png)| 131   |      53|       4.373|   0.5%/130|   0.5%/151|   0.4%/156|   0.4%/161 |
-|[Guinea-Bissau](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guinea-Bissau.png)| 120   |      34|      21.256|   0.4%/166|   0.2%/290|   0.2%/365|   0.1%/499 |
-|[Haiti](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Haiti.png)| 141   |     204|      17.611|   0.6%/114|   0.4%/175|   0.3%/205|   0.3%/250 |
-|[Honduras](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Honduras.png)| 145   |    1691|     184.601|   0.7%/ 96|   0.4%/163|   0.4%/195|   0.3%/240 |
-|[Hungary](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Hungary.png)| 145   |     612|      62.651|   0.1%/587|   0.1%/555|   0.1%/550|   0.1%/545 |
-|[India](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/India.png)| 145   |   58429|      42.924|   1.9%/ 36|   1.8%/ 38|   1.8%/ 39|   1.8%/ 39 |
-|[Indonesia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Indonesia.png)| 145   |    6663|      24.962|   1.1%/ 62|   1.1%/ 64|   1.1%/ 64|   1.1%/ 64 |
-|[Iran](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iran.png)| 145   |   20940|     251.143|   0.8%/ 86|   0.7%/ 99|   0.7%/103|   0.6%/108 |
-|[Iraq](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iraq.png)| 145   |    6457|     165.019|   1.3%/ 53|   1.2%/ 56|   1.2%/ 56|   1.2%/ 57 |
-|[Ireland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ireland.png)| 145   |    1778|     361.322|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Israel](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Israel.png)| 145   |     776|      84.462|   1.7%/ 41|   1.6%/ 42|   1.6%/ 42|   1.6%/ 43 |
-|[Italy](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Italy.png)| 145   |   35443|     588.380|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Jamaica](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Jamaica.png)| 145   |      16|       5.822|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ -- |
-|[Japan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Japan.png)| 145   |    1168|       9.271|   0.9%/ 76|   1.1%/ 64|   1.1%/ 62|   1.2%/ 59 |
-|[Jordan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Jordan.png)| 145   |      11|       1.032|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ *** |
-|[Kazakhstan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kazakhstan.png)| 145   |    1556|      83.264|   1.3%/ 53|   1.5%/ 46|   1.6%/ 44|   1.6%/ 43 |
-|[Kenya](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kenya.png)| 145   |     555|      11.673|   1.9%/ 36|   1.7%/ 40|   1.7%/ 41|   1.6%/ 42 |
-|[Kosovo](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kosovo.png)| 145   |     477|     265.451|   2.8%/ 25|   2.5%/ 27|   2.5%/ 28|   2.4%/ 29 |
-|[Kuwait](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kuwait.png)| 142   |     520|     117.542|   0.5%/132|   0.5%/151|   0.4%/157|   0.4%/163 |
-|[Kyrgyzstan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kyrgyzstan.png)| 143   |    1540|     235.761|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Latvia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Latvia.png)| 143   |      33|      17.255|   0.2%/326|   0.2%/291|   0.2%/282|   0.3%/272 |
-|[Lebanon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Lebanon.png)| 145   |     126|      18.402|   3.2%/ 21|   3.2%/ 22|   3.2%/ 22|   3.1%/ 22 |
-|[Liberia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Liberia.png)| 142   |      84|      18.724|   0.2%/325|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
-|[Libya](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Libya.png)| 144   |     199|      28.904|   3.6%/ 19|   3.4%/ 20|   3.4%/ 20|   3.3%/ 21 |
-|[Lithuania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Lithuania.png)| 145   |      82|      29.491|   0.3%/247|   0.4%/187|   0.4%/176|   0.4%/165 |
-|[Madagascar](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Madagascar.png)|  99   |     186|       7.068|   1.6%/ 44|   0.8%/ 90|   0.6%/122|   0.4%/189 |
-|[Malaysia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Malaysia.png)| 145   |     125|       3.821|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Mali](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mali.png)| 145   |     125|       6.187|   0.0%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Mauritania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mauritania.png)| 145   |     158|      38.694|   0.0%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 145   |   61418|     485.221|   1.1%/ 65|   1.0%/ 71|   0.9%/ 73|   0.9%/ 75 |
-|[Moldova](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Moldova.png)| 145   |     948|     353.646|   0.8%/ 91|   0.7%/ 99|   0.7%/102|   0.7%/104 |
-|[Morocco](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Morocco.png)| 145   |     874|      24.366|   4.2%/ 16|   4.5%/ 15|   4.6%/ 15|   4.7%/ 15 |
-|[Mozambique](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mozambique.png)|  91   |      21|       0.685|   1.4%/ 48|   0.8%/ 92|   0.6%/120|   0.4%/172 |
-|[Namibia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Namibia.png)|  45   |      49|      19.947|   7.4%/  9|   5.4%/ 13|   5.8%/ 12|   6.4%/ 11 |
-|[Nepal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nepal.png)| 100   |     148|       4.938|   5.1%/ 13|   5.4%/ 13|   5.4%/ 13|   5.5%/ 12 |
-|[Netherlands](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Netherlands.png)| 145   |    6215|     356.006|   0.1%/ ***|   0.1%/ ***|   0.1%/960|   0.1%/917 |
-|[New Zealand](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/New%20Zealand.png)| 145   |      22|       4.418|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Nicaragua](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nicaragua.png)| 145   |     135|      20.931|   0.5%/139|   0.4%/171|   0.4%/182|   0.4%/194 |
-|[Niger](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Niger.png)| 145   |      69|       3.092|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ -- |
-|[Nigeria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nigeria.png)| 145   |    1012|       4.909|   0.4%/155|   0.4%/190|   0.3%/202|   0.3%/216 |
-|[North Macedonia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/North%20Macedonia.png)| 145   |     568|     273.344|   0.5%/127|   0.5%/151|   0.4%/159|   0.4%/167 |
-|[Norway](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Norway.png)| 145   |     264|      49.130|   0.2%/436|   0.2%/352|   0.2%/335|   0.2%/320 |
-|[Oman](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Oman.png)| 145   |     643|     137.936|   1.3%/ 54|   1.1%/ 64|   1.0%/ 67|   1.0%/ 70 |
-|[Pakistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Pakistan.png)| 145   |    6264|      28.557|   0.2%/378|   0.1%/469|   0.1%/498|   0.1%/531 |
-|[Panama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Panama.png)| 145   |    1928|     457.099|   1.1%/ 65|   0.9%/ 78|   0.8%/ 82|   0.8%/ 86 |
-|[Papua New Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Papua%20New%20Guinea.png)|  28   |       4|       0.448|   0.0%/ --|   8.1%/  8|   6.1%/ 11|   3.6%/ 19 |
-|[Paraguay](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Paraguay.png)| 145   |     202|      28.284|   6.3%/ 11|   6.7%/ 10|   6.8%/ 10|   6.9%/ 10 |
-|[Peru](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Peru.png)| 145   |   28209|     877.929|   0.8%/ 86|   0.7%/ 96|   0.7%/ 99|   0.7%/103 |
-|[Philippines](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Philippines.png)| 145   |    2968|      27.352|   2.1%/ 34|   2.3%/ 30|   2.4%/ 29|   2.4%/ 29 |
-|[Poland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Poland.png)| 145   |    1956|      50.975|   0.6%/114|   0.6%/111|   0.6%/110|   0.6%/109 |
-|[Portugal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Portugal.png)| 145   |    1797|     174.904|   0.2%/418|   0.2%/418|   0.2%/419|   0.2%/419 |
-|[Qatar](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Qatar.png)| 145   |     198|      72.034|   0.3%/205|   0.2%/378|   0.1%/487|   0.1%/688 |
-|[Romania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Romania.png)| 145   |    3300|     170.077|   1.4%/ 48|   1.4%/ 49|   1.4%/ 50|   1.4%/ 50 |
-|[Russia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Russia.png)| 145   |   16437|     112.014|   0.7%/104|   0.6%/112|   0.6%/115|   0.6%/117 |
-|[Rwanda](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Rwanda.png)|  86   |      12|       0.960|   0.0%/ --|   3.2%/ 21|   3.2%/ 21|   2.9%/ 23 |
-|[Saudi Arabia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Saudi%20Arabia.png)| 145   |    3662|     107.019|   1.0%/ 66|   1.0%/ 67|   1.0%/ 67|   1.0%/ 68 |
-|[Senegal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Senegal.png)| 145   |     273|      16.830|   1.0%/ 66|   0.9%/ 76|   0.9%/ 78|   0.8%/ 82 |
-|[Serbia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Serbia.png)| 145   |     713|     102.413|   0.7%/106|   0.5%/149|   0.4%/165|   0.4%/186 |
-|[Sierra Leone](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sierra%20Leone.png)| 123   |      69|       8.792|   0.1%/831|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
-|[Singapore](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Singapore.png)| 145   |      27|       4.734|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
-|[Slovakia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Slovakia.png)| 145   |      33|       6.077|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
-|[Slovenia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Slovenia.png)| 145   |     132|      63.199|   0.3%/267|   0.2%/426|   0.1%/503|   0.1%/614 |
-|[Somalia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Somalia.png)| 138   |      93|       5.852|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[South Africa](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/South%20Africa.png)| 145   |   13744|     233.834|   1.8%/ 38|   1.4%/ 48|   1.3%/ 52|   1.2%/ 55 |
-|[Spain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Spain.png)| 145   |   28799|     611.442|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.1%/ *** |
-|[Sri Lanka](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sri%20Lanka.png)| 145   |      11|       0.505|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ *** |
-|[Sudan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sudan.png)| 145   |     823|      19.388|   0.4%/196|   0.3%/240|   0.3%/254|   0.3%/270 |
-|[Sweden](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sweden.png)| 145   |    5812|     562.221|   0.1%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Switzerland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Switzerland.png)| 145   |    1999|     232.364|   0.1%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
-|[Syria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Syria.png)| 145   |      84|       4.772|   2.6%/ 26|   2.7%/ 26|   2.7%/ 26|   2.7%/ 25 |
-|[Tanzania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Tanzania.png)| 145   |      21|       0.376|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
-|[Thailand](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Thailand.png)| 145   |      58|       0.872|   0.0%/ ***|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
-|[Togo](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Togo.png)| 145   |      30|       3.917|   1.1%/ 64|   0.5%/134|   0.4%/191|   0.2%/335 |
-|[Trinidad and Tobago](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Trinidad%20and%20Tobago.png)| 145   |       8|       5.865|   0.0%/ ***|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
-|[Tunisia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Tunisia.png)| 145   |      54|       4.648|   1.1%/ 64|   1.4%/ 50|   1.5%/ 47|   1.5%/ 45 |
-|[Turkey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Turkey.png)| 145   |    6110|      73.480|   0.3%/210|   0.3%/202|   0.3%/199|   0.4%/197 |
-|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)| 145   |  177790|     539.501|   0.6%/113|   0.6%/119|   0.6%/121|   0.6%/122 |
-|[Uganda](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uganda.png)|  31   |      21|       0.510|   6.9%/ 10|   6.8%/ 10|   5.6%/ 12|   4.3%/ 16 |
-|[Ukraine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ukraine.png)| 145   |    2304|      55.011|   1.3%/ 51|   1.4%/ 50|   1.4%/ 49|   1.4%/ 49 |
-|[United Arab Emirates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Arab%20Emirates.png)| 145   |     371|      37.525|   0.3%/201|   0.4%/178|   0.4%/173|   0.4%/168 |
-|[United Kingdom](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Kingdom.png)| 145   |   47212|     710.640|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Uruguay](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uruguay.png)| 145   |      41|      11.736|   1.0%/ 70|   1.2%/ 59|   1.2%/ 57|   1.3%/ 55 |
-|[Uzbekistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uzbekistan.png)| 145   |     281|       8.243|   2.6%/ 27|   2.2%/ 31|   2.2%/ 32|   2.1%/ 33 |
-|[Venezuela](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Venezuela.png)| 145   |     344|      10.673|   2.8%/ 24|   2.6%/ 26|   2.6%/ 27|   2.5%/ 27 |
-|[Vietnam](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Vietnam.png)|  24   |      27|       0.278|   4.4%/ 16|   0.0%/ --|   1.1%/ 64|   2.5%/ 27 |
-|[Zambia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Zambia.png)| 144   |     306|      17.112|   1.1%/ 62|   1.2%/ 58|   1.2%/ 57|   1.2%/ 56 |
-|[Zimbabwe](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Zimbabwe.png)| 145   |     179|      11.839|   1.8%/ 39|   2.5%/ 27|   0.7%/105|   0.9%/ 79 |
+|[Afghanistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Afghanistan.png)| 146   |    1405|      43.597|   0.3%/231|   0.2%/287|   0.2%/307|   0.2%/331 |
+|[Albania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Albania.png)| 146   |     260|      91.473|   1.7%/ 42|   1.4%/ 49|   1.3%/ 51|   1.3%/ 54 |
+|[Algeria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Algeria.png)| 146   |    1453|      33.789|   0.7%/100|   0.6%/108|   0.6%/110|   0.6%/112 |
+|[Angola](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Angola.png)| 146   |     106|       3.396|   1.7%/ 39|   1.3%/ 55|   1.1%/ 60|   1.0%/ 68 |
+|[Argentina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Argentina.png)| 146   |    7348|     163.507|   3.0%/ 23|   2.9%/ 24|   2.9%/ 24|   2.9%/ 24 |
+|[Armenia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Armenia.png)| 146   |     860|     290.940|   0.5%/129|   0.5%/148|   0.5%/153|   0.4%/158 |
+|[Australia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Australia.png)| 146   |     598|      23.292|   3.4%/ 20|   3.0%/ 23|   2.9%/ 24|   2.8%/ 24 |
+|[Austria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Austria.png)| 146   |     733|      82.308|   0.1%/686|   0.1%/655|   0.1%/648|   0.1%/642 |
+|[Azerbaijan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Azerbaijan.png)| 146   |     527|      52.367|   0.4%/186|   0.2%/387|   0.1%/523|   0.1%/800 |
+|[Bahrain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bahrain.png)| 146   |     186|     120.605|   1.0%/ 72|   0.9%/ 74|   0.9%/ 74|   0.9%/ 75 |
+|[Bangladesh](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bangladesh.png)| 146   |    3984|      23.649|   1.1%/ 66|   1.0%/ 66|   1.0%/ 66|   1.0%/ 67 |
+|[Belarus](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Belarus.png)| 146   |     642|      68.236|   0.6%/108|   0.7%/106|   0.7%/105|   0.7%/104 |
+|[Belgium](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Belgium.png)| 146   |    9996|     867.414|   0.1%/893|   0.1%/807|   0.1%/789|   0.1%/773 |
+|[Benin](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Benin.png)| 141   |      40|       3.370|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Bolivia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bolivia.png)| 146   |    4653|     405.653|   1.5%/ 45|   1.3%/ 52|   1.3%/ 54|   1.2%/ 56 |
+|[Bosnia and Herzegovina](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bosnia%20and%20Herzegovina.png)| 146   |     561|     169.829|   1.7%/ 42|   1.5%/ 46|   1.5%/ 47|   1.5%/ 48 |
+|[Botswana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Botswana.png)| 146   |       3|       1.404|   1.8%/ 38|   1.3%/ 53|   1.2%/ 59|   1.0%/ 67 |
+|[Brazil](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Brazil.png)| 146   |  116475|     550.940|   0.9%/ 77|   0.8%/ 83|   0.8%/ 84|   0.8%/ 85 |
+|[Bulgaria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Bulgaria.png)| 146   |     569|      81.806|   1.4%/ 51|   1.2%/ 58|   1.1%/ 60|   1.1%/ 63 |
+|[Burkina Faso](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Burkina%20Faso.png)| 146   |      55|       2.646|   0.0%/ ***|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
+|[Burundi](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Burundi.png)| 134   |       1|       0.091|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ *** |
+|[Cameroon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Cameroon.png)| 146   |     409|      15.424|   0.2%/330|   0.2%/321|   0.2%/320|   0.2%/319 |
+|[Canada](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Canada.png)| 146   |    9127|     240.181|   0.1%/983|   0.1%/978|   0.1%/976|   0.1%/974 |
+|[Central African Republic](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Central%20African%20Republic.png)|  94   |      61|      11.146|   0.1%/688|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Chad](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Chad.png)| 119   |      76|       4.686|   0.0%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ *** |
+|[Chile](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Chile.png)| 146   |   10940|     572.554|   0.5%/127|   0.5%/138|   0.5%/141|   0.5%/144 |
+|[China](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/China.png)| 146   |    4717|       3.364|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Colombia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Colombia.png)| 146   |   17967|     363.726|   2.1%/ 34|   1.8%/ 38|   1.7%/ 39|   1.7%/ 41 |
+|[Costa Rica](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Costa%20Rica.png)| 146   |     392|      77.593|   2.9%/ 23|   2.4%/ 29|   2.3%/ 30|   2.2%/ 32 |
+|[Croatia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Croatia.png)| 146   |     174|      42.642|   0.6%/121|   0.5%/149|   0.4%/158|   0.4%/167 |
+|[Cuba](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Cuba.png)| 146   |      89|       7.913|   0.1%/542|   0.2%/444|   0.2%/423|   0.2%/402 |
+|[Denmark](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Denmark.png)| 146   |     623|     107.013|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Dominican Republic](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Dominican%20Republic.png)| 146   |    1605|     154.917|   1.3%/ 54|   1.2%/ 58|   1.2%/ 59|   1.1%/ 61 |
+|[Ecuador](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ecuador.png)| 146   |    6307|     361.053|   0.5%/153|   0.5%/150|   0.5%/149|   0.5%/148 |
+|[Egypt](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Egypt.png)| 146   |    5310|      52.955|   0.3%/214|   0.3%/272|   0.2%/291|   0.2%/312 |
+|[El Salvador](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/El%20Salvador.png)| 146   |     690|     106.385|   1.4%/ 50|   1.1%/ 62|   1.0%/ 66|   1.0%/ 70 |
+|[Equatorial Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Equatorial%20Guinea.png)| 125   |      84|      61.655|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
+|[Ethiopia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ethiopia.png)| 142   |     717|       7.263|   3.6%/ 19|   3.4%/ 20|   3.4%/ 20|   3.4%/ 20 |
+|[Finland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Finland.png)| 146   |     335|      60.606|   0.1%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 146   |   30514|     454.919|   0.0%/ ***|   0.0%/ ***|   0.1%/ ***|   0.1%/ *** |
+|[Gabon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Gabon.png)| 146   |      53|      24.496|   0.2%/360|   0.2%/410|   0.2%/422|   0.2%/436 |
+|[Gambia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Gambia.png)| 146   |     116|      49.441|   5.3%/ 13|   2.9%/ 23|   2.4%/ 29|   1.2%/ 59 |
+|[Georgia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Georgia.png)| 143   |      17|       4.610|   0.0%/ ***|   0.0%/ --|   0.0%/ ***|   0.0%/ *** |
+|[Germany](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Germany.png)| 146   |    9280|     111.608|   0.1%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
+|[Ghana](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ghana.png)| 146   |     270|       8.930|   1.5%/ 46|   1.4%/ 49|   1.4%/ 50|   1.3%/ 52 |
+|[Greece](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Greece.png)| 146   |     242|      22.532|   0.8%/ 84|   0.9%/ 74|   1.0%/ 72|   1.0%/ 70 |
+|[Guatemala](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guatemala.png)| 146   |    2640|     158.988|   1.2%/ 58|   1.1%/ 63|   1.1%/ 65|   1.0%/ 66 |
+|[Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guinea.png)| 132   |      54|       4.415|   0.6%/116|   0.6%/120|   0.6%/121|   0.6%/121 |
+|[Guinea-Bissau](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Guinea-Bissau.png)| 121   |      34|      21.352|   0.3%/224|   0.1%/643|   0.1%/ ***|   0.0%/ -- |
+|[Haiti](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Haiti.png)| 142   |     204|      17.622|   0.5%/133|   0.3%/248|   0.2%/325|   0.1%/478 |
+|[Honduras](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Honduras.png)| 146   |    1698|     185.400|   0.7%/ 95|   0.5%/142|   0.4%/160|   0.4%/183 |
+|[Hungary](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Hungary.png)| 146   |     613|      62.727|   0.1%/593|   0.1%/572|   0.1%/568|   0.1%/565 |
+|[India](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/India.png)| 146   |   59416|      43.649|   1.9%/ 37|   1.8%/ 39|   1.7%/ 40|   1.7%/ 40 |
+|[Indonesia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Indonesia.png)| 146   |    6739|      25.249|   1.1%/ 61|   1.1%/ 62|   1.1%/ 62|   1.1%/ 62 |
+|[Iran](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iran.png)| 146   |   21060|     252.586|   0.8%/ 88|   0.7%/102|   0.6%/107|   0.6%/111 |
+|[Iraq](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Iraq.png)| 146   |    6536|     167.053|   1.3%/ 54|   1.2%/ 56|   1.2%/ 56|   1.2%/ 57 |
+|[Ireland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ireland.png)| 146   |    1779|     361.381|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Israel](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Israel.png)| 146   |     836|      90.970|   1.7%/ 41|   1.6%/ 43|   1.6%/ 43|   1.6%/ 44 |
+|[Italy](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Italy.png)| 146   |   35458|     588.621|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Jamaica](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Jamaica.png)| 146   |      16|       5.888|   0.0%/ ***|   0.0%/ ***|   0.0%/ --|   0.0%/ *** |
+|[Japan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Japan.png)| 146   |    1182|       9.385|   0.9%/ 76|   1.1%/ 65|   1.1%/ 63|   1.1%/ 61 |
+|[Jordan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Jordan.png)| 146   |      11|       1.032|   0.0%/ --|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
+|[Kazakhstan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kazakhstan.png)| 146   |    1562|      83.588|   1.0%/ 66|   1.2%/ 59|   1.2%/ 57|   1.2%/ 56 |
+|[Kenya](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kenya.png)| 146   |     563|      11.840|   1.8%/ 38|   1.7%/ 42|   1.6%/ 43|   1.6%/ 44 |
+|[Kosovo](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kosovo.png)| 146   |     485|     270.179|   2.6%/ 27|   2.2%/ 31|   2.2%/ 32|   2.1%/ 33 |
+|[Kuwait](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kuwait.png)| 143   |     522|     118.032|   0.5%/135|   0.4%/155|   0.4%/161|   0.4%/167 |
+|[Kyrgyzstan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Kyrgyzstan.png)| 144   |    1544|     236.285|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Latvia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Latvia.png)| 144   |      33|      17.291|   0.2%/373|   0.2%/340|   0.2%/331|   0.2%/322 |
+|[Lebanon](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Lebanon.png)| 146   |     129|      18.933|   3.2%/ 22|   3.1%/ 22|   3.1%/ 22|   3.1%/ 23 |
+|[Liberia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Liberia.png)| 143   |      84|      18.702|   0.2%/391|   0.0%/ ***|   0.0%/ --|   0.0%/ -- |
+|[Libya](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Libya.png)| 145   |     205|      29.798|   3.6%/ 19|   3.4%/ 20|   3.3%/ 21|   3.3%/ 21 |
+|[Lithuania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Lithuania.png)| 146   |      83|      29.651|   0.3%/201|   0.5%/152|   0.5%/142|   0.5%/134 |
+|[Madagascar](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Madagascar.png)| 100   |     186|       7.093|   1.4%/ 51|   0.5%/130|   0.3%/210|   0.1%/545 |
+|[Malaysia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Malaysia.png)| 146   |     125|       3.820|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Mali](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mali.png)| 146   |     125|       6.186|   0.0%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Mauritania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mauritania.png)| 146   |     158|      38.714|   0.0%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
+|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 146   |   61897|     489.005|   1.0%/ 68|   0.9%/ 76|   0.9%/ 78|   0.9%/ 81 |
+|[Moldova](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Moldova.png)| 146   |     954|     355.785|   0.7%/ 94|   0.7%/104|   0.7%/106|   0.6%/109 |
+|[Morocco](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Morocco.png)| 146   |     913|      25.437|   4.3%/ 16|   4.5%/ 15|   4.6%/ 15|   4.7%/ 15 |
+|[Mozambique](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mozambique.png)|  92   |      21|       0.695|   1.4%/ 49|   0.8%/ 83|   0.7%/100|   0.6%/123 |
+|[Namibia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Namibia.png)|  46   |      54|      21.991|   5.7%/ 12|   6.7%/ 10|   7.8%/  9|   8.9%/  8 |
+|[Nepal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nepal.png)| 101   |     156|       5.193|   5.1%/ 13|   5.2%/ 13|   5.3%/ 13|   5.3%/ 13 |
+|[Netherlands](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Netherlands.png)| 146   |    6219|     356.268|   0.1%/ ***|   0.1%/ ***|   0.1%/991|   0.1%/950 |
+|[New Zealand](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/New%20Zealand.png)| 146   |      22|       4.418|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ *** |
+|[Nicaragua](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nicaragua.png)| 146   |     135|      20.973|   0.4%/157|   0.3%/210|   0.3%/230|   0.3%/253 |
+|[Niger](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Niger.png)| 146   |      69|       3.092|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ *** |
+|[Nigeria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Nigeria.png)| 146   |    1015|       4.923|   0.4%/163|   0.3%/206|   0.3%/220|   0.3%/236 |
+|[North Macedonia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/North%20Macedonia.png)| 146   |     570|     274.554|   0.6%/126|   0.5%/146|   0.5%/151|   0.4%/157 |
+|[Norway](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Norway.png)| 146   |     264|      49.227|   0.1%/478|   0.2%/399|   0.2%/383|   0.2%/368 |
+|[Oman](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Oman.png)| 146   |     651|     139.495|   1.3%/ 54|   1.1%/ 62|   1.1%/ 65|   1.0%/ 67 |
+|[Pakistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Pakistan.png)| 146   |    6270|      28.588|   0.2%/393|   0.1%/486|   0.1%/517|   0.1%/551 |
+|[Panama](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Panama.png)| 146   |    1943|     460.477|   1.0%/ 67|   0.9%/ 80|   0.8%/ 85|   0.8%/ 89 |
+|[Papua New Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Papua%20New%20Guinea.png)|  29   |       4|       0.448|   1.0%/ 68|   6.5%/ 11|   3.0%/ 23|   0.0%/ -- |
+|[Paraguay](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Paraguay.png)| 146   |     218|      30.420|   6.0%/ 11|   6.3%/ 11|   6.4%/ 11|   6.5%/ 11 |
+|[Peru](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Peru.png)| 146   |   28552|     888.592|   0.8%/ 87|   0.7%/ 97|   0.7%/100|   0.7%/104 |
+|[Philippines](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Philippines.png)| 146   |    3026|      27.888|   2.0%/ 34|   2.2%/ 31|   2.2%/ 31|   2.3%/ 30 |
+|[Poland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Poland.png)| 146   |    1967|      51.250|   0.6%/118|   0.6%/117|   0.6%/116|   0.6%/116 |
+|[Portugal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Portugal.png)| 146   |    1801|     175.212|   0.2%/416|   0.2%/417|   0.2%/417|   0.2%/418 |
+|[Qatar](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Qatar.png)| 146   |     198|      72.080|   0.3%/228|   0.1%/475|   0.1%/663|   0.1%/ *** |
+|[Romania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Romania.png)| 146   |    3343|     172.297|   1.4%/ 49|   1.4%/ 51|   1.3%/ 52|   1.3%/ 52 |
+|[Russia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Russia.png)| 146   |   16526|     112.619|   0.7%/106|   0.6%/116|   0.6%/118|   0.6%/121 |
+|[Rwanda](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Rwanda.png)|  87   |      13|       1.021|   7.7%/  9|   3.2%/ 21|   2.9%/ 23|   8.4%/  8 |
+|[Saudi Arabia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Saudi%20Arabia.png)| 146   |    3699|     108.110|   1.0%/ 66|   1.0%/ 67|   1.0%/ 68|   1.0%/ 68 |
+|[Senegal](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Senegal.png)| 146   |     275|      16.980|   1.1%/ 66|   0.9%/ 74|   0.9%/ 76|   0.9%/ 78 |
+|[Serbia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Serbia.png)| 146   |     715|     102.732|   0.6%/112|   0.4%/160|   0.4%/179|   0.3%/203 |
+|[Sierra Leone](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sierra%20Leone.png)| 124   |      69|       8.791|   0.1%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Singapore](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Singapore.png)| 146   |      27|       4.734|   0.0%/ ***|   0.0%/ --|   0.0%/ --|   0.0%/ *** |
+|[Slovakia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Slovakia.png)| 146   |      33|       6.101|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Slovenia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Slovenia.png)| 146   |     133|      63.401|   0.3%/264|   0.2%/400|   0.2%/459|   0.1%/538 |
+|[Somalia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Somalia.png)| 139   |      93|       5.852|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[South Africa](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/South%20Africa.png)| 146   |   13885|     236.235|   1.7%/ 41|   1.3%/ 54|   1.2%/ 58|   1.1%/ 63 |
+|[Spain](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Spain.png)| 146   |   28830|     612.095|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Sri Lanka](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sri%20Lanka.png)| 146   |      11|       0.505|   0.0%/ ***|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
+|[Sudan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sudan.png)| 146   |     825|      19.431|   0.3%/206|   0.3%/256|   0.3%/273|   0.2%/291 |
+|[Sweden](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Sweden.png)| 146   |    5815|     562.468|   0.1%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Switzerland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Switzerland.png)| 146   |    2000|     232.491|   0.1%/ ***|   0.1%/ ***|   0.1%/ ***|   0.1%/ *** |
+|[Syria](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Syria.png)| 146   |      88|       5.005|   2.8%/ 24|   2.9%/ 24|   2.9%/ 23|   3.0%/ 23 |
+|[Tanzania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Tanzania.png)| 146   |      21|       0.376|   0.0%/ --|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
+|[Thailand](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Thailand.png)| 146   |      58|       0.872|   0.0%/ ***|   0.0%/ --|   0.0%/ ***|   0.0%/ -- |
+|[Togo](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Togo.png)| 146   |      30|       3.917|   0.9%/ 75|   0.3%/216|   0.2%/429|   0.0%/ -- |
+|[Trinidad and Tobago](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Trinidad%20and%20Tobago.png)| 146   |       8|       5.865|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ -- |
+|[Tunisia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Tunisia.png)| 146   |      55|       4.676|   1.2%/ 59|   1.5%/ 46|   1.6%/ 43|   1.7%/ 41 |
+|[Turkey](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Turkey.png)| 146   |    6131|      73.735|   0.3%/209|   0.3%/201|   0.3%/199|   0.4%/198 |
+|[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)| 146   |  178652|     542.119|   0.6%/118|   0.5%/127|   0.5%/129|   0.5%/132 |
+|[Uganda](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uganda.png)|  32   |      22|       0.539|   6.6%/ 10|   6.1%/ 11|   5.1%/ 14|   3.8%/ 18 |
+|[Ukraine](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ukraine.png)| 146   |    2335|      55.750|   1.3%/ 51|   1.4%/ 50|   1.4%/ 50|   1.4%/ 50 |
+|[United Arab Emirates](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Arab%20Emirates.png)| 146   |     373|      37.698|   0.4%/188|   0.4%/165|   0.4%/160|   0.4%/155 |
+|[United Kingdom](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Kingdom.png)| 146   |   40992|     617.016|   0.0%/ ***|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
+|[Uruguay](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uruguay.png)| 146   |      42|      11.854|   0.9%/ 75|   1.1%/ 65|   1.1%/ 62|   1.1%/ 60 |
+|[Uzbekistan](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Uzbekistan.png)| 146   |     287|       8.414|   2.5%/ 27|   2.2%/ 31|   2.2%/ 32|   2.1%/ 33 |
+|[Venezuela](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Venezuela.png)| 146   |     352|      10.921|   2.7%/ 25|   2.5%/ 28|   2.4%/ 28|   2.4%/ 29 |
+|[Vietnam](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Vietnam.png)|  25   |      27|       0.283|   2.9%/ 24|   1.3%/ 53|   2.6%/ 27|   2.6%/ 27 |
+|[Zambia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Zambia.png)| 145   |     308|      17.218|   1.1%/ 61|   1.2%/ 57|   1.2%/ 56|   1.3%/ 55 |
+|[Zimbabwe](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Zimbabwe.png)| 146   |     180|      11.898|   2.7%/ 25|   0.7%/105|   0.9%/ 79|   0.7%/106 |
 
