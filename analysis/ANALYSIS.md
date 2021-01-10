@@ -1,5 +1,5 @@
 # State and Country COVID-19 Analysis #
-## Updated: at 2021-01-09 for data as of 2020-12-31 ##
+## Updated: at 2021-01-10 for data as of 2020-12-31 ##
 
 Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
 

@@ -290,7 +290,8 @@ class Analysis():
                     data[one] = (deaths[-22:], cases[-22:]) # [-22,-15,-8,-1]
         return data
             
-    def plotAllStatesRates(self, path, data, xmin=1e-1, xmax=None, ymin=1e1, ymax=None ):            
+    #def plotAllStatesRates(self, path, data, xmin=1e-1, xmax=None, ymin=1e1, ymax=None ):            
+    def plotAllStatesRates(self, path, data, xmin=10, xmax=None, ymin=1e2, ymax=None ):            
         two = dict(map(reversed, states2.items()))
         fig, ax1 = plt.subplots()
         ax1.set_title('21 Day Case Rate vs Death Rate Trajectories')
