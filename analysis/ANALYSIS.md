@@ -1,11 +1,11 @@
 # State and Country COVID-19 Analysis #
-## Updated: at 2021-01-10 for data as of 2020-12-31 ##
+## Updated: at 2021-01-12 for data as of 2020-12-31 ##
 
 Uses the total death counts from the daily report files from the JHU CSSE COVID-19 GITHUB repository: https://github.com/CSSEGISandData/COVID-19.git.
 
 # US Confirmed Case Rates vs. Death Rates #
 
-The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.  These four states comprise 33.2% of the US population and account for 32.9% of deaths and 31.9% of confirmed cases.  Per capita data is expressed per million of population.  One per million is 0.0001%.  1% is 10,000 per million.  
+The next several plots show _per capita_ data for the four US states with the largest populations: California, Florida, Texas, and New York.  These four states comprise 33.2% of the US population and account for 32.9% of deaths and 31.8% of confirmed cases.  Per capita data is expressed per million of population.  One per million is 0.0001%.  1% is 10,000 per million.  
 
 ![Deaths](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/4LargestDeaths.png)
 
@@ -38,7 +38,7 @@ Up until June 29, 2020, this page reported the DDGR directly, but as the high gr
 
 # Ten US States with Highest Death Tolls #
 
-Deaths in the 10 US States with the highest death tolls expressed as deaths per 1 million population. These ten states comprise 52.0% of the US population and account for 58.7% of deaths and 50.2% of confirmed cases.
+Deaths in the 10 US States with the highest death tolls expressed as deaths per 1 million population. These ten states comprise 52.0% of the US population and account for 58.7% of deaths and 50.3% of confirmed cases.
 
 ![US States with Highest Death Toll - Death Toll](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/10LargestDeaths.png)
 
@@ -86,7 +86,7 @@ Daily Death Rate of Growth (DDRG) in the 10 countries with the highest death tol
 |[US](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/US.png)| 275   |  343263|    1041.630|   0.8%/ 82|   0.9%/ 80|   0.9%/ 79|   0.9%/ 79 |
 |[Brazil](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Brazil.png)| 275   |  193863|     916.991|   0.4%/178|   0.4%/173|   0.4%/172|   0.4%/171 |
 |[India](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/India.png)| 275   |  150533|     110.587|   0.2%/333|   0.2%/372|   0.2%/384|   0.2%/396 |
-|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 275   |  125377|     990.514|   0.5%/127|   0.6%/126|   0.6%/126|   0.6%/125 |
+|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 275   |  125372|     990.475|   0.5%/127|   0.5%/126|   0.5%/126|   0.6%/126 |
 |[Italy](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Italy.png)| 275   |   79068|    1312.576|   0.8%/ 85|   0.8%/ 88|   0.8%/ 89|   0.8%/ 89 |
 |[United Kingdom](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/United%20Kingdom.png)| 275   |   73281|    1103.041|   0.7%/100|   0.7%/101|   0.7%/102|   0.7%/102 |
 |[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 275   |   67839|    1011.374|   0.7%/ 96|   0.7%/ 98|   0.7%/ 99|   0.7%/100 |
@@ -215,7 +215,7 @@ Click on the link in the first column to view the deaths and DDRG chart for a sp
 |[Egypt](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Egypt.png)| 275   |    7364|      73.445|   0.5%/131|   0.6%/121|   0.6%/118|   0.6%/116 |
 |[El Salvador](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/El%20Salvador.png)| 275   |    1326|     204.403|   0.6%/119|   0.6%/117|   0.6%/117|   0.6%/116 |
 |[Equatorial Guinea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Equatorial%20Guinea.png)| 254   |      85|      62.878|   0.0%/ --|   0.0%/ ***|   0.0%/ ***|   0.0%/ *** |
-|[Eritrea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Eritrea.png)|  10   |       1|       0.286|   0.0%/ --|   0.0%/ --|   0.0%/ --|   0.0%/ -- |
+|[Eritrea](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Eritrea.png)|  10   |       3|       0.858|   0.0%/ --|   0.0%/ --|   0.0%/ --|  44.2%/  1 |
 |[Ethiopia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Ethiopia.png)| 271   |    1943|      19.695|   0.4%/194|   0.3%/204|   0.3%/207|   0.3%/210 |
 |[Finland](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Finland.png)| 275   |     517|      93.589|   1.2%/ 56|   1.3%/ 51|   1.4%/ 50|   1.4%/ 49 |
 |[France](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/France.png)| 275   |   67839|    1011.374|   0.7%/ 96|   0.7%/ 98|   0.7%/ 99|   0.7%/100 |
@@ -255,7 +255,7 @@ Click on the link in the first column to view the deaths and DDRG chart for a sp
 |[Malaysia](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Malaysia.png)| 275   |     479|      14.615|   0.7%/103|   0.6%/112|   0.6%/114|   0.6%/116 |
 |[Mali](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mali.png)| 275   |     258|      12.734|   1.7%/ 42|   1.8%/ 38|   1.8%/ 38|   1.9%/ 37 |
 |[Mauritania](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mauritania.png)| 275   |     336|      82.406|   1.6%/ 43|   1.7%/ 40|   1.8%/ 39|   1.8%/ 38 |
-|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 275   |  125377|     990.514|   0.5%/127|   0.6%/126|   0.6%/126|   0.6%/125 |
+|[Mexico](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mexico.png)| 275   |  125372|     990.475|   0.5%/127|   0.5%/126|   0.5%/126|   0.6%/126 |
 |[Moldova](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Moldova.png)| 275   |    3008|    1121.485|   0.8%/ 84|   0.8%/ 85|   0.8%/ 86|   0.8%/ 86 |
 |[Morocco](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Morocco.png)| 275   |    7721|     215.240|   0.6%/126|   0.5%/153|   0.4%/162|   0.4%/172 |
 |[Mozambique](https://github.com/lintondf/COVIDtoTimeSeries/raw/master/analysis/countries/Mozambique.png)| 221   |     163|       5.420|   0.9%/ 80|   0.9%/ 77|   0.9%/ 76|   0.9%/ 75 |
